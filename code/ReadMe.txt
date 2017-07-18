@@ -1,0 +1,6 @@
+49ontology_term_annotation_v2.txt 	从dic_term字典中输出的每个term注释基因
+49ontology_term_annotation_v2a.txt	从node的annotation属性输出的每个term注释基因
+
+---有一部分term不是根节点（在这里根节点是1018号node）但是依然没有父亲结点
+
+49ontology_term_annotation_v3.txt	对非根节点但是没有父节点的node进行查找，并找到合适的父节点连上。
