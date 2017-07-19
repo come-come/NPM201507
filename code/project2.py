@@ -204,7 +204,7 @@ def clique_v2(filename, threshold):
                 term_set = set()                                        
                 # 当前阈值下 生成的cliques
                 if sorted(clique) not in window_term[window].values():
-                    window_term[window][num_clq] = sorted(clique) 
+                    window_term[window][num_clq] = sorted(clique) # there do not exit this term(clique)
                         
                 if sorted(clique) not in dic_term.values() : #[1,2,3]=[1,2,3]  [2,1,3]!=[1,2,3]
                     #this clique is new then a term is generated for this clique                     

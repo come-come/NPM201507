@@ -169,31 +169,7 @@ def chose_colums():
     print data4.head(5)
     data4.to_csv('geneSize.txt',sep = '\t',index = False)
 
-def clique(filename, threshold):
-    #自顶向下
-    data = pd.read_csv(filename, index_col = 0, sep = '\t' )
-    print data.shape[1] #54 columns
-    print data.columns[0]
-    #print data[data.columns[data.shape[1]-1]].head(5)
-    windowGraph = {}
-    cliqueGraph = {}
-    for i in range(0, data.shape[1]):
-        # for each column(window)
-        windowGraph[i] = nx.Graph()
-        df = data[data[data.columns[i]]>=threshold][data.columns[i]]
-        for edge in range(0, df.shape[0]):
-            # for each edges up the threshold
-            node_1, node_2 = df.index[edge].split('_')
-            windowGraph[i].add_edge(node_1, node_2)
-        print 'window', i, windowGraph[i].size(), windowGraph[i].number_of_nodes()   
-        
-        cliques = list(nx.find_cliques(windowGraph[i]))
-        N = max(len(c) for c in cliques)
-        print 'size of max clique:',N
-        for c in sorted(cliques):
-            if len(c) == N :
-                #print c # nodes list
-                cliqueGraph[i] = c
+
 
 def clique2_root_ok(filename, threshold):
     #自底向上
@@ -217,8 +193,6 @@ def clique2_root_ok(filename, threshold):
             windowGraph[49].add_edge(node_1, node_2)
         else :
             # find cliques when threshold = t 
-            #print i
-            #print 'number_of_cliques(windowGraph):',nx.graph_number_of_cliques(windowGraph[49])
             for cliques in sorted(list(nx.find_cliques(windowGraph[49])), key=lambda x:len(x)) : #cliques sorted by size of each clique
                 
                 gene_set = set()
@@ -547,6 +521,53 @@ def clique2(filename, threshold):
     #print 'nx.graph_clique_number(windowGraph[49]):',nx.graph_clique_number(windowGraph[49])
     #print 'number_of_cliques(windowGraph):',nx.graph_number_of_cliques(windowGraph[49])
     
+def clique3(filename, threshold):
+    #自底向上       2017.7.19      
+    windowGraph = {}
+    cliqueGraph = nx.DiGraph()    
+    data = pd.read_csv(filename, index_col = 0, sep = '\t' )
+    #df = data[data.columns[0]].sort_values(ascending = False)      # 默认是最小在前 若要降序 ascending = False  
+    dic_term = {}
+    window_term = {}
+    term = 183
+    for window in range(0, data.shape[1]) :
+        windowGraph[window] = nx.Graph()
+    weight_value = list(np.arange(0, 1.01, 0.01))
+    weight_value.sort(reverse=True) #[1, 0.99, 0.98,...0]
+    clique_num = 0
+    dic_now = {}
+    for t in [1] :        
+        for window in range(0, data.shape[1]) :
+            window_term[window] = {}
+            df = data[data[data.columns[window]]==t][data.columns[window]] #get each column(window)            
+            for edge in range(0, df.shape[0]) : #get each row(gene)
+                node_1, node_2 = df.index[edge].split('_')
+                windowGraph[window].add_edge(node_1, node_2) # generate WindowGraph
+            # 当前 window 在 threshold=t 构建完成
+            num_clq = 0
+            
+            for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) : #cliques sorted by size of each clique
+                #print window, clique
+                if sorted(clique) not in window_term[window].values():
+                    window_term[window][num_clq] = sorted(clique) 
+                    num_clq = num_clq +1
+
+            if window == 0 :
+                for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) :
+                    if len(clique) >4 :
+                        dic_now[clique_num] = sorted(clique) # 用于比较的当前clique
+                        clique_num = clique_num + 1
+                    else :
+                        continue
+            else : #
+                for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) :
+                    for c in dic_now :
+                        dic_now[c]
+                        !!!!!!!!!!!!!!!!!!!!!!!!!!
+                
+            
+    print window_term[0]
+    
 if __name__ == '__main__':   
     start = time.clock()
     
@@ -571,7 +592,9 @@ if __name__ == '__main__':
     
     #find cliques for each window graph using weight.txt
     #clique('G:\project2\\NPM201507\\code\\result_c5_s10_v2_weight.txt',0.95)
-    clique2('result_c5_s10_v2_weight.txt',1)
+    #clique2('result_c5_s10_v2_weight.txt',1)
+    #clique2_root_ok('result_c5_s10_v2_weight.txt',1)
+    clique3('result_c5_s10_v2_weight.txt',1)
     end = time.clock()
     print 'The function run time is : %.03f seconds' % (end-start)
     
