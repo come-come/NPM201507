@@ -530,43 +530,54 @@ def clique3(filename, threshold):
     dic_term = {}
     window_term = {}
     term = 183
+    
     for window in range(0, data.shape[1]) :
         windowGraph[window] = nx.Graph()
     weight_value = list(np.arange(0, 1.01, 0.01))
     weight_value.sort(reverse=True) #[1, 0.99, 0.98,...0]
-    clique_num = 0
     dic_now = {}
-    for t in [1] :        
+    for t in [1,0.99,0.98] :  
+        print t
+        flag = -1
         for window in range(0, data.shape[1]) :
-            window_term[window] = {}
-            df = data[data[data.columns[window]]==t][data.columns[window]] #get each column(window)            
-            for edge in range(0, df.shape[0]) : #get each row(gene)
-                node_1, node_2 = df.index[edge].split('_')
-                windowGraph[window].add_edge(node_1, node_2) # generate WindowGraph
+            
+            if flag ==window-1:
+                window_term[window] = {}
+                df = data[data[data.columns[window]]==t][data.columns[window]] #get each column(window)            
+                for edge in range(0, df.shape[0]) : #get each row(gene)
+                    node_1, node_2 = df.index[edge].split('_')
+                    windowGraph[window].add_edge(node_1, node_2) # generate WindowGraph
             # 当前 window 在 threshold=t 构建完成
-            num_clq = 0
-            
-            for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) : #cliques sorted by size of each clique
-                #print window, clique
-                if sorted(clique) not in window_term[window].values():
-                    window_term[window][num_clq] = sorted(clique) 
-                    num_clq = num_clq +1
 
-            if window == 0 :
-                for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) :
-                    if len(clique) >4 :
-                        dic_now[clique_num] = sorted(clique) # 用于比较的当前clique
-                        clique_num = clique_num + 1
-                    else :
-                        continue
-            else : #
-                for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) :
-                    for c in dic_now :
-                        dic_now[c]
-                        !!!!!!!!!!!!!!!!!!!!!!!!!!
+                if window == 0 :                    
+                    for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) :
+                        if len(clique) >4 :
+                           
+                            dic_now[frozenset(clique)] = [window] # 用于比较的当前t的clique key--基因集和 value--window区间 
+                            flag = window
+                        else :
+                            continue
+                else : #
+                    for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) :
+                        for key,value in dic_now.items() : # key 是基因集合 value是时间区间
+                            intersect = set(key).intersection(set(clique))
+                            if len(intersect)>4 and window==max(value)+1: #交集基因大于4个
+                                dic_now[frozenset(intersect)] = value +[window] #更新
+                                print intersect,value+[window]
+                                flag = window
+                                dic_now.pop(key)
+                                break
+                            else :                            
+                                continue 
+        print len(dic_now)
+        for key,value in dic_now.items():
+            if 0 in value and len(value) >1 and len(key)>4 : #包含t=1的 时间区间大于1并且geneSize大于4
+                print term,key,value
+                cliqueGraph.add_node(term, annotation = list(key), windowsize = value)# generate a term
+                term = term + 1
+        dic_now.clear()
                 
-            
-    print window_term[0]
+    print term
     
 if __name__ == '__main__':   
     start = time.clock()
