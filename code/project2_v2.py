@@ -181,18 +181,21 @@ def clique2_root_ok(filename, threshold):
     #df = data[data.columns[0]].sort_values(ascending = False)      # 默认是最小在前 若要降序 ascending = False  
     df = data[data.columns[0]].sort_values(ascending = False)
     t=1
-
+    fw = open("win49_t_clique_0.05.txt",'w')
     term = 183
     dic_term = {}
     #dic_cliques  = {}
 
     for i in range(0, df.shape[0]):
 
-        if df[i] == t :
+        #if df[i] == t :
+        if df[i]<=t and df[i]>t-0.05:   
             node_1, node_2 = df.index[i].split('_')
             windowGraph[49].add_edge(node_1, node_2)
         else :
             # find cliques when threshold = t 
+            fw.write(str(t-0.05)+'_'+str(t)+'\t'+str(len(list(nx.find_cliques(windowGraph[49])))) + '\t'+ str(len([clique for clique in nx.find_cliques(windowGraph[49]) if len(clique)>4]))+'\t'+str(windowGraph[49].number_of_edges())+'\n')
+            print t,len(list(nx.find_cliques(windowGraph[49])))
             for cliques in sorted(list(nx.find_cliques(windowGraph[49])), key=lambda x:len(x)) : #cliques sorted by size of each clique
                 
                 gene_set = set()
@@ -245,6 +248,7 @@ def clique2_root_ok(filename, threshold):
     print 'cliqueGraph[49].size()',cliqueGraph[49].size(), cliqueGraph[49].number_of_nodes() 
     #find terms not root but do not have a parent
     print 'find terms which is not root but do not have a parent:'
+    fw.close()
     degree_0_terms = []
     for i in cliqueGraph[49].nodes():
         if cliqueGraph[49].in_degree(i)==0:
@@ -530,54 +534,111 @@ def clique3(filename, threshold):
     dic_term = {}
     window_term = {}
     term = 183
-    
+    print data[data[data.columns[0]]==0.95][data.columns[0]].shape[0]
     for window in range(0, data.shape[1]) :
         windowGraph[window] = nx.Graph()
-    weight_value = list(np.arange(0, 1.01, 0.01))
-    weight_value.sort(reverse=True) #[1, 0.99, 0.98,...0]
+    weight_value = np.arange(1.0, -0.01, -0.01)
+    #weight_value.sort(reverse=True) #[1, 0.99, 0.98,...0]
     dic_now = {}
-    for t in [1,0.99,0.98] :  
-        print t
+    dic_now_temp = {}
+    dic_compare = {}
+    dic_dup = {}
+    w = data.shape[1]
+    print weight_value
+    for t in weight_value :  
+        print 't',t,'-------------------------------','w',w
         flag = -1
-        for window in range(0, data.shape[1]) :
+        for window in range(0, w) : 
             
             if flag ==window-1:
-                window_term[window] = {}
-                df = data[data[data.columns[window]]==t][data.columns[window]] #get each column(window)            
+                #print 'adding edges...', window,'t:',t, windowGraph[window].number_of_edges()
+                df = data[(data[data.columns[window]] >= (t - 0.00001)) & (data[data.columns[window]] <= (t + 0.00001))] #get each column(window)            
+                print 'adding edges:',df.shape[0]
                 for edge in range(0, df.shape[0]) : #get each row(gene)
                     node_1, node_2 = df.index[edge].split('_')
                     windowGraph[window].add_edge(node_1, node_2) # generate WindowGraph
-            # 当前 window 在 threshold=t 构建完成
-
+                print 'After adding edges:', window,'t:',t, windowGraph[window].number_of_edges()
+                
+                print '###############'
+                
+                
+                
                 if window == 0 :                    
-                    for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) :
-                        if len(clique) >4 :
-                           
+                    for clique in nx.find_cliques(windowGraph[window]):
+                        if len(clique)>4 :                            
                             dic_now[frozenset(clique)] = [window] # 用于比较的当前t的clique key--基因集和 value--window区间 
                             flag = window
-                        else :
-                            continue
+                    print t,window, '****',len([clique for clique in nx.find_cliques(windowGraph[window]) if len(clique)>4])
+                    
                 else : #
-                    for clique in sorted(list(nx.find_cliques(windowGraph[window])), key=lambda x:len(x)) :
-                        for key,value in dic_now.items() : # key 是基因集合 value是时间区间
-                            intersect = set(key).intersection(set(clique))
-                            if len(intersect)>4 and window==max(value)+1: #交集基因大于4个
-                                dic_now[frozenset(intersect)] = value +[window] #更新
-                                print intersect,value+[window]
-                                flag = window
-                                dic_now.pop(key)
-                                break
-                            else :                            
-                                continue 
-        print len(dic_now)
+                    #print t,window, '****',len([clique for clique in nx.find_cliques(windowGraph[window]) if len(clique)>4])
+                    for key,value in dic_now.items() : # key 是基因集合 value是时间区间
+                   
+                        maxx = 0
+                        tag = []
+                        
+                        for clique in nx.find_cliques(windowGraph[window]) :                           
+                            intersect = sorted(set(key).intersection(set(clique)))  #求交集
+                            if len(intersect)>4 and window==max(value)+1 and not dic_now_temp.has_key(frozenset(intersect)): #交集基因大于4个                                       
+                                #dic_now_temp[frozenset(intersect)] = value + [window] #更新
+                                dic_compare[frozenset(intersect)] = value + [window]
+                                                                         
+                            else:
+                                continue
+
+                        if len(dic_compare) > 0 :
+                            #有交集,找出最大的交集
+                            for key,value in dic_compare.items():
+                                if len(key) > maxx:
+                                    maxx = len(key)
+                                    tag = key
+                            dic_now_temp[tag] = dic_compare[tag]
+                            flag = window
+                            
+                        else :
+                            #无交集
+                            dic_now_temp[key] = value  
+                        dic_compare.clear()   
+                        
+                    #print 'len dic_now \dic_now_temp',len(dic_now), len(dic_now_temp)
+                    if len(dic_now_temp)>0:
+                        dic_now.clear()
+                        
+                        for key1, value1 in dic_now_temp.items():
+                            for key,value in dic_now_temp.items():
+                                if key1!=key and set(key1).issubset(set(key)) and  set(value1).issubset(value):
+                                    dic_dup[frozenset(key1)] = value1
+                        #print 'before pop', len(dic_now_temp)
+                        for key,value in dic_dup.items():
+                            dic_now_temp.pop(key)
+                        #print 'after pop', len(dic_now_temp)            
+                        dic_dup.clear()
+                        
+                        for key,value in dic_now_temp.items():
+                            dic_now[key] = value   
+                            
+                        dic_now_temp.clear()
+                                   
+            else:
+                w = flag
+                break
+            
+        #print 'len(dic_now)',len(dic_now)
         for key,value in dic_now.items():
             if 0 in value and len(value) >1 and len(key)>4 : #包含t=1的 时间区间大于1并且geneSize大于4
-                print term,key,value
+                #print term,key,value
                 cliqueGraph.add_node(term, annotation = list(key), windowsize = value)# generate a term
                 term = term + 1
-        dic_now.clear()
+        print cliqueGraph.nodes()
+        
+        for key1,value1 in dic_now.items():
+            for key,value in dic_now.items():
                 
-    print term
+                if key1!=key and set(key1).issubset(set(key)):
+                    print '1',key1,value1
+                    print '2',key, value
+        dic_now.clear()       
+    print 'term个数',term-183
     
 if __name__ == '__main__':   
     start = time.clock()
