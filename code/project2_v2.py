@@ -12,6 +12,10 @@ import time
 import os
 from os.path import join
 import matplotlib.pyplot as plt
+import gevent
+import gevent.pool
+
+
  
 def cluster_NPM(dest, fwname) :
     resultPd = pd.DataFrame()
@@ -525,18 +529,18 @@ def clique2(filename, threshold):
     #print 'nx.graph_clique_number(windowGraph[49]):',nx.graph_clique_number(windowGraph[49])
     #print 'number_of_cliques(windowGraph):',nx.graph_number_of_cliques(windowGraph[49])
     
-def clique3(filename, threshold):
+def clique3(startwindow):
+    print 'window:',startwindow
     #自底向上       2017.7.19      
+    filename = 'result_c5_s10_v2_weight.txt'
     windowGraph = {}
     cliqueGraph = nx.DiGraph()    
     data = pd.read_csv(filename, index_col = 0, sep = '\t' )
     #df = data[data.columns[0]].sort_values(ascending = False)      # 默认是最小在前 若要降序 ascending = False  
     dic_term = {}
     dic_wind = {}
-    window_term = {}
-    
+    window_term = {}    
     term = 183
-    print data[data[data.columns[0]]==0.95][data.columns[0]].shape[0]
     for window in range(0, data.shape[1]) :
         windowGraph[window] = nx.Graph()
     weight_value = np.arange(1.0, -0.01, -0.01)
@@ -546,13 +550,14 @@ def clique3(filename, threshold):
     dic_compare = {}
     dic_dup = {}
     w = data.shape[1]
-    print weight_value
-    fw = open('ori729.txt','w')
+    filename1 = 'termInfo' + str(startwindow) +'.txt'
+    filename2 = 'edgeInfo' + str(startwindow) +'.txt'
+    fw = open(filename1,'w')
     fw.write('threshold' + '\t' + 'term'+'\t'+'key'+'\t'+'value'+ '\n')
     for t in weight_value :  
-        print 't',t,'-------------------------------','w',w
-        flag = -1
-        for window in range(0, w) : 
+        #print 't',t,'-------------------------------','w',w
+        flag = startwindow - 1 #730
+        for window in range(startwindow, w) : 
             
             if flag ==window-1:
                 df = data[(data[data.columns[window]] >= (t - 0.00001)) & (data[data.columns[window]] <= (t + 0.00001))] #get each column(window)            
@@ -563,7 +568,7 @@ def clique3(filename, threshold):
                 #print 'After adding edges:', window,'t:',t, windowGraph[window].number_of_edges()                
                 #print '###############'  
                              
-                if window == 0 :                    
+                if window == startwindow :                    
                     for clique in nx.find_cliques(windowGraph[window]):
                         if len(clique)>4 :                            
                             dic_now[frozenset(clique)] = [window] # 用于比较的当前t的clique key--基因集和 value--window区间 
@@ -620,7 +625,7 @@ def clique3(filename, threshold):
             
         #print 'len(dic_now)',len(dic_now)
         for key,value in dic_now.items():
-            if 0 in value and len(value) >1 and len(key)>4 : #包含t=1的 时间区间大于1并且geneSize大于4
+            if startwindow in value and len(value) >1 and len(key)>4 : #包含t=startwindow的 时间区间大于1并且geneSize大于4
                 #print term,key,value
                 if sorted(key) in dic_term.values() and sorted(value) == dic_wind[list(dic_term.keys())[list(dic_term.values()).index(sorted(key))]]:
                     #print key, 'in'
@@ -635,7 +640,7 @@ def clique3(filename, threshold):
                     fw.write(str(t) +' \t' + str(term) +'\t' + genes + '\t'+ values +'\n')
                     
                     term = term + 1 
-        print cliqueGraph.number_of_nodes()
+        #print cliqueGraph.number_of_nodes()
         
 #        for key1,value1 in dic_now.items():
 #            for key,value in dic_now.items():
@@ -644,7 +649,7 @@ def clique3(filename, threshold):
 #                    print '1',key1,value1
 #                    print '2',key, value
         dic_now.clear()  
-    fw1 = open('edges729.txt', 'w')    
+    fw1 = open(filename2, 'w')    
     print 'term个数',term-183
     for key,value in sorted(dic_term.items(), key=lambda d:d[0]): # sorted by term id 183,184...
         for i in range(key+1,term): #从下一个term开始寻找父亲结点
@@ -654,14 +659,38 @@ def clique3(filename, threshold):
                 cliqueGraph.add_edge(i,key)               
                 fw1.write(str(i)+'\t'+str(key)+'\n')
                 break
-    fw1.close()
+    fw1.close()          
+    fw.close()
+
+
+
+
+   
+
+ 
+def asy():
+    pool = gevent.pool.Pool(10)
+    for window in range(0,5):
+        print window
+        pool.add(gevent.spawn(clique3,window))
+    pool.join()
+    print 'end'
     
+
+def a(i):
+    print i
     
-        
+def b():
+    pool = gevent.pool.Pool(10)
+    for i in range(100):
+          pool.add(gevent.spawn(a,i))
+    pool.join()
+    print "end"
+
+
     
-    #fw.close()
 if __name__ == '__main__':   
-    start = time.clock()
+    
     
     # Integrate cluster files into a matrix. result_clustNum_step.txt The index is gene name
     fw_clust = 'result_c5_s10_v2'
@@ -680,13 +709,15 @@ if __name__ == '__main__':
     #cluster_NPM100('G:\project2\\NPM201507\\clusterResult')
     #calculate weight for each window of each gene pattern    
     fw_weight = fw_clust +'_weight'
-    #cal_weight('G:\project2\\NPM201507\\data\\100_c5_s10_windowMatrix',fw_weight +'.txt')
-    
+    #cal_weight('G:\project2\\NPM201507\\data\\100_c5_s10_windowMatrix',fw_weight +'.txt')    
     #find cliques for each window graph using weight.txt
     #clique('G:\project2\\NPM201507\\code\\result_c5_s10_v2_weight.txt',0.95)
     #clique2('result_c5_s10_v2_weight.txt',1)
     #clique2_root_ok('result_c5_s10_v2_weight.txt',1)
-    clique3('result_c5_s10_v2_weight.txt',1)
+    #clique3('result_c5_s10_v2_weight.txt',1)
+    start = time.clock()
+    asy()
+    #b()
     end = time.clock()
     print 'The function run time is : %.03f seconds' % (end-start)
     
