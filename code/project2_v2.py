@@ -654,7 +654,6 @@ def clique3(startwindow):
     for key,value in sorted(dic_term.items(), key=lambda d:d[0]): # sorted by term id 183,184...
         for i in range(key+1,term): #从下一个term开始寻找父亲结点
             #print key,i,value,dic_term[i],dic_wind[i],dic_wind[i],dic_wind[key]
-            print key,i
             if set(value).issubset(set(dic_term[i])) and set(dic_wind[i]).issubset(set(dic_wind[key])):
                 cliqueGraph.add_edge(i,key)               
                 fw1.write(str(i)+'\t'+str(key)+'\n')
@@ -669,7 +668,7 @@ def clique3(startwindow):
 
  
 def asy():
-    pool = gevent.pool.Pool(10)
+    pool = gevent.pool.Pool(20)
     for window in range(0,5):
         print window
         pool.add(gevent.spawn(clique3,window))
