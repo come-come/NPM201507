@@ -65,7 +65,7 @@ def clique3(startwindow):
                         for clique in nx.find_cliques(windowGraph[window]):
                             intersect = sorted(set(key).intersection(set(clique)))  # 求交集
                             # if dic_now_temp.has_key(frozenset(intersect):
-                            if len(intersect) > 4 and window == max(value)+1 and not dic_now_temp.has_key(frozenset(intersect)):  # 交集基因大于4个
+                            if not dic_now_temp.has_key(frozenset(intersect)) and len(intersect) > 4 and window == max(value)+1:  # 交集基因大于4个
                                 dic_compare[frozenset(intersect)] = value + [window]                                                                         
                             else:
                                 continue
@@ -147,7 +147,7 @@ if __name__ == '__main__':
     start = time.clock()
     ###########################running time: 734.632
     jobs = []
-    for i in xrange(1):
+    for i in xrange(4):
         p = multiprocessing.Process(target=clique3, args=(i,))
         jobs.append(p)
         p.start()
