@@ -18,11 +18,15 @@ import multiprocessing
 from multiprocessing import Pool
 import os, time, random
 
+
+filename = 'result_c5_s10_v2_weight.txt'
+data = pd.read_csv(filename, index_col=0, sep='\t')
+curr_path = os.getcwd() + '/'
+
 def clique3(startwindow):
     print ('start window %d:' % startwindow)
     # 自底向上       2017.7.19
-    filename = 'result_c5_s10_v2_weight.txt'
-    data = pd.read_csv(filename, index_col=0, sep='\t')
+
     windowGraph = {}
     cliqueGraph = nx.DiGraph()
     dic_term = {}
@@ -38,9 +42,13 @@ def clique3(startwindow):
     dic_compare = {}
     dic_dup = {}
     w = data.shape[1]
-    filename1 = 'termInfo' + str(startwindow) + '.txt'
-    filename2 = 'edgeInfo' + str(startwindow) + '.txt'
-    fw = open(filename1, 'w')
+
+    filename1 = 'term/termInfo' + str(startwindow) + '.txt'
+    filename2 = 'edge/edgeInfo' + str(startwindow) + '.txt'
+    f_path1 = curr_path + os.path.normpath(filename1)
+    f_path2 = curr_path + os.path.normpath(filename2)
+
+    fw = open(f_path1, 'w')
     fw.write('threshold' + '\t' + 'term' + '\t' + 'GeneSize' + '\t' + 'WindowSize' + '\t' + 'key' + '\t' + 'value' + '\n')
     
     for t in weight_value:
@@ -48,7 +56,7 @@ def clique3(startwindow):
         flag = startwindow - 1
         for window in range(startwindow, w):
             if flag == window-1:
-                df = data[(data[data.columns[window]] >= (t - 0.05 - 0.00001)) & (data[data.columns[window]] <= (t + 0.00001))]
+                df = data[(data[data.columns[window]] >= (t - 0.05 + 0.00001)) & (data[data.columns[window]] <= (t + 0.00001))]
                 for edge in range(0, df.shape[0]):  # get each row(gene)
                     node_1, node_2 = df.index[edge].split('_')
                     windowGraph[window].add_edge(node_1, node_2)  # generate WindowGraph
@@ -117,7 +125,7 @@ def clique3(startwindow):
                     term = term + 1 
         dic_now.clear()
 
-    fw1 = open(filename2, 'w')
+    fw1 = open(f_path2, 'w')
     fw1.write('Parent' + '\t' + 'Child' + '\n')
     print ('window %d term number %d.' % (startwindow, (term-183)))
 
@@ -132,19 +140,21 @@ def clique3(startwindow):
     fw.close()
     print ('ending window %d ' % startwindow)
 
+
  
-def asy():
-    pool = gevent.pool.Pool(20)
-    for window in xrange(4):
-        pool.add(gevent.spawn(clique3,window))
-    pool.join()
-    print ('end')
+# def asy():
+#     pool = gevent.pool.Pool(20)
+#     for window in xrange(4):
+#         pool.add(gevent.spawn(clique3, window))
+#     pool.join()
+#     print ('end')
     
 
     
 if __name__ == '__main__':   
     start = time.clock()
     ###########################running time: 734.632
+
     jobs = []
     for i in xrange(53):
         p = multiprocessing.Process(target=clique3, args=(i,))
