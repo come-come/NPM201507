@@ -30,8 +30,8 @@ def clique3(startwindow):
     term = 183
     for window in range(0, data.shape[1]):
         windowGraph[window] = nx.Graph()
-    weight_value = np.arange(1.0, -0.01, -0.01)
-
+    #weight_value = np.arange(1.0, -0.01, -0.01)
+    weight_value = np.arange(1.0, -0.05, -0.05)
     # weight_value.sort(reverse=True) #[1, 0.99, 0.98,...0]
     dic_now = {}
     dic_now_temp = {}
@@ -48,11 +48,10 @@ def clique3(startwindow):
         flag = startwindow - 1
         for window in range(startwindow, w):
             if flag == window-1:
-                df = data[(data[data.columns[window]] >= (t - 0.00001)) & (data[data.columns[window]] <= (t + 0.00001))]
+                df = data[(data[data.columns[window]] >= (t - 0.05 - 0.00001)) & (data[data.columns[window]] <= (t + 0.00001))]
                 for edge in range(0, df.shape[0]):  # get each row(gene)
                     node_1, node_2 = df.index[edge].split('_')
                     windowGraph[window].add_edge(node_1, node_2)  # generate WindowGraph
-
                 if window == startwindow:
                     for clique in nx.find_cliques(windowGraph[window]):
                         if len(clique) > 4:
@@ -119,7 +118,7 @@ def clique3(startwindow):
         dic_now.clear()
 
     fw1 = open(filename2, 'w')
-    fw.write('Parent' + '\t' + 'Child' + '\n')
+    fw1.write('Parent' + '\t' + 'Child' + '\n')
     print ('window %d term number %d.' % (startwindow, (term-183)))
 
     for key, value in sorted(dic_term.items(), key=lambda d:d[0]):  # sorted by term id 183,184...
@@ -147,7 +146,7 @@ if __name__ == '__main__':
     start = time.clock()
     ###########################running time: 734.632
     jobs = []
-    for i in xrange(4):
+    for i in xrange(53):
         p = multiprocessing.Process(target=clique3, args=(i,))
         jobs.append(p)
         p.start()
