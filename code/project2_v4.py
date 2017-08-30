@@ -66,6 +66,7 @@ def tree(weight_value):
             for clique in nx.find_cliques(windowGraph[window]):
                 if len(clique) > 5:
                     if dic_term.has_key(frozenset(clique)):
+
                         # 如果下一时刻的clique在上一时刻生成过， 则更新clique的window
                         # dic_term[frozenset(clique)] = dic_term[frozenset(clique)] + [window]
                         # cliqueGraph.node[dic_term_num[frozenset(clique)]]['windowsize'] = dic_term[frozenset(clique)]
@@ -84,7 +85,6 @@ def tree(weight_value):
                             intersect = sorted(set(key).intersection(set(clique)))
 
                             if len(intersect) >= 5:
-
                                 if dic_term.has_key(frozenset(intersect)):
                                     # 交集已经出现过
                                     parent = cliqueGraph.predecessors(dic_term_num[frozenset(intersect)])
