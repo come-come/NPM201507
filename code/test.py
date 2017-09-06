@@ -2,31 +2,19 @@ import networkx as nx
 import pandas as pd
 import numpy as np
 
+a = {1:'w',2:'w',3:'q'}
+n = list(a.keys())[list(a.values()).index("w")]
+print n
 
-while True:
-    try:
+new_dict = {k for k,v in a.items() if v=='w'}  # {'001': 'a', '002': 'b'}
+print new_dict
 
-        n = int(raw_input())
-        nums = map(int, raw_input().split())
-        targetNum = int(raw_input())
-        maxLen = 0
-        i = 0
+if 'w' in a.values():
+    print 'o'
 
-
-        while i < n:
-            j = i + 1
-            while j <= n:
-                if sum(nums[i:j]) % targetNum == 0:
-                    maxLen = max(maxLen, j-i)
-                    print nums[i:j]
-                j = j+1
-            i = i +1
-        print maxLen
-    except:
-        break
-
-
-
+a1 = [1,2,8,4,1,2]
+a2 = [2,3,5,4,1]
+print set(a1).intersection(set(a2))
 
 # G = nx.DiGraph()
 # G.add_node(184, annotation=[1, 2], windowsize=[5, 6], weight=0.9)  # generate a term
