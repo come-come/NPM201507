@@ -2,19 +2,11 @@ import networkx as nx
 import pandas as pd
 import numpy as np
 
-a = {1:'w',2:'w',3:'q'}
-n = list(a.keys())[list(a.values()).index("w")]
-print n
-
-new_dict = {k for k,v in a.items() if v=='w'}  # {'001': 'a', '002': 'b'}
-print new_dict
-
-if 'w' in a.values():
-    print 'o'
-
-a1 = [1,2,8,4,1,2]
-a2 = [2,3,5,4,1]
-print set(a1).intersection(set(a2))
+#
+dic = {1:'a', 2:'b'}
+dic2 = {3:'d', 6:'w'}
+dic.update(dic2)
+print dic
 
 # G = nx.DiGraph()
 # G.add_node(184, annotation=[1, 2], windowsize=[5, 6], weight=0.9)  # generate a term
