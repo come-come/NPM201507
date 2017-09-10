@@ -1,12 +1,38 @@
+# -*- coding: utf-8 -*-
 import networkx as nx
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+filename = 'G:\\project2\\NPM201507\\code\\0908terms(2).txt'
+data = pd.read_table(filename,  index_col=0)
 
-#
-dic = {1:'a', 2:'b'}
-dic2 = {3:'d', 6:'w'}
-dic.update(dic2)
-print dic
+data_gene = data['geneSize']
+data_window = data['window_size']
+# 根据value_counts 的index进行排序
+data_gene = data_gene.value_counts().sort_index()
+data_window = data_window.value_counts().sort_index()
+print 'term注释基因个数的不同有几种:', data_gene.value_counts().shape, 'window的不同长度有几种:', data_window.value_counts().shape
+
+# data_gene.to_csv('geneSize.csv')
+# data_window.to_csv('windowSize.csv')
+plt.hist(np.array(data_gene.index), data_gene.values, label ='gene size')
+plt.xticks(data_gene.index, data_gene.index, rotation=0)
+plt.xlabel('gene size')
+plt.ylabel('term number')
+plt.legend()
+plt.show()
+plt.plot(np.array(data_window.index),data_window.values, label='window size')
+plt.xticks(data_window.index, data_window.index, rotation=0)
+plt.xlabel('window size')
+plt.ylabel('term number')
+plt.legend()
+plt.show()
+
+# plt.show()
+# try:
+#     f1 = open(filename, 'r')
+# finally:
+#     f1.close()
 
 # G = nx.DiGraph()
 # G.add_node(184, annotation=[1, 2], windowsize=[5, 6], weight=0.9)  # generate a term

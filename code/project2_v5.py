@@ -161,8 +161,8 @@ def tree0(weight_value, startwindow, term):
 
 
 if __name__ == '__main__':
-    fw1 = open('0908edges(2).txt', 'w')
-    fw2 = open('0908terms(2).txt', 'w')
+    fw1 = open('0908edges_10.txt', 'w')
+    fw2 = open('0908terms_10.txt', 'w')
     start = time.clock()
     s = 0
     # 先产生第一个window的 tree
@@ -171,7 +171,7 @@ if __name__ == '__main__':
     dic_all = {}
     dic_all = dic_term0.copy()
     copy_clique = cliqueGraph0
-    for i in range(1, 50):
+    for i in range(1, 10):
         print 'begin term num:', term
         cliqueGraph1, dic_term1, dic_term_num1, term = tree0(0.9, i, term)
         for key in dic_term1.keys():
@@ -191,51 +191,16 @@ if __name__ == '__main__':
         dic_all.update(dic_term1)
         cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
         print 'window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
+    fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
     fw2.write('term_id' + '\t' + 'annotation_gene' + '\t' + 'annotation_window' + '\t' + 'geneSize' + '\t' + 'window_size' + '\n')
     for node in cliqueGraph0.nodes():
         fw2.write(str(node) + '\t' + str(cliqueGraph0.node[node]['annotation']) + '\t' + str(cliqueGraph0.node[node]['windowsize']) + '\t' +
                   str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(len(cliqueGraph0.node[node]['windowsize'])) +  '\n')
-
     fw1.close()
     fw2.close()
 
-
-    # print s, len(dic_term1),cliqueGraph1.number_of_nodes()
-    # c = nx.compose(cliqueGraph0, cliqueGraph1)
-    # # cc = nx.disjoint_union(cliqueGraph0, cliqueGraph1)
-    # print c.size()
-    # print nx.is_weakly_connected(cliqueGraph0)
-    # print nx.number_weakly_connected_components(cliqueGraph1)
-    # for node in cliqueGraph1:
-    #     if cliqueGraph1.in_degree(node)==0 :
-    #         if cliqueGraph1.out_degree(node) == 0:
-    #             print node
-    #         else:
-    #             print node,'s'
-    # print cliqueGraph1.successors(0)
-    #
-    # clqiueGraph1, dic_term1, dic_term_num1 = tree0(0.9, 1)
-    # for i in range(1, 53):
-    #     clqiueGraph1, dic_term1, dic_term_num1 = tree0(0.9, i)
-    #     s = 0
-    #     for key in dic_term1.keys():
-    #         if dic_all.has_key(key):
-    #             if set(dic_all[key]).issuperset(set(dic_term1[key])):
-    #                 dic_term1.pop(key)
-    #                 s = s + 1
-    #             else:
-    #                 print key, dic_all[key]
-    #
-    #     dic_all.update(dic_term1)
-    #     print 'window', i,'duplicated:', s, 'length of unduplicated:', len(dic_term1), 'length of all ', len(dic_all)
-
-    #cliqueGraph1 = tree0(cliqueGraph0, 1)
-    # for node in cliqueGraph2.nodes():
-    #     if node in cliqueGraph1.nodes():
-    #         s = s + 1
-    # print s
 
     end = time.clock()
     print 'The function run time is : %.03f seconds' % (end - start)
