@@ -2,8 +2,8 @@ clear;
 %nx = 100;
 length = 10;
 step = 1;
-window1 = 49;
-window2 = 49+length;
+window1 = 59;
+window2 = 59+length;
 while (window2 < 113)
 
 files{1} = './data/IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt'; %semi-raw data
@@ -15,7 +15,7 @@ mkdir(new_folder)
 i = 100
 while (i>0)
 
-Par.numcluster = 5;   % number of clusters, needs to be specified.
+Par.numcluster = 10;   % number of clusters, needs to be specified.
 Par.normalize  = 2;   % optional, 0 - no normalization; 1 - normalize to [0,1]; 2 - normalize to [0,0.5] and [0.5,1]. Default: 2
 Par.anchor     = 100; %100; % optional, number of anchor points, default: 100
 Par.maxit      = 500; % optional, maximum iterations of EM algorithm, default: 400

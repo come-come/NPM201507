@@ -1,8 +1,56 @@
 # -*- coding: utf-8 -*-
+
 import networkx as nx
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+import pylab
+import sys, getopt
+from scipy import stats
+from scipy.stats import kstest
+from scipy.stats import anderson
+from compiler.ast import flatten
+
+import matplotlib.mlab as mlab
+
+
+
+filename = 'result_c5_s10_v2_weight.txt'
+phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
+phe1 = phe1.dropna(axis=1, how='all')
+columns = phe1.shape[1]
+phe1.columns = [i for i in range(0, columns)]
+
+data = pd.read_csv(filename, index_col=0, sep='\t')
+data.columns = [i for i in range(0, 54)]
+
+# print kstest(phe1[0], 'norm')
+# print stats.normaltest(phe1[0], axis=0)
+# print anderson(phe1[0])
+
+
+phe_data_raw = flatten(phe1.values.tolist())
+phe_data = [round(x, 3) for x in phe_data_raw if str(x) != 'nan']
+phe_data_p = [round(x, 3) for x in phe_data if not float(x) < 0]
+phe_data_n = [round(x, 3) for x in phe_data if float(x) < 0]
+print len(phe_data), len(phe_data_p), len(phe_data_n), phe_data[0], phe_data[20204],type(phe_data[0])
+
+print kstest(phe_data_p, 'norm')
+print stats.normaltest(phe_data, axis=0)
+print anderson(phe_data)
+
+n, bins, patches = plt.hist(phe_data_p, 150, normed=1)
+mu = np.mean(phe_data_p)
+sigma = np.std(phe_data_p)
+plt.plot(bins, mlab.normpdf(bins, mu, sigma))
+plt.show()
+
+
+
+
+'''
 filename = 'G:\\project2\\NPM201507\\code\\0908terms(2).txt'
 data = pd.read_table(filename,  index_col=0)
 
@@ -27,7 +75,7 @@ plt.xlabel('window size')
 plt.ylabel('term number')
 plt.legend()
 plt.show()
-
+'''
 # plt.show()
 # try:
 #     f1 = open(filename, 'r')
