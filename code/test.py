@@ -18,8 +18,11 @@ import matplotlib.mlab as mlab
 
 
 filename = 'result_c5_s10_v2_weight.txt'
-phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
-phe1 = phe1.dropna(axis=1, how='all')
+phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0).dropna(axis=1, how='all')
+phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt', index_col=0)
+phe3 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt', index_col=0)
+
+
 columns = phe1.shape[1]
 phe1.columns = [i for i in range(0, columns)]
 
@@ -32,19 +35,30 @@ data.columns = [i for i in range(0, 54)]
 
 
 phe_data_raw = flatten(phe1.values.tolist())
+phe_data_raw2 = flatten(phe2.values.tolist())
+phe_data_raw3 = flatten(phe3.values.tolist())
 phe_data = [round(x, 3) for x in phe_data_raw if str(x) != 'nan']
+phe_data2 = [round(x, 3) for x in phe_data_raw2 if str(x) != 'nan']
+phe_data3 = [round(x, 3) for x in phe_data_raw3 if str(x) != 'nan']
+
 phe_data_p = [round(x, 3) for x in phe_data if not float(x) < 0]
 phe_data_n = [round(x, 3) for x in phe_data if float(x) < 0]
 print len(phe_data), len(phe_data_p), len(phe_data_n), phe_data[0], phe_data[20204],type(phe_data[0])
 
-print kstest(phe_data_p, 'norm')
+print kstest(phe_data_p, 'norm',  alternative='greater')
 print stats.normaltest(phe_data, axis=0)
 print anderson(phe_data)
-
+plt.subplot(221)
 n, bins, patches = plt.hist(phe_data_p, 150, normed=1)
 mu = np.mean(phe_data_p)
 sigma = np.std(phe_data_p)
 plt.plot(bins, mlab.normpdf(bins, mu, sigma))
+plt.subplot(222)
+plt.hist(phe_data, 20)
+plt.subplot(223)
+plt.hist(phe_data2, 20)
+plt.subplot(224)
+plt.hist(phe_data3, 20)
 plt.show()
 
 

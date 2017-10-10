@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sys
 from scipy import stats
+from compiler.ast import flatten
 
 
 
@@ -30,6 +31,13 @@ filename = 'result_c5_s10_v2_weight.txt'
 data = pd.read_csv(filename, index_col=0, sep='\t')
 curr_path = os.getcwd() + '/'
 
+phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
+phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt',index_col=0)
+phe3 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt', index_col=0)
+
+phe1.columns = [i for i in range(0, 113)]
+phe2.columns = [i for i in range(0, 113)]
+phe3.columns = [i for i in range(0, 113)]
 
 def tree0(weight_value, startwindow, term):
 
@@ -210,12 +218,93 @@ def phenotype(gene_set, window_set):
 
     plt.show()
 
+def sign_value(node, gene_set, window_set):
+    t_min = min(window_set)
+    t_max = max(window_set) + 10
+    p1 = phe1.loc[gene_set, window_set]
+    p2 = phe2.loc[gene_set, window_set]
+    p3 = phe3.loc[gene_set, window_set]
+    p1_list = flatten(p1.values.tolist())
+    p2_list = flatten(p2.values.tolist())
+    p3_list = flatten(p3.values.tolist())
+    sign_p1 =  [x for x in p1_list if x<-0.18 or x >0.08]
+    sign_p2 =  [x for x in p2_list if x<-0.22 or x >0.27]
+    sign_p3 =  [x for x in p3_list if x>0.34]
+    sign = len(sign_p1) + len(sign_p2) + len(sign_p3)
+    all = len(p1_list) + len(p2_list) + len(p3_list)
+    return sign, float(sign)/all
 
 if __name__ == '__main__':
 
 
     start = time.clock()
+    fw1 = open('1010edges_sign.txt', 'w')
+    fw2 = open('1010terms_sign.txt', 'w')
+    s = 0
+    # 先产生第一个window的 tree
+    term = 183
+    cliqueGraph0, dic_term0, dic_term_num0, term = tree0(0.9, 0, 183)
+    dic_all = {}
+    dic_all = dic_term0.copy()
+    copy_clique = cliqueGraph0
+    for i in range(1, 50):
+        print 'begin term num:', term
+        cliqueGraph1, dic_term1, dic_term_num1, term = tree0(0.9, i, term)
 
+        for key in dic_term1.keys():
+            if dic_all.has_key(key):
+                if set(dic_all[key]).issuperset(set(dic_term1[key])):
+                    dic_term1.pop(key)
+                    num = dic_term_num1[key]
+                    cliqueGraph1.remove_node(num)
+                    s = s + 1
+                else:
+                    dic_all[key] = dic_all[key] + dic_term1[key]
+                    dic_term1.pop(key)
+                    # num = dic_term_num1[key]
+                    # cliqueGraph1.remove_node(num)
+                    # else:
+                    #     dic_all[key] = dic_term1[key]
+        dic_all.update(dic_term1)
+        cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
+        print 'window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
+    dic_term_score = {}
+    for node in cliqueGraph0.nodes():
+
+        if node == 0:
+            continue
+        else:
+            gene_set = cliqueGraph0.node[node]['annotation']
+            window_set = cliqueGraph0.node[node]['windowsize']
+            # 判断phenotype是否有意义
+            sign, score = sign_value(node, gene_set, window_set)
+            if sign == 0:
+                parent = cliqueGraph0.predecessors(node)
+                child = cliqueGraph0.successors(node)
+                for p in parent:
+                    for c in child:
+                        cliqueGraph0.add_edge(p, c)
+                cliqueGraph0.remove_node(node)
+                print node
+                # 无意义，delete，重定向
+            else:
+                dic_term_score[node] = score
+                continue
+
+    fw1.write('parent' + '\t' + 'child' + '\n')
+    for edge in cliqueGraph0.edges():
+        fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
+    fw2.write(
+        'term_id' + '\t' + 'annotation_gene' + '\t' + 'annotation_window' + '\t' + 'geneSize' + '\t' + 'window_size' + '\n')
+    for node in cliqueGraph0.nodes():
+        fw2.write(str(node) + '\t' + str(cliqueGraph0.node[node]['annotation']) + '\t' + str(
+            cliqueGraph0.node[node]['windowsize']) + '\t' +
+                  str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
+            len(cliqueGraph0.node[node]['windowsize'])) + '\n')
+    fw1.close()
+    fw2.close()
+
+    '''
     gene = ['AT1G12250', 'AT1G55370', 'AT1G76760', 'AT1G80030', 'AT2G27290', 'AT2G30950', 'AT4G04020', 'AT4G39960', 'AT5G19370', 'AT5G20140', 'AT5G23890']
     window = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     gene1 = ['AT1G31180', 'AT1G54050', 'AT1G66670', 'AT1G74710', 'AT3G26580', 'AT4G01050', 'AT4G01900', 'AT4G31560', 'AT5G42765', 'AT5G62720']
@@ -235,49 +324,10 @@ if __name__ == '__main__':
     phenotype(gene3, window3)
     phenotype(gene4, window4)
     phenotype(gene5, window5)
-
-
-
     '''
-    fw1 = open('0908edges_10.txt', 'w')
-    fw2 = open('0908terms_10.txt', 'w')
-    s = 0
-    # 先产生第一个window的 tree
-    term = 183
-    cliqueGraph0, dic_term0, dic_term_num0, term = tree0(0.9, 0, 183)
-    dic_all = {}
-    dic_all = dic_term0.copy()
-    copy_clique = cliqueGraph0
-    for i in range(1, 10):
-        print 'begin term num:', term
-        cliqueGraph1, dic_term1, dic_term_num1, term = tree0(0.9, i, term)
-        for key in dic_term1.keys():
-            if dic_all.has_key(key):
-                if set(dic_all[key]).issuperset(set(dic_term1[key])):
-                    dic_term1.pop(key)
-                    num = dic_term_num1[key]
-                    cliqueGraph1.remove_node(num)
-                    s = s + 1
-                else:
-                    dic_all[key] = dic_all[key] + dic_term1[key]
-                    dic_term1.pop(key)
-                    # num = dic_term_num1[key]
-                    # cliqueGraph1.remove_node(num)
-            # else:
-            #     dic_all[key] = dic_term1[key]
-        dic_all.update(dic_term1)
-        cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
-        print 'window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
-    fw1.write('parent' + '\t' + 'child' + '\n')
-    for edge in cliqueGraph0.edges():
-        fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
-    fw2.write('term_id' + '\t' + 'annotation_gene' + '\t' + 'annotation_window' + '\t' + 'geneSize' + '\t' + 'window_size' + '\n')
-    for node in cliqueGraph0.nodes():
-        fw2.write(str(node) + '\t' + str(cliqueGraph0.node[node]['annotation']) + '\t' + str(cliqueGraph0.node[node]['windowsize']) + '\t' +
-                  str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(len(cliqueGraph0.node[node]['windowsize'])) +  '\n')
-    fw1.close()
-    fw2.close()
-    '''
+
+
+
 
     end = time.clock()
     print 'The function run time is : %.03f seconds' % (end - start)
