@@ -204,18 +204,25 @@ def phenotype(gene_set, window_set):
     #     item.set_rotation(0)
 
     fig = plt.figure()
-    plt.subplot(221)
-    ax = sns.heatmap(q, vmin=-0.07, vmax=0.07, cmap=cmap,  center=0, square=True, linewidths=.5,
+    plt.subplot(231)
+    ax = sns.heatmap(q, vmin=-0.5, vmax=0.5, cmap=cmap,  center=0, square=True, linewidths=.5,
                      cbar_kws={"shrink": .5})
     for item in ax.get_yticklabels():
         item.set_rotation(0)
-
-    plt.subplot(222)
-    ax = sns.heatmap(q2, vmin=-0.07, vmax=0.07, cmap=cmap, center=0, square=True, linewidths=.5,
+    plt.title('phenotype 1')
+    plt.subplot(232)
+    ax = sns.heatmap(q2, vmin=-0.5, vmax=0.5, cmap=cmap, center=0, square=True, linewidths=.5,
                      cbar_kws={"shrink": .5})
     for item in ax.get_yticklabels():
         item.set_rotation(0)
+    plt.title('phenotype 2')
 
+    plt.subplot(233)
+    ax = sns.heatmap(q3, vmin=0, vmax=1, cmap=cmap, center=0, square=True, linewidths=.5,
+                     cbar_kws={"shrink": .5})
+    for item in ax.get_yticklabels():
+        item.set_rotation(0)
+    plt.title('phenotype 3')
     plt.show()
 
 def sign_value(node, gene_set, window_set):
@@ -238,8 +245,10 @@ if __name__ == '__main__':
 
 
     start = time.clock()
-    fw1 = open('1010edges_sign.txt', 'w')
-    fw2 = open('1010terms_sign.txt', 'w')
+
+    fw1 = open('1013edges_sign.txt', 'w')
+    fw2 = open('1013terms_sign.txt', 'w')
+    fw3 = open('1013sign_score.txt', 'w')
     s = 0
     # 先产生第一个window的 tree
     term = 183
@@ -270,7 +279,6 @@ if __name__ == '__main__':
         print 'window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
     dic_term_score = {}
     for node in cliqueGraph0.nodes():
-
         if node == 0:
             continue
         else:
@@ -291,40 +299,40 @@ if __name__ == '__main__':
                 dic_term_score[node] = score
                 continue
 
+    for key, value in sorted(dic_term_score.items(), key=lambda d: d[1],reverse=True):
+        fw3.write(str(key) + '\t' + str(value) + '\n')
+    fw3.close()
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
     fw2.write(
-        'term_id' + '\t' + 'annotation_gene' + '\t' + 'annotation_window' + '\t' + 'geneSize' + '\t' + 'window_size' + '\n')
-    for node in cliqueGraph0.nodes():
-        fw2.write(str(node) + '\t' + str(cliqueGraph0.node[node]['annotation']) + '\t' + str(
+        'term_id' + '\t' + 'sign_score' + '\t' + 'annotation_gene' + '\t' + 'annotation_window' + '\t' + 'geneSize' + '\t' + 'window_size' + '\n')
+    for node, value in sorted(dic_term_score.items(), key=lambda d: d[1],reverse=True):
+        fw2.write(str(node) + '\t' + str(round(value,4)) + '\t' + str(cliqueGraph0.node[node]['annotation']) + '\t' + str(
             cliqueGraph0.node[node]['windowsize']) + '\t' +
                   str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
             len(cliqueGraph0.node[node]['windowsize'])) + '\n')
     fw1.close()
     fw2.close()
 
+
     '''
-    gene = ['AT1G12250', 'AT1G55370', 'AT1G76760', 'AT1G80030', 'AT2G27290', 'AT2G30950', 'AT4G04020', 'AT4G39960', 'AT5G19370', 'AT5G20140', 'AT5G23890']
-    window = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-    gene1 = ['AT1G31180', 'AT1G54050', 'AT1G66670', 'AT1G74710', 'AT3G26580', 'AT4G01050', 'AT4G01900', 'AT4G31560', 'AT5G42765', 'AT5G62720']
-    window1 = [18, 19, 20, 21, 22, 23, 24]
-    gene2 = ['AT1G02560', 'AT1G54050', 'AT1G72640', 'AT1G74710', 'AT2G17630', 'AT2G26800', 'AT2G37660', 'AT5G13120', 'AT5G39830', 'AT5G42270']
-    window2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    gene3 = ['AT1G22020', 'AT1G51110', 'AT3G15840', 'AT3G25480', 'AT5G16150']
-    window3 = [8, 9, 10, 11, 12, 13, 14]
-    gene4 = ['AT1G10170', 'AT1G23740', 'AT1G50250', 'AT3G15360', 'AT4G13010', 'AT4G39460', 'AT5G16660']
-    window4 = [8, 9, 10, 11, 12, 13, 14]
-    gene5 =['AT1G10170', 'AT1G29920', 'AT1G30510', 'AT1G79230', 'AT3G22690', 'AT4G20820']
-    window5 = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
+    gene = ['AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
+    window = [19, 20, 21, 22, 23, 24]
+    gene1 = ['AT1G03160', 'AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
+    window1 = [19, 20, 21, 22, 23]
+    gene2 = ['AT1G14150', 'AT1G18730', 'AT3G01440', 'AT3G15110', 'AT4G37925']
+    window2 = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+    gene3 = ['AT3G01440', 'AT3G47060', 'AT4G23890', 'AT4G37925', 'AT5G62720']
+    window3 = [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   5, 36, 37, 38, 39, 40, 41]
+
 
     phenotype(gene, window)
     phenotype(gene1, window1)
     phenotype(gene2, window2)
     phenotype(gene3, window3)
-    phenotype(gene4, window4)
-    phenotype(gene5, window5)
     '''
+
 
 
 

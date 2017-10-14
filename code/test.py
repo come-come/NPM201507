@@ -16,6 +16,12 @@ from compiler.ast import flatten
 import matplotlib.mlab as mlab
 
 
+dic = {}
+dic['a'] = 1
+dic['b'] = 5
+dic['s'] = 2
+for key, value in sorted(dic.items(), key=lambda d: d[1],reverse=True):
+    print key,value
 
 filename = 'result_c5_s10_v2_weight.txt'
 phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0).dropna(axis=1, how='all')
@@ -48,17 +54,21 @@ print len(phe_data), len(phe_data_p), len(phe_data_n), phe_data[0], phe_data[202
 print kstest(phe_data_p, 'norm',  alternative='greater')
 print stats.normaltest(phe_data, axis=0)
 print anderson(phe_data)
-plt.subplot(221)
-n, bins, patches = plt.hist(phe_data_p, 150, normed=1)
-mu = np.mean(phe_data_p)
-sigma = np.std(phe_data_p)
-plt.plot(bins, mlab.normpdf(bins, mu, sigma))
-plt.subplot(222)
+
+plt.subplot(231)
 plt.hist(phe_data, 20)
-plt.subplot(223)
+plt.title('phenotype 1')
+plt.subplot(232)
 plt.hist(phe_data2, 20)
-plt.subplot(224)
+plt.title('phenotype 2')
+plt.subplot(233)
 plt.hist(phe_data3, 20)
+plt.title('phenotype 3')
+# plt.subplot(224)
+# n, bins, patches = plt.hist(phe_data_p, 150, normed=1)
+# mu = np.mean(phe_data_p)
+# sigma = np.std(phe_data_p)
+# plt.plot(bins, mlab.normpdf(bins, mu, sigma))
 plt.show()
 
 
