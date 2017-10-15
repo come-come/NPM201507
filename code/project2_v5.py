@@ -241,14 +241,24 @@ def sign_value(node, gene_set, window_set):
     all = len(p1_list) + len(p2_list) + len(p3_list)
     return sign, float(sign)/all
 
+def class_distance(node, gene_set, window_set):
+    p1 = phe1.loc[gene_set, window_set].dropna(axis=1,how='any')
+    p2 = phe2.loc[gene_set, window_set].dropna(axis=1,how='any')
+    p3 = phe3.loc[gene_set, window_set].dropna(axis=1,how='any')
+    result = pd.concat([p1, p2, p3], axis=1)
+    # print result.head(5)
+    distance = np.trace(np.cov(result))
+    return distance
+
+
 if __name__ == '__main__':
 
 
     start = time.clock()
 
-    fw1 = open('1013edges_sign.txt', 'w')
-    fw2 = open('1013terms_sign.txt', 'w')
-    fw3 = open('1013sign_score.txt', 'w')
+    fw1 = open('1015edges_sign.txt', 'w')
+    fw2 = open('1015terms_sign.txt', 'w')
+    fw3 = open('1015sign_score.txt', 'w')
     s = 0
     # 先产生第一个window的 tree
     term = 183
@@ -278,6 +288,7 @@ if __name__ == '__main__':
         cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
         print 'window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
     dic_term_score = {}
+    dic_term_distance = {}
     for node in cliqueGraph0.nodes():
         if node == 0:
             continue
@@ -286,6 +297,7 @@ if __name__ == '__main__':
             window_set = cliqueGraph0.node[node]['windowsize']
             # 判断phenotype是否有意义
             sign, score = sign_value(node, gene_set, window_set)
+            dis = class_distance(node, gene_set, window_set)
             if sign == 0:
                 parent = cliqueGraph0.predecessors(node)
                 child = cliqueGraph0.successors(node)
@@ -297,9 +309,10 @@ if __name__ == '__main__':
                 # 无意义，delete，重定向
             else:
                 dic_term_score[node] = score
+                dic_term_distance[node] = dis
                 continue
 
-    for key, value in sorted(dic_term_score.items(), key=lambda d: d[1],reverse=True):
+    for key, value in sorted(dic_term_distance.items(), key=lambda d: d[1],reverse=True):
         fw3.write(str(key) + '\t' + str(value) + '\n')
     fw3.close()
     fw1.write('parent' + '\t' + 'child' + '\n')
