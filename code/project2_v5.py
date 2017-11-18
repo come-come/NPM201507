@@ -32,12 +32,23 @@ data = pd.read_csv(filename, index_col=0, sep='\t')
 curr_path = os.getcwd() + '/'
 
 phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
-phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt',index_col=0)
+phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt', index_col=0)
 phe3 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt', index_col=0)
 
 phe1.columns = [i for i in range(0, 113)]
 phe2.columns = [i for i in range(0, 113)]
 phe3.columns = [i for i in range(0, 113)]
+
+def tree_statis(weight_value,window):
+    # output 50 trees
+    filename2 = 'edge/edgeInfo' + str(window) + '.txt'
+    f_path2 = curr_path + os.path.normpath(filename2)
+    f_window = open(f_path2, 'w')
+    df = data[data[data.columns[window]] >= (weight_value + 0.00001)]
+    print df.shape
+    for edge in range(0, df.shape[0]):
+        node_1, node_2 = df.index[edge].split('_')
+        f_window.write(node_1 + '\t' + node_2 + '\n')
 
 def tree0(weight_value, startwindow, term):
 
@@ -59,7 +70,7 @@ def tree0(weight_value, startwindow, term):
     for window in range(startwindow, w):
         windowGraph[window] = nx.Graph()
         df = data[data[data.columns[window]] >= (weight_value + 0.00001)]
-        # print weight_value, df.shape
+        #print weight_value, df.shape
         for edge in range(0, df.shape[0]):
             node_1, node_2 = df.index[edge].split('_')
             windowGraph[window].add_edge(node_1, node_2)
@@ -174,13 +185,14 @@ def tree0(weight_value, startwindow, term):
 
 
 
-def phenotype(gene_set, window_set):
+def phenotype(gene_set, window):
     phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
     phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt',index_col=0)
     phe3 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt', index_col=0)
-    t_min = min(window_set)
-    t_max = max(window_set) + 10
+    t_min = min(window) + 49
+    t_max = max(window) + 49 + 10
     # rename columns index. [0, 1, 2...]
+    window_set = [i for i in range(t_min,t_max)] # 回到最原始的数据上
     phe1.columns = [i for i in range(0, 113)]
     phe2.columns = [i for i in range(0, 113)]
     phe3.columns = [i for i in range(0, 113)]
@@ -209,28 +221,35 @@ def phenotype(gene_set, window_set):
                      cbar_kws={"shrink": .5})
     for item in ax.get_yticklabels():
         item.set_rotation(0)
-    plt.title('phenotype 1')
+    plt.title('Phi2')
+    plt.xlabel('time point')
+
     plt.subplot(232)
     ax = sns.heatmap(q2, vmin=-0.5, vmax=0.5, cmap=cmap, center=0, square=True, linewidths=.5,
                      cbar_kws={"shrink": .5})
     for item in ax.get_yticklabels():
         item.set_rotation(0)
-    plt.title('phenotype 2')
+    plt.title('qE')
+    plt.xlabel('time point')
 
     plt.subplot(233)
     ax = sns.heatmap(q3, vmin=0, vmax=1, cmap=cmap, center=0, square=True, linewidths=.5,
                      cbar_kws={"shrink": .5})
     for item in ax.get_yticklabels():
         item.set_rotation(0)
-    plt.title('phenotype 3')
+    plt.title('ql')
+    plt.xlabel('time point')
     plt.show()
 
-def sign_value(node, gene_set, window_set):
-    t_min = min(window_set)
-    t_max = max(window_set) + 10
+
+def sign_value(node, gene_set, window):
+    t_min = min(window) + 49
+    t_max = max(window) + 49 + 10
+    window_set = [i for i in range(t_min,t_max)] # 回到最原始的数据上
     p1 = phe1.loc[gene_set, window_set]
     p2 = phe2.loc[gene_set, window_set]
     p3 = phe3.loc[gene_set, window_set]
+
     p1_list = flatten(p1.values.tolist())
     p2_list = flatten(p2.values.tolist())
     p3_list = flatten(p3.values.tolist())
@@ -239,9 +258,24 @@ def sign_value(node, gene_set, window_set):
     sign_p3 =  [x for x in p3_list if x>0.34]
     sign = len(sign_p1) + len(sign_p2) + len(sign_p3)
     all = len(p1_list) + len(p2_list) + len(p3_list)
-    return sign, float(sign)/all
+    if p1[t_min].mean()-p1[t_max - 1].mean()<0:
+        trend1 = 1
+    else :
+        trend1 = 0
+    if p2[t_min].mean()-p2[t_max - 1].mean()<0:
+        trend2 = 1
+    else :
+        trend2 = 0
+    if p3[t_min].mean()-p3[t_max - 1].mean()<0:
+        trend3 = 1
+    else :
+        trend3 = 0
+    return sign, float(sign)/all, trend1, trend2, trend3
 
-def class_distance(node, gene_set, window_set):
+def class_distance(node, gene_set, window):
+    t_min = min(window) + 49
+    t_max = max(window) + 49 + 10
+    window_set = [i for i in range(t_min, t_max)]  # 回到最原始的数据上
     p1 = phe1.loc[gene_set, window_set].dropna(axis=1,how='any')
     p2 = phe2.loc[gene_set, window_set].dropna(axis=1,how='any')
     p3 = phe3.loc[gene_set, window_set].dropna(axis=1,how='any')
@@ -250,15 +284,25 @@ def class_distance(node, gene_set, window_set):
     distance = np.trace(np.cov(result))
     return distance
 
+def pearson(node, gene_set, window):
+    t_min = min(window) + 49
+    t_max = max(window) + 49 + 10
+    window_set = [i for i in range(t_min, t_max)]  # 回到最原始的数据上
+    p1 = phe1.loc[gene_set, window_set].dropna(axis=1,how='any')
+    p2 = phe2.loc[gene_set, window_set].dropna(axis=1,how='any')
+    p3 = phe3.loc[gene_set, window_set].dropna(axis=1,how='any')
+    result = pd.concat([p1, p2, p3], axis=1)
+    p_matrix = np.corrcoef(result)
+    num = (p_matrix.shape[0] * p_matrix.shape[0] - p_matrix.shape[0]) / 2
+    sum1 = (p_matrix.sum() - p_matrix.shape[0]) / 2
+    return sum1/num
+
 
 if __name__ == '__main__':
 
-
     start = time.clock()
-
-    fw1 = open('1015edges_sign.txt', 'w')
-    fw2 = open('1015terms_sign.txt', 'w')
-    fw3 = open('1015sign_score.txt', 'w')
+    # for i in range(0, 50):
+    #     tree_statis(0.9, i)
     s = 0
     # 先产生第一个window的 tree
     term = 183
@@ -289,6 +333,13 @@ if __name__ == '__main__':
         print 'window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
     dic_term_score = {}
     dic_term_distance = {}
+    dic_vector = {}
+    dic_pearson = {}
+    dic = {}
+    fr = open('G:\project2\\NPM201507\\code\\term_name_id\\termN_Id.txt', 'r')
+    for line in fr:
+        term, idd = line.strip().split('\t')
+        dic[term] = idd
     for node in cliqueGraph0.nodes():
         if node == 0:
             continue
@@ -296,56 +347,126 @@ if __name__ == '__main__':
             gene_set = cliqueGraph0.node[node]['annotation']
             window_set = cliqueGraph0.node[node]['windowsize']
             # 判断phenotype是否有意义
-            sign, score = sign_value(node, gene_set, window_set)
+            sign, score, trend1, trend2, trend3= sign_value(node, gene_set, window_set)
             dis = class_distance(node, gene_set, window_set)
+            pearson_coff = pearson(node, gene_set, window_set)
             if sign == 0:
+                # 无意义，delete，重定向
                 parent = cliqueGraph0.predecessors(node)
                 child = cliqueGraph0.successors(node)
                 for p in parent:
                     for c in child:
                         cliqueGraph0.add_edge(p, c)
                 cliqueGraph0.remove_node(node)
-                print node
-                # 无意义，delete，重定向
             else:
                 dic_term_score[node] = score
                 dic_term_distance[node] = dis
+                dic_pearson[node] = pearson_coff
+                dic_vector[node] = []
+                dic_vector[node].append(len(cliqueGraph0.node[node]['annotation']))
+                dic_vector[node].append(len(cliqueGraph0.node[node]['windowsize'])+9)
+                if len(cliqueGraph0.successors(node)) == 0:
+                    dic_vector[node].append(1)
+                else:
+                    dic_vector[node].append(0)
+                dic_vector[node].append(trend1)
+                dic_vector[node].append(trend2)
+                dic_vector[node].append(trend3)
                 continue
 
-    for key, value in sorted(dic_term_distance.items(), key=lambda d: d[1],reverse=True):
-        fw3.write(str(key) + '\t' + str(value) + '\n')
-    fw3.close()
+# name--id
+    # dic = {}
+    # fr = open('G:\project2\\NPM201507\\code\\term_name_id\\termN_Id.txt', 'r')
+    # for line in fr:
+    #     term, idd = line.strip().split('\t')
+    #     dic[term] = idd
+
+    fw1 = open('1117edges_sign_id.txt', 'w')
+    fw2 = open('1117terms_sign_id.txt', 'w')
+    fw3 = open('1117sign_score_id.txt', 'w')
+    fw4 = open('1117term_vector_id.txt', 'w')
+    fw5 = open('1117term_pearson_id.txt', 'w')
+    fw6 = open('1117terms_sign_list_id.txt', 'w')
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
     fw2.write(
-        'term_id' + '\t' + 'sign_score' + '\t' + 'annotation_gene' + '\t' + 'annotation_window' + '\t' + 'geneSize' + '\t' + 'window_size' + '\n')
+        'term_id' + '\t' + 'sign_score' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
+    fw3.write('Term_Id' + '\t' + 'distance' + '\n')
+    fw4.write('Term_id' + '\t' + 'Sign_score' +  '\t' + 'Gene_number' + '\t' + 'Time_point_length' + '\t' + 'leaf' + '\t' + 'Trend1' + '\t' + 'Trend2' + '\t' + 'Trend3' + '\n')
+    fw5.write('Term_id' + '\t' + 'pearson' + '\n')
+    fw6.write(
+        'term_id' + '\t' + 'sign_score' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
+
     for node, value in sorted(dic_term_score.items(), key=lambda d: d[1],reverse=True):
         fw2.write(str(node) + '\t' + str(round(value,4)) + '\t' + str(cliqueGraph0.node[node]['annotation']) + '\t' + str(
-            cliqueGraph0.node[node]['windowsize']) + '\t' +
+            min(cliqueGraph0.node[node]['windowsize']) + 49) + '\t' + str(
+            max(cliqueGraph0.node[node]['windowsize']) + 58) + '\t' +
                   str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
-            len(cliqueGraph0.node[node]['windowsize'])) + '\n')
+            len(cliqueGraph0.node[node]['windowsize']) + 9) + '\n')
+        fw3.write(str(node) + '\t' + str(dic_term_distance[node]) + '\n')
+        fw4.write(str(node) + '\t' + str(round(value,4)) + '\t' + '\t'.join(str(i) for i in dic_vector[node]) + '\n')
+        fw5.write(str(node) + '\t' + str(dic_pearson[node]) + '\n')
+        fw6.write(
+            str(node) + '\t' + str(round(value, 4)) + '\t' + ','.join([dic[t] for t in cliqueGraph0.node[node]['annotation']]) + '\t' + str(
+                min(cliqueGraph0.node[node]['windowsize']) + 49) + '\t' + str(
+                max(cliqueGraph0.node[node]['windowsize']) + 58) + '\t' +
+            str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
+                len(cliqueGraph0.node[node]['windowsize']) + 9) + '\n')
+
     fw1.close()
     fw2.close()
-
+    fw3.close()
+    fw4.close()
+    fw5.close()
+    fw6.close()
 
     '''
+    # 88001
     gene = ['AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
     window = [19, 20, 21, 22, 23, 24]
+    # 87603
     gene1 = ['AT1G03160', 'AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
     window1 = [19, 20, 21, 22, 23]
-    gene2 = ['AT1G14150', 'AT1G18730', 'AT3G01440', 'AT3G15110', 'AT4G37925']
-    window2 = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-    gene3 = ['AT3G01440', 'AT3G47060', 'AT4G23890', 'AT4G37925', 'AT5G62720']
-    window3 = [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   5, 36, 37, 38, 39, 40, 41]
+    # 125845
+    gene2 = ['AT1G22450', 'AT1G51350', 'AT3G15840', 'AT3G28850', 'AT4G16155', 'AT4G27700', 'AT5G53170']
+    window2 = [25, 26, 27, 28, 29, 30, 31, 32, 33]
+    # 141747
+    gene3 = ['AT1G50450', 'AT1G67840', 'AT1G74880', 'AT2G21530', 'AT4G19830', 'AT4G38100']
+    window3 = [29, 30, 31, 32, 33, 34, 35, 36]
+    # 121926
+    gene4 = ['AT1G22450', 'AT1G51350', 'AT3G15840', 'AT3G28850', 'AT4G16155', 'AT5G53170']
+    window4 = [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
 
-
+    gene5 = ['AT1G03160', 'AT2G18790', 'AT3G08920', 'AT4G33010', 'AT5G53170']
+    window5 = [0, 1, 2]
+    # 5594
+    gene6 = ['AT1G03160', 'AT1G14345', 'AT1G67700', 'AT1G72640', 'AT2G20260', 'AT2G29180', 'AT3G01440', 'AT3G08920', 'AT3G14420', 'AT4G27700', 'AT4G33010']
+    window6 = [3, 4]
+    # 77463
+    gene7 = ['AT1G22450', 'AT1G51350', 'AT1G75690', 'AT3G15840', 'AT3G28850', 'AT4G16155', 'AT4G27700']
+    window7 = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
+    # 23520
+    gene8 = ['AT1G03090', 'AT1G50450', 'AT1G54500', 'AT1G67840', 'AT1G74880', 'AT2G21530', 'AT4G38100']
+    window8 = [8, 9, 10, 11]
     phenotype(gene, window)
     phenotype(gene1, window1)
     phenotype(gene2, window2)
     phenotype(gene3, window3)
+    phenotype(gene4, window4)
+    phenotype(gene5, window5)
+    phenotype(gene6, window6)
+    phenotype(gene7, window7)
+    phenotype(gene8, window8)
     '''
-
+    # #163287
+    # gene = ['AT1G02560', 'AT1G16880', 'AT2G20260', 'AT2G37660', 'AT2G44990']
+    # window = [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]
+    # # 28263
+    # # gene1 = ['AT1G03090', 'AT1G50450', 'AT1G54500', 'AT1G65260', 'AT1G67840', 'AT1G74880', 'AT2G21530', 'AT4G38100']
+    # # window1 = [9, 10]
+    # # phenotype(gene1, window1)
+    # phenotype(gene, window)
 
 
 
