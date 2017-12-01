@@ -350,7 +350,7 @@ if __name__ == '__main__':
             sign, score, trend1, trend2, trend3= sign_value(node, gene_set, window_set)
             dis = class_distance(node, gene_set, window_set)
             pearson_coff = pearson(node, gene_set, window_set)
-            if sign == 0:
+            if score < 0.005:
                 # 无意义，delete，重定向
                 parent = cliqueGraph0.predecessors(node)
                 child = cliqueGraph0.successors(node)
@@ -380,13 +380,18 @@ if __name__ == '__main__':
     # for line in fr:
     #     term, idd = line.strip().split('\t')
     #     dic[term] = idd
+    # leaf nodes:
+    # fwc = open('my_method_leaf_nodes.txt', 'w')
+    # for node in cliqueGraph0.nodes():
+    #     if len(cliqueGraph0.successors(node))==0:
+    #         fwc.write(str(node) + '\n')
 
-    fw1 = open('1117edges_sign_id.txt', 'w')
-    fw2 = open('1117terms_sign_id.txt', 'w')
-    fw3 = open('1117sign_score_id.txt', 'w')
-    fw4 = open('1117term_vector_id.txt', 'w')
-    fw5 = open('1117term_pearson_id.txt', 'w')
-    fw6 = open('1117terms_sign_list_id.txt', 'w')
+    fw1 = open('1129edges_sign_id.txt', 'w')
+    fw2 = open('1129terms_sign_id.txt', 'w')
+    fw3 = open('1129sign_distance_id.txt', 'w')
+    fw4 = open('1129term_vector_id.txt', 'w')
+    fw5 = open('1129term_pearson_id.txt', 'w')
+    fw6 = open('1129terms_sign_list_id.txt', 'w')
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
