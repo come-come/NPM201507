@@ -386,6 +386,7 @@ if __name__ == '__main__':
     #     if len(cliqueGraph0.successors(node))==0:
     #         fwc.write(str(node) + '\n')
 
+    '''
     fw1 = open('1129edges_sign_id.txt', 'w')
     fw2 = open('1129terms_sign_id.txt', 'w')
     fw3 = open('1129sign_distance_id.txt', 'w')
@@ -425,7 +426,7 @@ if __name__ == '__main__':
     fw4.close()
     fw5.close()
     fw6.close()
-
+    '''
     '''
     # 88001
     gene = ['AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
