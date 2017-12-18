@@ -28,9 +28,8 @@ from compiler.ast import flatten
 
 
 
-filename = 'result_c5_s10_v2_weight.txt'
-data = pd.read_csv(filename, index_col=0, sep='\t')
-curr_path = os.getcwd() + '/'
+
+
 
 phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
 phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt', index_col=0)
@@ -54,8 +53,8 @@ def tree_statis(weight_value,window):
 def tree0(weight_value, startwindow, term):
 
     # 2017.8.21
-
-    windowGraph = {}
+    print 'start window:' , startwindow
+    # windowGraph = {}
     cliqueGraph = nx.DiGraph()
     dic_term = {}
     dic_last_time = {}
@@ -69,14 +68,15 @@ def tree0(weight_value, startwindow, term):
     i = 0
     q = 0
     for window in range(startwindow, w):
-        windowGraph[window] = nx.Graph()
-        df = data[data[data.columns[window]] >= (weight_value + 0.00001)]
-        #print weight_value, df.shape
-        for edge in range(0, df.shape[0]):
-            node_1, node_2 = df.index[edge].split('_')
-            windowGraph[window].add_edge(node_1, node_2)
-        # print windowGraph[window].size()
+        # windowGraph[window] = nx.Graph()
+        # df = data[data[data.columns[window]] >= (weight_value + 0.00001)]
+        # # print window, weight_value, df.shape
+        # for edge in range(0, df.shape[0]):
+        #     node_1, node_2 = df.index[edge].split('_')
+        #     windowGraph[window].add_edge(node_1, node_2)
+
         dic_intersect_level.clear()
+
 
         if window == startwindow:
             for clique in nx.find_cliques(windowGraph[window]):
@@ -183,8 +183,6 @@ def tree0(weight_value, startwindow, term):
     #         print nodes
     # 20170905
     return cliqueGraph,dic_term,dic_term_num, term
-
-
 
 def phenotype(gene_set, window):
     phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
@@ -307,13 +305,30 @@ if __name__ == '__main__':
     s = 0
     # 先产生第一个window的 tree
     term = 183
-    cliqueGraph0, dic_term0, dic_term_num0, term = tree0(0.9, 0, 183)
+    filename = 'result_c5_s10_v2_weight.txt'
+    # 20171217
+    # filename = 'result_c5_s10_20171217weight.txt'
+    data = pd.read_csv(filename, index_col=0, sep='\t')
+    print data.head(5), type(data.loc['AT4G33520_AT1G67840']['49'])
+    curr_path = os.getcwd() + '/'
+    weight_value = 0.9
+    windowGraph = {}
+
+    for window in range(0, 54):
+        windowGraph[window] = nx.Graph()
+        df = data[data[data.columns[window]] >= (weight_value + 0.00001)]
+        # print window, weight_value, df.shape
+        for edge in range(0, df.shape[0]):
+            node_1, node_2 = df.index[edge].split('_')
+            windowGraph[window].add_edge(node_1, node_2)
+
+    cliqueGraph0, dic_term0, dic_term_num0, term = tree0(weight_value, 0, 183)
     dic_all = {}
     dic_all = dic_term0.copy()
     copy_clique = cliqueGraph0
     for i in range(1, 50):
         print 'begin term num:', term
-        cliqueGraph1, dic_term1, dic_term_num1, term = tree0(0.9, i, term)
+        cliqueGraph1, dic_term1, dic_term_num1, term = tree0(weight_value, i, term)
 
         for key in dic_term1.keys():
             if dic_all.has_key(key):
@@ -331,7 +346,7 @@ if __name__ == '__main__':
                     #     dic_all[key] = dic_term1[key]
         dic_all.update(dic_term1)
         cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
-        print 'window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
+        print 'before purity window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
     dic_term_score = {}
     dic_term_distance = {}
     dic_vector = {}
@@ -351,7 +366,7 @@ if __name__ == '__main__':
             sign, score, trend1, trend2, trend3= sign_value(node, gene_set, window_set)
             dis = class_distance(node, gene_set, window_set)
             pearson_coff = pearson(node, gene_set, window_set)
-            if score == 0:
+            if score < 0.005:
                 # 无意义，delete，重定向
                 parent = cliqueGraph0.predecessors(node)
                 child = cliqueGraph0.successors(node)
@@ -374,7 +389,7 @@ if __name__ == '__main__':
                 dic_vector[node].append(trend2)
                 dic_vector[node].append(trend3)
                 continue
-
+    print 'after purity window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
 # name--id
     # dic = {}
     # fr = open('G:\project2\\NPM201507\\code\\term_name_id\\termN_Id.txt', 'r')
@@ -388,12 +403,12 @@ if __name__ == '__main__':
     #         fwc.write(str(node) + '\n')
 
 
-    fw1 = open('1208edges_sign_id.txt', 'w')
-    fw2 = open('1208terms_sign_id.txt', 'w')
-    fw3 = open('1208sign_distance_id.txt', 'w')
-    fw4 = open('1208term_vector_id.txt', 'w')
-    fw5 = open('1208term_pearson_id.txt', 'w')
-    fw6 = open('1208terms_sign_list_id.txt', 'w')
+    fw1 = open('1218edges_sign_id.txt', 'w')
+    fw2 = open('1218terms_sign_id.txt', 'w')
+    fw3 = open('1218sign_distance_id.txt', 'w')
+    fw4 = open('1218term_vector_id.txt', 'w')
+    fw5 = open('1218term_pearson_id.txt', 'w')
+    fw6 = open('1218terms_sign_list_id.txt', 'w')
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')

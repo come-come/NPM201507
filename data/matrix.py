@@ -68,7 +68,7 @@ def cal_weight(dest,fwname):
             for i in range(0, data.shape[0]-1) :
                 for j in range(i+1, data.shape[0]):
                     weight = np.count_nonzero(data.iloc[i]==data.iloc[j])/float(data.shape[1])
-                    name = (data.index[i], data.index[j])
+                    name = data.index[i] + '_' + data.index[j]
                     dic[name] = weight
             print 'len(dic):', len(dic)
             df = pd.DataFrame(dic.items(),columns = ['gene',window])
@@ -107,30 +107,21 @@ def cal_weight(dest,fwname):
             
     
 if __name__ == "__main__" :
-    start = time.clock()
-    #cluster_NPM("G:\project2\NPM201507\data\\clusterNumber5_step10_ljy", 'result_c5_s10.txt')
-    #cluster_NPM100('G:\project2\\NPM201507\\clusterResult')
-    cal_weight('G:\project2\NPM201507\data\windowMatrix','weight.txt')
-    end = time.clock()
-    print 'The function run time is : %.03f seconds' % (end-start)
+    # start = time.clock()
+    # #cluster_NPM("G:\project2\NPM201507\data\\clusterNumber5_step10_ljy", 'result_c5_s10.txt')
+    # #cluster_NPM100('G:\project2\\NPM201507\\clusterResult')
+    # cal_weight('G:\project2\NPM201507\data\windowMatrix','weight.txt')
+    # end = time.clock()
+    # print 'The function run time is : %.03f seconds' % (end-start)
+
+    # 20171217
+    # NPM_files = 'G:\project2\\NPM201507\\clusterResult20171216'
+    # cluster_NPM100(NPM_files)
+    matrix_files = 'G:\project2\\NPM201507\\data\\windowMatrix'
+    cal_weight(matrix_files, 'weight.txt')
     
     
     
     
     
-    '''
-    print data.tail()
-    weight =  np.count_nonzero(data.iloc[0]==data.iloc[data.shape[0]-1])/float(data.shape[1])
-    print data.index[0]
-    name = (data.index[0], data.index[data.shape[0]-1])
-    dic = {}
-    print type(name)
-    print data.iloc[0].head(),data.index[0]
-    print data.iloc[181].head(),data.index[181]
-    dic[name] = weight 
-    if 'AT2G04030' in name :
-        print '2'
-    '''
-    #w = pd.DataFrame({'x':x,'y':y})
-    #print w[x==y]
-    #print w[x==y].shape[0]
+

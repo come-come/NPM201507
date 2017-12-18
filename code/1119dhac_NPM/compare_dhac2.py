@@ -166,7 +166,7 @@ def tree0(weight_value, startwindow, term):
                 dic_last_time[key] = value
             dic_temp.clear()
     print 'window', startwindow, 'size is', cliqueGraph.number_of_nodes(), cliqueGraph.number_of_edges()
-    print cliqueGraph.edges()
+
     # print 'deleted nodes:', i
     # fw = open('0904edges_remove.txt', 'w')
     # fw2 = open('0904terms_remove.txt', 'w')
@@ -404,8 +404,11 @@ if __name__ == "__main__":
     # 2017.12.4
     # DHAC
     read_dhac_result('G:\\project2\\NPM201507\\code\\edge\\20171113dhac')
-    # NPM
+    # NPM  5 clusters
     # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM')
+    # NPM  10 clusters
+    # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_(1)')
+    # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_(2)')
     s = 0
     # 先产生第一个window的 tree
     term = 183
@@ -478,15 +481,21 @@ if __name__ == "__main__":
                 dic_vector[node].append(trend3)
                 continue
     print 'finally:', cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
+
+
     # write into files
-
-
-    fw1 = open('1208_DHAC_edges_sign_id.txt', 'w')
-    fw2 = open('1208_DHAC_terms_sign_id.txt', 'w')
-    fw3 = open('1208_DHAC_sign_distance_id.txt', 'w')
-    fw4 = open('1208_DHAC_term_vector_id.txt', 'w')
-    fw5 = open('1208_DHAC_term_pearson_id.txt', 'w')
-    fw6 = open('1208_DHAC_terms_sign_list_id.txt', 'w')
+    fw1 = open('1215_DHAC_edges_sign_id(1).txt', 'w')
+    fw2 = open('1215_DHAC_terms_sign_id(1).txt', 'w')
+    fw3 = open('1215_DHAC_sign_distance_id(1).txt', 'w')
+    fw4 = open('1215_DHAC_term_vector_id(1).txt', 'w')
+    fw5 = open('1215_DHAC_term_pearson_id(1).txt', 'w')
+    fw6 = open('1215_DHAC_terms_sign_list_id(1).txt', 'w')
+    # fw1 = open('1215_NPM10_edges_sign_id(1).txt', 'w')
+    # fw2 = open('1215_NPM10_terms_sign_id(1).txt', 'w')
+    # fw3 = open('1215_NPM10_sign_distance_id(1).txt', 'w')
+    # fw4 = open('1215_NPM10_term_vector_id(1).txt', 'w')
+    # fw5 = open('1215_NPM10_term_pearson_id(1).txt', 'w')
+    # fw6 = open('1215_NPM10_terms_sign_list_id(1).txt', 'w')
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')

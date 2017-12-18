@@ -14,3 +14,11 @@ Input:
 
 Output:
 -‘Idx’ is a vector indicating the cluster label for each plant.
+
+
+
+注意 需要先更新生成文件夹的名字，保持前后一致：
+new_folder = ['./clusterResultAverageDHACc10_step10_ljy/',int2str(window1)]
+mkdir(new_folder)
+fiout = ['./clusterResultAverageDHACc10_step10_ljy/',int2str(window1),'/',int2str(i), '.txt' ]
+Par.output     = fiout; % outout file name

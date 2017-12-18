@@ -9,8 +9,10 @@ while (window2 < 113)
 files{1} = './data/IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt'; %semi-raw data
 files{2} = './data/IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt';
 files{3} = './data/IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt';
+new_folder = ['./clusterResultAverageDHACc10_step10_ljy4/',int2str(window1)]
+mkdir(new_folder)
 
-Par.numcluster = 5;   % number of clusters, needs to be specified.
+Par.numcluster = 10;   % number of clusters, needs to be specified.
 Par.normalize  = 2;   % optional, 0 - no normalization; 1 - normalize to [0,1]; 2 - normalize to [0,0.5] and [0.5,1]. Default: 2
 Par.anchor     = 100; %100; % optional, number of anchor points, default: 100
 Par.maxit      = 500; % optional, maximum iterations of EM algorithm, default: 400
@@ -20,8 +22,11 @@ Par.plot       = 0;   % optional, true - plot clustering result, default: true
 Par.pca        = 0;   %draw the first two dimensions of pca or the original data, default: false
 Par.start      = window1;   %49;%17; %1;   %start column position of each matrix
 Par.end        = window2;  %112; %48; %16;  %end column position of each matrix
-fiout=[int2str(window1) ,'.txt'];
-Par.output     = ['./data/clusterNumber5_step10_ljy/cluster',fiout]; % outout file name
+
+fiout = ['./clusterResultAverageDHACc10_step10_ljy4/',int2str(window1),'/',int2str(i), '.txt' ]
+Par.output     = fiout; % outout file name
+% fiout=[int2str(window1) ,'.txt'];
+% Par.output     = ['./data/clusterNumberAverageDHAC10_step10_ljy/cluster',fiout]; % outout file name
 disp(Par.output);
 Idx = kde_em_clustering(files,Par);
 window1 = window1 +step;
