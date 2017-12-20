@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+....GO:0051171	BP	regulation of nitrogen compound metabolic process	0.0301
+.....GO:0031326	BP	regulation of cellular biosynthetic process	0.0301
+....GO:0031323	BP	regulation of cellular metabolic process	0.0301
+....GO:0009889	BP	regulation of biosynthetic process	0.0301
+...GO:0019222	BP	regulation of metabolic process	0.0301
+...GO:0044436	CC	thylakoid part                	0.0188
+..GO:0044424	CC	intracellular part            	0.0417
+.GO:0044464	CC	cell part                     	0.0417
+GO:0005575	CC	cellular_component            	0.0438
+......GO:0008270	MF	zinc ion binding              	0.00502
+.....GO:0046914	MF	transition metal ion binding  	0.0388

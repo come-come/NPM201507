@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+...GO:0031967	CC	organelle envelope            	0.0303
+.....GO:0009941	CC	chloroplast envelope          	0.0303
+..GO:0031975	CC	envelope                      	0.0303
+....GO:0009526	CC	plastid envelope              	0.0303
+..GO:0005886	CC	plasma membrane               	0.0393
+...GO:0016667	MF	oxidoreductase activity, acting on a sulfur group of donors	0.0393

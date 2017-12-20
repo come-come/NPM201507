@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+..GO:0006950	BP	response to stress            	0.00377
+.GO:0050896	BP	response to stimulus          	0.00852
+...GO:0009266	BP	response to temperature stimulus	0.0363
+..GO:0009628	BP	response to abiotic stimulus  	0.0363
+....GO:0009532	CC	plastid stroma                	0.0494
+.....GO:0009570	CC	chloroplast stroma            	0.0494

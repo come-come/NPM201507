@@ -1,0 +1,25 @@
+GO	NS	name	p_uncorrected
+..GO:0050789	BP	regulation of biological process	0.00123
+.GO:0065007	BP	biological regulation         	0.00123
+...GO:0050794	BP	regulation of cellular process	0.00123
+.GO:0009987	BP	cellular process              	0.015
+.....GO:0031326	BP	regulation of cellular biosynthetic process	0.0382
+...GO:0019222	BP	regulation of metabolic process	0.0382
+....GO:0051171	BP	regulation of nitrogen compound metabolic process	0.0382
+...GO:1901360	BP	organic cyclic compound metabolic process	0.0382
+...GO:0006139	BP	nucleobase-containing compound metabolic process	0.0382
+...GO:0006725	BP	cellular aromatic compound metabolic process	0.0382
+...GO:0046483	BP	heterocycle metabolic process 	0.0382
+....GO:0031323	BP	regulation of cellular metabolic process	0.0382
+....GO:0009889	BP	regulation of biosynthetic process	0.0382
+...GO:0034641	BP	cellular nitrogen compound metabolic process	0.0382
+..GO:0005886	CC	plasma membrane               	0.0249
+....GO:0005634	CC	nucleus                       	0.0293
+.....GO:0009941	CC	chloroplast envelope          	0.0445
+....GO:0009526	CC	plastid envelope              	0.0445
+...GO:0031967	CC	organelle envelope            	0.0445
+..GO:0031975	CC	envelope                      	0.0445
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0477
+....GO:0055035	CC	plastid thylakoid membrane    	0.0477
+..GO:0034357	CC	photosynthetic membrane       	0.0477
+...GO:0042651	CC	thylakoid membrane            	0.0477

@@ -1,0 +1,23 @@
+GO	NS	name	p_uncorrected
+....GO:1901605	BP	alpha-amino acid metabolic process	0.0275
+....GO:0043436	BP	oxoacid metabolic process     	0.0275
+...GO:0046950	BP	cellular ketone body metabolic process	0.0275
+...GO:0006520	BP	cellular amino acid metabolic process	0.0275
+...GO:0017144	BP	drug metabolic process        	0.0275
+....GO:1901570	BP	fatty acid derivative biosynthetic process	0.0275
+....GO:0009081	BP	branched-chain amino acid metabolic process	0.0275
+....GO:0046951	BP	ketone body biosynthetic process	0.0275
+.....GO:0019752	BP	carboxylic acid metabolic process	0.0275
+...GO:1901568	BP	fatty acid derivative metabolic process	0.0275
+...GO:0044283	BP	small molecule biosynthetic process	0.0275
+.....GO:0006551	BP	leucine metabolic process     	0.0275
+...GO:0006082	BP	organic acid metabolic process	0.0275
+....GO:1902224	BP	ketone body metabolic process 	0.0275
+...GO:0070013	CC	intracellular organelle lumen 	0.0275
+..GO:0043233	CC	organelle lumen               	0.0275
+....GO:0005759	CC	mitochondrial matrix          	0.0275
+.GO:0031974	CC	membrane-enclosed lumen       	0.0275
+.....GO:0004419	MF	hydroxymethylglutaryl-CoA lyase activity	0.0275
+...GO:0016830	MF	carbon-carbon lyase activity  	0.0275
+....GO:0016833	MF	oxo-acid-lyase activity       	0.0275
+..GO:0016829	MF	lyase activity                	0.0275

@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+...GO:0005737	CC	cytoplasm                     	0.0292
+..GO:0044424	CC	intracellular part            	0.0459
+.GO:0044464	CC	cell part                     	0.0459
+......GO:0008270	MF	zinc ion binding              	0.0292

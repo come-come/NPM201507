@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+..GO:0042221	BP	response to chemical          	0.029
+.GO:0050896	BP	response to stimulus          	0.0356
+....GO:0005634	CC	nucleus                       	0.0217

@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+....GO:0005739	CC	mitochondrion                 	0.0349
+.....GO:0010287	CC	plastoglobule                 	0.05
+......GO:0008270	MF	zinc ion binding              	0.05

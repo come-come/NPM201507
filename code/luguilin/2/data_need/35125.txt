@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+..GO:0009628	BP	response to abiotic stimulus  	0.0177
+...GO:0009266	BP	response to temperature stimulus	0.0177
+..GO:0006950	BP	response to stress            	0.0244
+....GO:0015031	BP	protein transport             	0.0385
+.....GO:0042886	BP	amide transport               	0.0385
+..GO:0033036	BP	macromolecule localization    	0.0385
+.....GO:0015833	BP	peptide transport             	0.0385
+...GO:0045184	BP	establishment of protein localization	0.0385
+...GO:0008104	BP	protein localization          	0.0385
+.GO:0050896	BP	response to stimulus          	0.0402

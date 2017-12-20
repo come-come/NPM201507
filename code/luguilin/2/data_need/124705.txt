@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+....GO:0015031	BP	protein transport             	0.044
+..GO:0033036	BP	macromolecule localization    	0.044
+.....GO:0042886	BP	amide transport               	0.044
+...GO:0008104	BP	protein localization          	0.044
+...GO:0045184	BP	establishment of protein localization	0.044
+.....GO:0015833	BP	peptide transport             	0.044
+.....GO:0004017	MF	adenylate kinase activity     	0.044
+.....GO:0019205	MF	nucleobase-containing compound kinase activity	0.044
+......GO:0019201	MF	nucleotide kinase activity    	0.044
+....GO:0016776	MF	phosphotransferase activity, phosphate group as acceptor	0.044

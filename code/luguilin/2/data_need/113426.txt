@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+....GO:0009889	BP	regulation of biosynthetic process	0.0282
+....GO:0031323	BP	regulation of cellular metabolic process	0.0282
+....GO:0051171	BP	regulation of nitrogen compound metabolic process	0.0282
+.....GO:0031326	BP	regulation of cellular biosynthetic process	0.0282
+...GO:0019222	BP	regulation of metabolic process	0.0282
+.GO:0016020	CC	membrane                      	0.0492
+......GO:0008270	MF	zinc ion binding              	0.00455
+.....GO:0046914	MF	transition metal ion binding  	0.0355

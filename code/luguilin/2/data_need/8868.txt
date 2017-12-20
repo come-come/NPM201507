@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+..GO:0009719	BP	response to endogenous stimulus	0.0498
+....GO:0009735	BP	response to cytokinin         	0.0498
+...GO:0009725	BP	response to hormone           	0.0498
+...GO:0010033	BP	response to organic substance 	0.0498
+...GO:0031967	CC	organelle envelope            	0.0247
+....GO:0009526	CC	plastid envelope              	0.0247
+.....GO:0009941	CC	chloroplast envelope          	0.0247
+..GO:0031975	CC	envelope                      	0.0247

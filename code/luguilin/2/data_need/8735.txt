@@ -1,0 +1,8 @@
+GO	NS	name	p_uncorrected
+.GO:0050896	BP	response to stimulus          	0.0285
+..GO:0050789	BP	regulation of biological process	0.032
+.GO:0065007	BP	biological regulation         	0.032
+...GO:0050794	BP	regulation of cellular process	0.032
+..GO:0031224	CC	intrinsic component of membrane	0.0183
+...GO:0016021	CC	integral component of membrane	0.0183
+.GO:0044425	CC	membrane part                 	0.0183

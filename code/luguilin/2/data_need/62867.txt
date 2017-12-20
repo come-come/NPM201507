@@ -1,0 +1,17 @@
+GO	NS	name	p_uncorrected
+..GO:0007568	BP	aging                         	0.0127
+....GO:0065003	BP	macromolecular complex assembly	0.0356
+...GO:0022607	BP	cellular component assembly   	0.0356
+....GO:0071822	BP	protein complex subunit organization	0.0356
+...GO:0043933	BP	macromolecular complex subunit organization	0.0356
+......GO:0043623	BP	cellular protein complex assembly	0.0356
+.....GO:0006461	BP	protein complex assembly      	0.0356
+.....GO:0034622	BP	cellular macromolecular complex assembly	0.0356
+.......GO:0010207	BP	photosystem II assembly       	0.0356
+..GO:0016043	BP	cellular component organization	0.0356
+.GO:0032502	BP	developmental process         	0.0356
+.GO:0071840	BP	cellular component organization or biogenesis	0.0356
+GO:0008150	BP	biological_process            	0.0451
+...GO:0044436	CC	thylakoid part                	0.0294
+.....GO:0010287	CC	plastoglobule                 	0.0356
+......GO:0008270	MF	zinc ion binding              	0.0356

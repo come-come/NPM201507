@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+..GO:0042221	BP	response to chemical          	0.00356
+.GO:0050896	BP	response to stimulus          	0.0202

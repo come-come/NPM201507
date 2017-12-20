@@ -25,12 +25,6 @@ from scipy import stats
 from compiler.ast import flatten
 
 
-
-
-
-
-
-
 phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
 phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt', index_col=0)
 phe3 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt', index_col=0)
@@ -68,19 +62,12 @@ def tree0(weight_value, startwindow, term):
     i = 0
     q = 0
     for window in range(startwindow, w):
-        # windowGraph[window] = nx.Graph()
-        # df = data[data[data.columns[window]] >= (weight_value + 0.00001)]
-        # # print window, weight_value, df.shape
-        # for edge in range(0, df.shape[0]):
-        #     node_1, node_2 = df.index[edge].split('_')
-        #     windowGraph[window].add_edge(node_1, node_2)
-
         dic_intersect_level.clear()
-
-
         if window == startwindow:
+
             for clique in nx.find_cliques(windowGraph[window]):
                 if len(clique) > 5:
+
                     cliqueGraph.add_node(term, annotation=list(clique), windowsize=[window],
                                          weight=weight_value)  # generate a term
                     cliqueGraph.add_edge(root, term)
@@ -92,8 +79,10 @@ def tree0(weight_value, startwindow, term):
                     continue
             # print len(dic_last_time), len(dic_term), cliqueGraph.number_of_nodes()
         else:
+
             for clique in nx.find_cliques(windowGraph[window]):
                 if len(clique) > 5:
+
                     for key, value in dic_last_time.items():  # key 是clique ,value是 [window]
                         intersect = sorted(set(key).intersection(set(clique)))
                         q = 0
@@ -305,11 +294,12 @@ if __name__ == '__main__':
     s = 0
     # 先产生第一个window的 tree
     term = 183
-    filename = 'result_c5_s10_v2_weight.txt'
+    # filename = 'result_c5_s10_v2_weight.txt'
     # 20171217
-    # filename = 'result_c5_s10_20171217weight.txt'
+    # filename = 'result_c5_s10_20171219weight.txt'
+    filename = 'weight0516.txt'
     data = pd.read_csv(filename, index_col=0, sep='\t')
-    print data.head(5), type(data.loc['AT4G33520_AT1G67840']['49'])
+    # print data.head(5), type(data.loc['AT4G33520_AT1G67840']['49'])
     curr_path = os.getcwd() + '/'
     weight_value = 0.9
     windowGraph = {}
@@ -403,12 +393,12 @@ if __name__ == '__main__':
     #         fwc.write(str(node) + '\n')
 
 
-    fw1 = open('1218edges_sign_id.txt', 'w')
-    fw2 = open('1218terms_sign_id.txt', 'w')
-    fw3 = open('1218sign_distance_id.txt', 'w')
-    fw4 = open('1218term_vector_id.txt', 'w')
-    fw5 = open('1218term_pearson_id.txt', 'w')
-    fw6 = open('1218terms_sign_list_id.txt', 'w')
+    fw1 = open('0519edges_sign_id.txt', 'w')
+    fw2 = open('0519terms_sign_id.txt', 'w')
+    fw3 = open('0519sign_distance_id.txt', 'w')
+    fw4 = open('0519term_vector_id.txt', 'w')
+    fw5 = open('0519term_pearson_id.txt', 'w')
+    fw6 = open('0519terms_sign_list_id.txt', 'w')
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')

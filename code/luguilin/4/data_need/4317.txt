@@ -1,0 +1,8 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.0362
+...GO:0031984	CC	organelle subcompartment      	0.047
+.....GO:0009534	CC	chloroplast thylakoid         	0.047
+....GO:0031976	CC	plastid thylakoid             	0.047
+...GO:0016859	MF	cis-trans isomerase activity  	0.0493
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.0493
+..GO:0140096	MF	catalytic activity, acting on a protein	0.0493

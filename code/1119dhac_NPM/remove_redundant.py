@@ -114,8 +114,12 @@ def sign_value(node, geneIdset, window):
 
 
 if __name__ =="__main__":
-    edge_filename = 'G:\\project2\\NPM201507\\code\\1129edges_sign_id.txt'
-    node_filename = 'G:\\project2\\NPM201507\\code\\1129terms_sign_list_id.txt'
+    # edge_filename = 'G:\\project2\\NPM201507\\code\\1129edges_sign_id.txt'
+    # node_filename = 'G:\\project2\\NPM201507\\code\\1129terms_sign_list_id.txt'
+    # Run our method one more time 1218
+    edge_filename = 'G:\\project2\\NPM201507\\code\\0519edges_sign_id.txt'
+    node_filename = 'G:\\project2\\NPM201507\\code\\0519terms_sign_list_id.txt'
+
     phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt',
                          index_col=0)
     phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt',
@@ -126,15 +130,13 @@ if __name__ =="__main__":
     phe2.columns = [i for i in range(0, 113)]
     phe3.columns = [i for i in range(0, 113)]
     OntologyGraph = read_tree(edge_filename,node_filename)
+    # for i in range(1, 17):
     for i in range(1, 17):
         read_level_dic(node_filename, i, OntologyGraph)
     print OntologyGraph.number_of_nodes()
-    print OntologyGraph.node['0']
-    print OntologyGraph.node['113334']
 
-    print OntologyGraph.predecessors('113334')
-    fw = open('1129terms.txt', 'w')
-    fw2 = open('1129edges.txt', 'w')
+    fw = open('0519terms.txt', 'w')
+    fw2 = open('0519edges.txt', 'w')
 
     fw.write('term_id' + '\t' + 'sign_score' + '\t' + 'level' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
     for node in OntologyGraph.nodes():

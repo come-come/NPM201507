@@ -1,0 +1,8 @@
+GO	NS	name	p_uncorrected
+.GO:0065007	BP	biological regulation         	0.0285
+..GO:0050789	BP	regulation of biological process	0.0285
+...GO:0050794	BP	regulation of cellular process	0.0285
+.GO:0009987	BP	cellular process              	0.0368
+..GO:0005886	CC	plasma membrane               	0.0416
+..GO:0016491	MF	oxidoreductase activity       	0.00866
+...GO:0016667	MF	oxidoreductase activity, acting on a sulfur group of donors	0.0416

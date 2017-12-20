@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+....GO:0005739	CC	mitochondrion                 	0.0363
+....GO:0009526	CC	plastid envelope              	0.0385
+..GO:0031975	CC	envelope                      	0.0385
+...GO:0031967	CC	organelle envelope            	0.0385
+.....GO:0009941	CC	chloroplast envelope          	0.0385

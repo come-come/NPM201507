@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+.GO:0032502	BP	developmental process         	0.0158
+.GO:0044464	CC	cell part                     	0.0392
+..GO:0044424	CC	intracellular part            	0.0392
+GO:0005575	CC	cellular_component            	0.0408
+......GO:0008270	MF	zinc ion binding              	0.0158
+.....GO:0046914	MF	transition metal ion binding  	0.0482

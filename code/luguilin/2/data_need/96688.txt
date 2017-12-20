@@ -1,0 +1,10 @@
+GO	NS	name	p_uncorrected
+..GO:0034357	CC	photosynthetic membrane       	0.0333
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0333
+....GO:0055035	CC	plastid thylakoid membrane    	0.0333
+...GO:0042651	CC	thylakoid membrane            	0.0333
+....GO:0009536	CC	plastid                       	0.0438
+.....GO:0009507	CC	chloroplast                   	0.0438
+...GO:0016614	MF	oxidoreductase activity, acting on CH-OH group of donors	0.044
+.....GO:0004033	MF	aldo-keto reductase (NADP) activity	0.044
+....GO:0016616	MF	oxidoreductase activity, acting on the CH-OH group of donors, NAD or NADP as acceptor	0.044

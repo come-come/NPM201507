@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+......GO:0008270	MF	zinc ion binding              	0.0125

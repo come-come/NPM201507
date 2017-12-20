@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+.GO:0050896	BP	response to stimulus          	0.0356
+....GO:0031977	CC	thylakoid lumen               	0.0269
+....GO:0031978	CC	plastid thylakoid lumen       	0.0269
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0269
+..GO:0043167	MF	ion binding                   	0.00981

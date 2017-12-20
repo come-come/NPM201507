@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+.GO:0050896	BP	response to stimulus          	0.0148
+.....GO:0009570	CC	chloroplast stroma            	0.00668
+....GO:0009532	CC	plastid stroma                	0.00668
+....GO:0009536	CC	plastid                       	0.0405
+.....GO:0009507	CC	chloroplast                   	0.0405

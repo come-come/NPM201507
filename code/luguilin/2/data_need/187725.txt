@@ -1,0 +1,13 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.0171
+.....GO:0009507	CC	chloroplast                   	0.0438
+...GO:0044435	CC	plastid part                  	0.0438
+....GO:0044434	CC	chloroplast part              	0.0438
+....GO:0009536	CC	plastid                       	0.0438
+..GO:0043228	CC	non-membrane-bounded organelle	0.044
+....GO:0005840	CC	ribosome                      	0.044
+...GO:0043232	CC	intracellular non-membrane-bounded organelle	0.044
+...GO:0030529	CC	intracellular ribonucleoprotein complex	0.044
+..GO:1990904	CC	ribonucleoprotein complex     	0.044
+.GO:0032991	CC	macromolecular complex        	0.044
+......GO:0005506	MF	iron ion binding              	0.044

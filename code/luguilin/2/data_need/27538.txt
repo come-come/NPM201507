@@ -1,0 +1,25 @@
+GO	NS	name	p_uncorrected
+.GO:0008152	BP	metabolic process             	0.0416
+...GO:0061024	BP	membrane organization         	0.044
+.......GO:0010380	BP	regulation of chlorophyll biosynthetic process	0.044
+......GO:1901463	BP	regulation of tetrapyrrole biosynthetic process	0.044
+.....GO:0010027	BP	thylakoid membrane organization	0.044
+...GO:0044260	BP	cellular macromolecule metabolic process	0.044
+......GO:0090056	BP	regulation of chlorophyll metabolic process	0.044
+.....GO:0051193	BP	regulation of cofactor metabolic process	0.044
+....GO:0043412	BP	macromolecule modification    	0.044
+....GO:0016070	BP	RNA metabolic process         	0.044
+...GO:0043170	BP	macromolecule metabolic process	0.044
+.....GO:1901401	BP	regulation of tetrapyrrole metabolic process	0.044
+.......GO:0048564	BP	photosystem I assembly        	0.044
+.....GO:0009451	BP	RNA modification              	0.044
+....GO:0009668	BP	plastid membrane organization 	0.044
+....GO:0090304	BP	nucleic acid metabolic process	0.044
+......GO:0008270	MF	zinc ion binding              	0.00499
+.....GO:0046914	MF	transition metal ion binding  	0.0159
+...GO:0043169	MF	cation binding                	0.0233
+....GO:0046872	MF	metal ion binding             	0.0233
+..GO:0043167	MF	ion binding                   	0.0416
+.....GO:0004033	MF	aldo-keto reductase (NADP) activity	0.044
+...GO:0016614	MF	oxidoreductase activity, acting on CH-OH group of donors	0.044
+....GO:0016616	MF	oxidoreductase activity, acting on the CH-OH group of donors, NAD or NADP as acceptor	0.044

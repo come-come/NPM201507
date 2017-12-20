@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+.GO:0032502	BP	developmental process         	0.039
+......GO:0008270	MF	zinc ion binding              	0.039

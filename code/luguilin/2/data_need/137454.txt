@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+.GO:0009987	BP	cellular process              	0.0203
+..GO:0005886	CC	plasma membrane               	0.0493

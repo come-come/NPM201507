@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+..GO:0008144	MF	drug binding                  	0.0358
+.GO:0005488	MF	binding                       	0.0432

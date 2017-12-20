@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+....GO:0031978	CC	plastid thylakoid lumen       	0.0472
+....GO:0031977	CC	thylakoid lumen               	0.0472
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0472

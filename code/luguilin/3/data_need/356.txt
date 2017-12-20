@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+....GO:0005783	CC	endoplasmic reticulum         	0.0495
+....GO:0005794	CC	Golgi apparatus               	0.0495
+...GO:0098588	CC	bounding membrane of organelle	0.0495
+..GO:0098805	CC	whole membrane                	0.0495
+...GO:0044437	CC	vacuolar part                 	0.0495
+..GO:0005789	CC	endoplasmic reticulum membrane	0.0495
+...GO:0005774	CC	vacuolar membrane             	0.0495
+...GO:0044432	CC	endoplasmic reticulum part    	0.0495
+....GO:0005773	CC	vacuole                       	0.0495
+..GO:0005515	MF	protein binding               	0.0495

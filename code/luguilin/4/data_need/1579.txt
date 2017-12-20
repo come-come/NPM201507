@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+.GO:0044422	CC	organelle part                	0.0347
+..GO:0044446	CC	intracellular organelle part  	0.0347

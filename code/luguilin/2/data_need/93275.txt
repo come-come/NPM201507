@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+.....GO:0010287	CC	plastoglobule                 	0.0323

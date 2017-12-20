@@ -1,0 +1,31 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.00215
+....GO:0044434	CC	chloroplast part              	0.00739
+...GO:0044435	CC	plastid part                  	0.00739
+....GO:0031977	CC	thylakoid lumen               	0.00788
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.00788
+....GO:0031978	CC	plastid thylakoid lumen       	0.00788
+.GO:0044422	CC	organelle part                	0.00915
+..GO:0044446	CC	intracellular organelle part  	0.00915
+...GO:0044444	CC	cytoplasmic part              	0.0164
+.GO:0044464	CC	cell part                     	0.0275
+..GO:0044424	CC	intracellular part            	0.0275
+....GO:0009536	CC	plastid                       	0.0438
+.....GO:0009507	CC	chloroplast                   	0.0438
+....GO:0005840	CC	ribosome                      	0.044
+..GO:1990904	CC	ribonucleoprotein complex     	0.044
+.GO:0032991	CC	macromolecular complex        	0.044
+..GO:0043228	CC	non-membrane-bounded organelle	0.044
+...GO:0043232	CC	intracellular non-membrane-bounded organelle	0.044
+...GO:0030529	CC	intracellular ribonucleoprotein complex	0.044
+....GO:0005528	MF	FK506 binding                 	0.00499
+...GO:0005527	MF	macrolide binding             	0.00499
+...GO:0016859	MF	cis-trans isomerase activity  	0.00975
+..GO:0140096	MF	catalytic activity, acting on a protein	0.00975
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.00975
+.GO:0005488	MF	binding                       	0.0131
+..GO:0008144	MF	drug binding                  	0.0159
+..GO:0016853	MF	isomerase activity            	0.0159
+..GO:0097159	MF	organic cyclic compound binding	0.0319
+..GO:1901363	MF	heterocyclic compound binding 	0.0319
+......GO:0005506	MF	iron ion binding              	0.044

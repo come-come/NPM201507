@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+..GO:0005886	CC	plasma membrane               	0.0347
+....GO:0005528	MF	FK506 binding                 	0.0182
+...GO:0005527	MF	macrolide binding             	0.0182
+...GO:0016859	MF	cis-trans isomerase activity  	0.0347
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.0347
+..GO:0140096	MF	catalytic activity, acting on a protein	0.0347

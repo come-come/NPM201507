@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+...GO:0043094	BP	cellular metabolic compound salvage	0.0275
+....GO:0009853	BP	photorespiration              	0.0275
+.....GO:0016310	BP	phosphorylation               	0.0275
+....GO:0009854	BP	oxidative photosynthetic carbon pathway	0.0275
+.....GO:0008887	MF	glycerate kinase activity     	0.0275
+....GO:0016773	MF	phosphotransferase activity, alcohol group as acceptor	0.0275

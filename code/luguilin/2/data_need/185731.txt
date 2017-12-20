@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+.....GO:0010287	CC	plastoglobule                 	0.0265
+.....GO:0009507	CC	chloroplast                   	0.0319
+....GO:0009536	CC	plastid                       	0.0319

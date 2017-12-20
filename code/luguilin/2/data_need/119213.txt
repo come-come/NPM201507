@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+..GO:0005886	CC	plasma membrane               	0.0146
+..GO:0031090	CC	organelle membrane            	0.0323
+.GO:0003824	MF	catalytic activity            	0.0469

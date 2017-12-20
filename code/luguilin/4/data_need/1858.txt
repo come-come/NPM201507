@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+.GO:0050896	BP	response to stimulus          	0.00691
+.GO:0009987	BP	cellular process              	0.0412
+..GO:0042221	BP	response to chemical          	0.0444
+..GO:0044237	BP	cellular metabolic process    	0.0444
+..GO:0043167	MF	ion binding                   	0.021

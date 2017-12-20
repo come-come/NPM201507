@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+GO:0003674	MF	molecular_function            	0.0178

@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+....GO:0044434	CC	chloroplast part              	0.0354
+.....GO:0009507	CC	chloroplast                   	0.0354
+...GO:0044435	CC	plastid part                  	0.0354
+....GO:0009536	CC	plastid                       	0.0354
+GO:0003674	MF	molecular_function            	0.0354

@@ -1,0 +1,16 @@
+GO	NS	name	p_uncorrected
+...GO:0045184	BP	establishment of protein localization	0.0495
+.....GO:0042886	BP	amide transport               	0.0495
+....GO:0015031	BP	protein transport             	0.0495
+.....GO:0015833	BP	peptide transport             	0.0495
+..GO:0033036	BP	macromolecule localization    	0.0495
+...GO:0008104	BP	protein localization          	0.0495
+.GO:0005488	MF	binding                       	0.0188
+..GO:0008144	MF	drug binding                  	0.0202
+..GO:0097159	MF	organic cyclic compound binding	0.0402
+..GO:1901363	MF	heterocyclic compound binding 	0.0402
+....GO:0016776	MF	phosphotransferase activity, phosphate group as acceptor	0.0495
+......GO:0019201	MF	nucleotide kinase activity    	0.0495
+......GO:0005506	MF	iron ion binding              	0.0495
+.....GO:0019205	MF	nucleobase-containing compound kinase activity	0.0495
+.....GO:0004017	MF	adenylate kinase activity     	0.0495

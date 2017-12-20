@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+....GO:0009536	CC	plastid                       	0.024
+.....GO:0009507	CC	chloroplast                   	0.024
+...GO:0042651	CC	thylakoid membrane            	0.0388
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0388
+....GO:0055035	CC	plastid thylakoid membrane    	0.0388
+..GO:0034357	CC	photosynthetic membrane       	0.0388
+.GO:0043226	CC	organelle                     	0.0413
+..GO:0043227	CC	membrane-bounded organelle    	0.0413
+..GO:0043229	CC	intracellular organelle       	0.0413
+...GO:0044444	CC	cytoplasmic part              	0.0413
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0413

@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+.GO:0044425	CC	membrane part                 	0.0402
+...GO:0016021	CC	integral component of membrane	0.0402
+..GO:0031224	CC	intrinsic component of membrane	0.0402
+......GO:0005506	MF	iron ion binding              	0.0495

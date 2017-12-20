@@ -1,0 +1,13 @@
+GO	NS	name	p_uncorrected
+.GO:0009987	BP	cellular process              	0.0204
+...GO:0050794	BP	regulation of cellular process	0.0363
+..GO:0050789	BP	regulation of biological process	0.0363
+.GO:0065007	BP	biological regulation         	0.0363
+....GO:0031978	CC	plastid thylakoid lumen       	0.0158
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0158
+....GO:0031977	CC	thylakoid lumen               	0.0158
+.GO:0005576	CC	extracellular region          	0.025
+...GO:0044435	CC	plastid part                  	0.0335
+....GO:0044434	CC	chloroplast part              	0.0335
+....GO:0005739	CC	mitochondrion                 	0.0363
+..GO:0016491	MF	oxidoreductase activity       	0.0494

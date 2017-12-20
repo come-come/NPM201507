@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+.....GO:0010287	CC	plastoglobule                 	0.0182
+....GO:0009536	CC	plastid                       	0.0367
+.....GO:0009507	CC	chloroplast                   	0.0367
+...GO:0044444	CC	cytoplasmic part              	0.0405
+......GO:0008270	MF	zinc ion binding              	0.0182

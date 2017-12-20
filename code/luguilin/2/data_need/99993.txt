@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+GO:0008150	BP	biological_process            	0.0126
+...GO:0044436	CC	thylakoid part                	0.00492
+.GO:0044464	CC	cell part                     	0.0258
+..GO:0044424	CC	intracellular part            	0.0258
+GO:0005575	CC	cellular_component            	0.0266

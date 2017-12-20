@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+....GO:0005634	CC	nucleus                       	0.0494

@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+....GO:0005829	CC	cytosol                       	0.0275
+.....GO:0004148	MF	dihydrolipoyl dehydrogenase activity	0.0275
+...GO:0016651	MF	oxidoreductase activity, acting on NAD(P)H	0.0275
+....GO:0016668	MF	oxidoreductase activity, acting on a sulfur group of donors, NAD(P) as acceptor	0.0275

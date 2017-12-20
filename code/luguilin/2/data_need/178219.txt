@@ -1,0 +1,13 @@
+GO	NS	name	p_uncorrected
+..GO:0009056	BP	catabolic process             	0.044
+....GO:0016042	BP	lipid catabolic process       	0.044
+...GO:1901575	BP	organic substance catabolic process	0.044
+...GO:0006629	BP	lipid metabolic process       	0.044
+.GO:0032991	CC	macromolecular complex        	0.044
+..GO:1990904	CC	ribonucleoprotein complex     	0.044
+...GO:0043232	CC	intracellular non-membrane-bounded organelle	0.044
+....GO:0005840	CC	ribosome                      	0.044
+..GO:0043228	CC	non-membrane-bounded organelle	0.044
+...GO:0030529	CC	intracellular ribonucleoprotein complex	0.044
+....GO:0052689	MF	carboxylic ester hydrolase activity	0.044
+...GO:0016788	MF	hydrolase activity, acting on ester bonds	0.044

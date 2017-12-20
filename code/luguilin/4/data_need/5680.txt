@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+.GO:0016020	CC	membrane                      	0.0485

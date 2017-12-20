@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+...GO:0005527	MF	macrolide binding             	0.039
+....GO:0005528	MF	FK506 binding                 	0.039
+..GO:0097159	MF	organic cyclic compound binding	0.0392
+..GO:1901363	MF	heterocyclic compound binding 	0.0392

@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+.....GO:0010287	CC	plastoglobule                 	0.0136
+...GO:0043169	MF	cation binding                	0.00509
+....GO:0046872	MF	metal ion binding             	0.00509
+..GO:0043167	MF	ion binding                   	0.0131
+......GO:0008270	MF	zinc ion binding              	0.0136
+.....GO:0046914	MF	transition metal ion binding  	0.0418

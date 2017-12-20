@@ -1,0 +1,10 @@
+GO	NS	name	p_uncorrected
+.GO:0005488	MF	binding                       	0.00573
+....GO:0005528	MF	FK506 binding                 	0.0116
+...GO:0005527	MF	macrolide binding             	0.0116
+.GO:0003824	MF	catalytic activity            	0.0203
+...GO:0016859	MF	cis-trans isomerase activity  	0.0223
+..GO:0140096	MF	catalytic activity, acting on a protein	0.0223
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.0223
+..GO:0016853	MF	isomerase activity            	0.0358
+..GO:0008144	MF	drug binding                  	0.0358

@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+..GO:0042221	BP	response to chemical          	0.0338
+...GO:0010033	BP	response to organic substance 	0.0474
+...GO:0009725	BP	response to hormone           	0.0474
+....GO:0009735	BP	response to cytokinin         	0.0474
+..GO:0009719	BP	response to endogenous stimulus	0.0474

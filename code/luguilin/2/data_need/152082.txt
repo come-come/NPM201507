@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+.GO:0050896	BP	response to stimulus          	0.00629
+..GO:0006950	BP	response to stress            	0.0223
+..GO:0042221	BP	response to chemical          	0.0493
+...GO:0044436	CC	thylakoid part                	0.0147
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0461
+..GO:0034357	CC	photosynthetic membrane       	0.0461
+....GO:0055035	CC	plastid thylakoid membrane    	0.0461
+...GO:0042651	CC	thylakoid membrane            	0.0461

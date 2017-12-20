@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+....GO:0031978	CC	plastid thylakoid lumen       	0.0051
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0051
+....GO:0031977	CC	thylakoid lumen               	0.0051
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.00737
+..GO:0140096	MF	catalytic activity, acting on a protein	0.00737
+...GO:0016859	MF	cis-trans isomerase activity  	0.00737
+..GO:0016853	MF	isomerase activity            	0.0121
+......GO:0005506	MF	iron ion binding              	0.0385

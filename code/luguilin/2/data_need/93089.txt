@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+.GO:0003824	MF	catalytic activity            	0.0461

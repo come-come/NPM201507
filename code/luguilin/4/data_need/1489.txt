@@ -1,0 +1,18 @@
+GO	NS	name	p_uncorrected
+...GO:0043094	BP	cellular metabolic compound salvage	0.033
+..GO:0033036	BP	macromolecule localization    	0.033
+....GO:0009853	BP	photorespiration              	0.033
+...GO:0045184	BP	establishment of protein localization	0.033
+...GO:0008104	BP	protein localization          	0.033
+.....GO:0015833	BP	peptide transport             	0.033
+.....GO:0016310	BP	phosphorylation               	0.033
+....GO:0009854	BP	oxidative photosynthetic carbon pathway	0.033
+.....GO:0042886	BP	amide transport               	0.033
+....GO:0015031	BP	protein transport             	0.033
+.....GO:0009570	CC	chloroplast stroma            	0.0177
+....GO:0009532	CC	plastid stroma                	0.0177
+.....GO:0009534	CC	chloroplast thylakoid         	0.0295
+...GO:0031984	CC	organelle subcompartment      	0.0295
+....GO:0031976	CC	plastid thylakoid             	0.0295
+.....GO:0008887	MF	glycerate kinase activity     	0.033
+....GO:0016773	MF	phosphotransferase activity, alcohol group as acceptor	0.033

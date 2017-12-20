@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+...GO:0050794	BP	regulation of cellular process	0.00875
+..GO:0050789	BP	regulation of biological process	0.00875
+.GO:0065007	BP	biological regulation         	0.00875
+.GO:0050896	BP	response to stimulus          	0.0126
+..GO:0042221	BP	response to chemical          	0.0436
+..GO:0006950	BP	response to stress            	0.0498
+..GO:0031975	CC	envelope                      	0.0125
+.....GO:0009941	CC	chloroplast envelope          	0.0125
+....GO:0009526	CC	plastid envelope              	0.0125
+...GO:0031967	CC	organelle envelope            	0.0125

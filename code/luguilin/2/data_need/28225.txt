@@ -1,0 +1,18 @@
+GO	NS	name	p_uncorrected
+..GO:0050789	BP	regulation of biological process	0.0239
+...GO:0050794	BP	regulation of cellular process	0.0239
+.GO:0065007	BP	biological regulation         	0.0239
+...GO:0009409	BP	response to cold              	0.0363
+...GO:1901360	BP	organic cyclic compound metabolic process	0.0498
+...GO:0034641	BP	cellular nitrogen compound metabolic process	0.0498
+.....GO:0031326	BP	regulation of cellular biosynthetic process	0.0498
+....GO:0009889	BP	regulation of biosynthetic process	0.0498
+...GO:0019222	BP	regulation of metabolic process	0.0498
+....GO:0031323	BP	regulation of cellular metabolic process	0.0498
+....GO:0051171	BP	regulation of nitrogen compound metabolic process	0.0498
+...GO:0046483	BP	heterocycle metabolic process 	0.0498
+...GO:0006725	BP	cellular aromatic compound metabolic process	0.0498
+...GO:0006139	BP	nucleobase-containing compound metabolic process	0.0498
+..GO:1901363	MF	heterocyclic compound binding 	0.0466
+..GO:0097159	MF	organic cyclic compound binding	0.0466
+...GO:0003676	MF	nucleic acid binding          	0.0498

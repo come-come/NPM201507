@@ -1,0 +1,18 @@
+GO	NS	name	p_uncorrected
+......GO:0043623	BP	cellular protein complex assembly	0.05
+....GO:0065003	BP	macromolecular complex assembly	0.05
+.......GO:0010207	BP	photosystem II assembly       	0.05
+....GO:0071822	BP	protein complex subunit organization	0.05
+..GO:0016043	BP	cellular component organization	0.05
+.....GO:0006461	BP	protein complex assembly      	0.05
+.GO:0071840	BP	cellular component organization or biogenesis	0.05
+...GO:0043933	BP	macromolecular complex subunit organization	0.05
+...GO:0022607	BP	cellular component assembly   	0.05
+.....GO:0034622	BP	cellular macromolecular complex assembly	0.05
+...GO:0016021	CC	integral component of membrane	0.016
+.GO:0044425	CC	membrane part                 	0.016
+..GO:0031224	CC	intrinsic component of membrane	0.016
+....GO:0009528	CC	plastid inner membrane        	0.05
+...GO:0042170	CC	plastid membrane              	0.05
+.....GO:0009706	CC	chloroplast inner membrane    	0.05
+....GO:0031969	CC	chloroplast membrane          	0.05

@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.0126
+.....GO:0009570	CC	chloroplast stroma            	0.025
+....GO:0009532	CC	plastid stroma                	0.025
+...GO:0031967	CC	organelle envelope            	0.0426
+..GO:0031975	CC	envelope                      	0.0426
+.....GO:0009941	CC	chloroplast envelope          	0.0426
+....GO:0009526	CC	plastid envelope              	0.0426
+.GO:0016020	CC	membrane                      	0.0451

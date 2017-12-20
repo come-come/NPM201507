@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+..GO:0006950	BP	response to stress            	0.0051
+.GO:0050896	BP	response to stimulus          	0.0114
+...GO:0009266	BP	response to temperature stimulus	0.0437
+..GO:0009628	BP	response to abiotic stimulus  	0.0437
+...GO:0009579	CC	thylakoid                     	0.0416

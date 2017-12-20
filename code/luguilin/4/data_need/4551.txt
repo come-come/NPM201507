@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+....GO:0006839	BP	mitochondrial transport       	0.033
+....GO:0005743	CC	mitochondrial inner membrane  	0.033
+.GO:0005623	CC	cell                          	0.033
+..GO:0005622	CC	intracellular                 	0.033
+...GO:0031966	CC	mitochondrial membrane        	0.033
+..GO:0005515	MF	protein binding               	0.033

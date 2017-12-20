@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.0294
+.....GO:0010287	CC	plastoglobule                 	0.0356
+.GO:0016020	CC	membrane                      	0.0485

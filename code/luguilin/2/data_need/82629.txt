@@ -1,0 +1,19 @@
+GO	NS	name	p_uncorrected
+.....GO:0009507	CC	chloroplast                   	0.00771
+....GO:0009536	CC	plastid                       	0.00771
+.GO:0043226	CC	organelle                     	0.0154
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0154
+..GO:0043227	CC	membrane-bounded organelle    	0.0154
+...GO:0044444	CC	cytoplasmic part              	0.0154
+..GO:0043229	CC	intracellular organelle       	0.0154
+..GO:0044424	CC	intracellular part            	0.0243
+.GO:0044464	CC	cell part                     	0.0243
+GO:0005575	CC	cellular_component            	0.0261
+....GO:0051537	MF	2 iron, 2 sulfur cluster binding	0.033
+..GO:0048037	MF	cofactor binding              	0.033
+....GO:0030614	MF	oxidoreductase activity, acting on phosphorus or arsenic in donors, disulfide as acceptor	0.033
+...GO:0051536	MF	iron-sulfur cluster binding   	0.033
+...GO:0030613	MF	oxidoreductase activity, acting on phosphorus or arsenic in donors	0.033
+....GO:0008794	MF	arsenate reductase (glutaredoxin) activity	0.033
+...GO:0030611	MF	arsenate reductase activity   	0.033
+..GO:0051540	MF	metal cluster binding         	0.033

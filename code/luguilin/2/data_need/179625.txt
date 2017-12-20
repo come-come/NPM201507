@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+....GO:0031976	CC	plastid thylakoid             	0.0284
+.....GO:0009534	CC	chloroplast thylakoid         	0.0284
+...GO:0031984	CC	organelle subcompartment      	0.0284

@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+...GO:0005737	CC	cytoplasm                     	0.0116
+......GO:0008270	MF	zinc ion binding              	0.0116
+.....GO:0046914	MF	transition metal ion binding  	0.0358

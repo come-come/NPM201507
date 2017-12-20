@@ -1,0 +1,10 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.0174
+.....GO:0010287	CC	plastoglobule                 	0.0292
+.GO:0016020	CC	membrane                      	0.0316
+.GO:0044464	CC	cell part                     	0.0459
+..GO:0044424	CC	intracellular part            	0.0459
+..GO:0034357	CC	photosynthetic membrane       	0.049
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.049
+...GO:0042651	CC	thylakoid membrane            	0.049
+....GO:0055035	CC	plastid thylakoid membrane    	0.049

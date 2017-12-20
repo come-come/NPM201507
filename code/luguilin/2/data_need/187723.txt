@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+......GO:0005506	MF	iron ion binding              	0.0385

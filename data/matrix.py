@@ -28,7 +28,8 @@ def cluster_NPM(dest, fwname) :
     resultPd.to_csv(fwname, sep = '\t', columns = None, index = False, header = None)
     
     
-def cluster_NPM100(path1) :
+def cluster_NPM100(path1, matrix_files) :
+    os.makedirs(matrix_files)
     j=49  
     x = pd.DataFrame()
     for root, dirs, files in os.walk (path1) :
@@ -48,7 +49,9 @@ def cluster_NPM100(path1) :
         resultPd = pd.concat([x,resultPd],axis=1)
         print resultPd.shape
         print root, os.path.split(root)[1]
-        fwname ='G:\project2\\NPM201507\\data\windowMatrix\matrix'+os.path.split(root)[1]+'.txt' 
+        # fwname ='G:\project2\\NPM201507\\data\windowMatrix\matrix'+os.path.split(root)[1]+'.txt'
+        fwname = matrix_files + '\matrix' + os.path.split(root)[1] + '.txt'
+        print fwname
         resultPd.to_csv(fwname, sep='\t', columns = None, index = False, header = None)
         j=j+1    
        
@@ -117,8 +120,25 @@ if __name__ == "__main__" :
     # 20171217
     # NPM_files = 'G:\project2\\NPM201507\\clusterResult20171216'
     # cluster_NPM100(NPM_files)
-    matrix_files = 'G:\project2\\NPM201507\\data\\windowMatrix'
-    cal_weight(matrix_files, 'weight.txt')
+    # matrix_files = 'G:\project2\\NPM201507\\data\\windowMatrix1216'
+    # cal_weight(matrix_files, 'weight1217.txt')
+
+    # 20171218
+    # NPM_files = 'G:\project2\\NPM201507\\clusterResult20171218'
+    # matrix_files = 'G:\project2\\NPM201507\\data\\windowMatrix1218'
+    # cluster_NPM100(NPM_files, matrix_files)
+    # cal_weight(matrix_files, 'weight1218.txt')
+
+    # 20171219
+    # NPM_files = 'G:\project2\\NPM201507\\clusterResult0516'
+    # matrix_files = 'G:\project2\\NPM201507\\data\\windowMatrix0516'
+    matrix_files = 'G:\project2\\NPM201507\\data\\100_c5_s10_windowMatrix'
+    # cluster_NPM100(NPM_files, matrix_files)
+
+    cal_weight(matrix_files, 'weight100.txt')
+
+
+
     
     
     

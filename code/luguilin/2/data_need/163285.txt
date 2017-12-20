@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+.GO:0050896	BP	response to stimulus          	0.000521
+..GO:0006950	BP	response to stress            	0.00377
+..GO:0042221	BP	response to chemical          	0.0154
+..GO:0009628	BP	response to abiotic stimulus  	0.0363
+...GO:0009266	BP	response to temperature stimulus	0.0363

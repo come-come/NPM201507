@@ -1,0 +1,10 @@
+GO	NS	name	p_uncorrected
+..GO:0050789	BP	regulation of biological process	0.0365
+.GO:0065007	BP	biological regulation         	0.0365
+...GO:0050794	BP	regulation of cellular process	0.0365
+....GO:0031976	CC	plastid thylakoid             	0.0122
+...GO:0031984	CC	organelle subcompartment      	0.0122
+.....GO:0009534	CC	chloroplast thylakoid         	0.0122
+...GO:0009579	CC	thylakoid                     	0.0497
+...GO:0043169	MF	cation binding                	0.0365
+....GO:0046872	MF	metal ion binding             	0.0365

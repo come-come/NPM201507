@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+.GO:0005576	CC	extracellular region          	0.0388
+...GO:0044436	CC	thylakoid part                	0.0396

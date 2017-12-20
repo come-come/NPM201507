@@ -1,0 +1,15 @@
+GO	NS	name	p_uncorrected
+..GO:0050789	BP	regulation of biological process	0.0129
+.GO:0065007	BP	biological regulation         	0.0129
+...GO:0050794	BP	regulation of cellular process	0.0129
+..GO:0007165	BP	signal transduction           	0.033
+...GO:0035556	BP	intracellular signal transduction	0.033
+....GO:0005739	CC	mitochondrion                 	0.0129
+...GO:0030611	MF	arsenate reductase activity   	0.033
+....GO:0030614	MF	oxidoreductase activity, acting on phosphorus or arsenic in donors, disulfide as acceptor	0.033
+..GO:0051540	MF	metal cluster binding         	0.033
+....GO:0051537	MF	2 iron, 2 sulfur cluster binding	0.033
+....GO:0008794	MF	arsenate reductase (glutaredoxin) activity	0.033
+..GO:0048037	MF	cofactor binding              	0.033
+...GO:0030613	MF	oxidoreductase activity, acting on phosphorus or arsenic in donors	0.033
+...GO:0051536	MF	iron-sulfur cluster binding   	0.033

@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+...GO:0044435	CC	plastid part                  	0.0457
+....GO:0044434	CC	chloroplast part              	0.0457

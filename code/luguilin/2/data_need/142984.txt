@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+.....GO:0009570	CC	chloroplast stroma            	0.0494
+....GO:0009532	CC	plastid stroma                	0.0494

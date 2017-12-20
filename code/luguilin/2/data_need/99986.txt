@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+....GO:0046872	MF	metal ion binding             	0.0389
+...GO:0043169	MF	cation binding                	0.0389

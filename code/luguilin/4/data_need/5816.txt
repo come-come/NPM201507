@@ -1,0 +1,10 @@
+GO	NS	name	p_uncorrected
+..GO:0042221	BP	response to chemical          	0.0389
+...GO:0044435	CC	plastid part                  	0.0199
+....GO:0044434	CC	chloroplast part              	0.0199
+....GO:0009526	CC	plastid envelope              	0.024
+..GO:0031975	CC	envelope                      	0.024
+...GO:0031967	CC	organelle envelope            	0.024
+.....GO:0009941	CC	chloroplast envelope          	0.024
+.GO:0044422	CC	organelle part                	0.0362
+..GO:0044446	CC	intracellular organelle part  	0.0362

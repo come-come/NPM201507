@@ -1,0 +1,18 @@
+GO	NS	name	p_uncorrected
+....GO:0065003	BP	macromolecular complex assembly	0.0175
+.GO:0071840	BP	cellular component organization or biogenesis	0.0175
+.....GO:0006461	BP	protein complex assembly      	0.0175
+...GO:0043933	BP	macromolecular complex subunit organization	0.0175
+......GO:0043623	BP	cellular protein complex assembly	0.0175
+.......GO:0010207	BP	photosystem II assembly       	0.0175
+...GO:0022607	BP	cellular component assembly   	0.0175
+..GO:0016043	BP	cellular component organization	0.0175
+....GO:0071822	BP	protein complex subunit organization	0.0175
+.....GO:0034622	BP	cellular macromolecular complex assembly	0.0175
+...GO:0044436	CC	thylakoid part                	0.00892
+....GO:0031978	CC	plastid thylakoid lumen       	0.039
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.039
+....GO:0031977	CC	thylakoid lumen               	0.039
+...GO:0043169	MF	cation binding                	0.0425
+....GO:0046872	MF	metal ion binding             	0.0425
+.GO:0005488	MF	binding                       	0.0431

@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.00774
+...GO:0042651	CC	thylakoid membrane            	0.0286
+..GO:0034357	CC	photosynthetic membrane       	0.0286
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0286
+....GO:0055035	CC	plastid thylakoid membrane    	0.0286
+...GO:0044435	CC	plastid part                  	0.0367
+....GO:0044434	CC	chloroplast part              	0.0367
+.GO:0005198	MF	structural molecule activity  	0.00637

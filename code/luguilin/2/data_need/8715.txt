@@ -1,0 +1,24 @@
+GO	NS	name	p_uncorrected
+....GO:0044434	CC	chloroplast part              	0.0064
+...GO:0044435	CC	plastid part                  	0.0064
+..GO:0044446	CC	intracellular organelle part  	0.00815
+.GO:0044422	CC	organelle part                	0.00815
+...GO:0044436	CC	thylakoid part                	0.011
+....GO:0031977	CC	thylakoid lumen               	0.0158
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0158
+....GO:0031978	CC	plastid thylakoid lumen       	0.0158
+...GO:0044444	CC	cytoplasmic part              	0.0158
+..GO:0043229	CC	intracellular organelle       	0.0158
+.GO:0043226	CC	organelle                     	0.0158
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0158
+..GO:0043227	CC	membrane-bounded organelle    	0.0158
+..GO:0031090	CC	organelle membrane            	0.025
+.....GO:0009507	CC	chloroplast                   	0.0335
+....GO:0009536	CC	plastid                       	0.0335
+..GO:0044424	CC	intracellular part            	0.0377
+.GO:0044464	CC	cell part                     	0.0377
+GO:0005575	CC	cellular_component            	0.0395
+..GO:0140096	MF	catalytic activity, acting on a protein	0.0154
+...GO:0016859	MF	cis-trans isomerase activity  	0.0154
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.0154
+..GO:0016853	MF	isomerase activity            	0.025

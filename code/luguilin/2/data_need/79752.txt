@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+GO:0008150	BP	biological_process            	0.041
+...GO:0044436	CC	thylakoid part                	0.00492

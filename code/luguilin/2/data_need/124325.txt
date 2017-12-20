@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+.GO:0009987	BP	cellular process              	0.0226
+...GO:0016859	MF	cis-trans isomerase activity  	0.0314
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.0314
+..GO:0140096	MF	catalytic activity, acting on a protein	0.0314

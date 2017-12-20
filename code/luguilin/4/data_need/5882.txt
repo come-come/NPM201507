@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+.....GO:0009507	CC	chloroplast                   	0.0405
+....GO:0009536	CC	plastid                       	0.0405
+...GO:0044435	CC	plastid part                  	0.0405
+....GO:0044434	CC	chloroplast part              	0.0405
+.GO:0044422	CC	organelle part                	0.044
+..GO:0044446	CC	intracellular organelle part  	0.044
+..GO:0008144	MF	drug binding                  	0.0358
+.GO:0005488	MF	binding                       	0.0432

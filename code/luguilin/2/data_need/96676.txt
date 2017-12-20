@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.011
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0158
+....GO:0031977	CC	thylakoid lumen               	0.0158
+....GO:0031978	CC	plastid thylakoid lumen       	0.0158
+.GO:0005576	CC	extracellular region          	0.025
+...GO:0044435	CC	plastid part                  	0.0335
+....GO:0044434	CC	chloroplast part              	0.0335
+....GO:0005739	CC	mitochondrion                 	0.0363

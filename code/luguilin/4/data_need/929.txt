@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+..GO:0005515	MF	protein binding               	0.033
+......GO:0005506	MF	iron ion binding              	0.033

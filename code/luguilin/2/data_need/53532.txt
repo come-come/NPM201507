@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+......GO:0019201	MF	nucleotide kinase activity    	0.0385
+.....GO:0019205	MF	nucleobase-containing compound kinase activity	0.0385
+....GO:0016776	MF	phosphotransferase activity, phosphate group as acceptor	0.0385
+.....GO:0004017	MF	adenylate kinase activity     	0.0385

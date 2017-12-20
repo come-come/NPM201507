@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+.GO:0005198	MF	structural molecule activity  	0.0341

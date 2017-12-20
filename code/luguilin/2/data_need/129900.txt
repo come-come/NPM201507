@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.00811
+....GO:0031977	CC	thylakoid lumen               	0.0351
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0351
+....GO:0031978	CC	plastid thylakoid lumen       	0.0351
+...GO:0044435	CC	plastid part                  	0.0412
+....GO:0044434	CC	chloroplast part              	0.0412

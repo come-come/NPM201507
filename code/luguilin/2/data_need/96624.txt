@@ -1,0 +1,21 @@
+GO	NS	name	p_uncorrected
+......GO:0046942	BP	carboxylic acid transport     	0.033
+....GO:0006811	BP	ion transport                 	0.033
+.....GO:0015711	BP	organic anion transport       	0.033
+.....GO:0006820	BP	anion transport               	0.033
+......GO:0015801	BP	aromatic amino acid transport 	0.033
+.....GO:0006865	BP	amino acid transport          	0.033
+.....GO:0015849	BP	organic acid transport        	0.033
+..GO:0005886	CC	plasma membrane               	0.0053
+...GO:0015318	MF	inorganic molecular entity transmembrane transporter activity	0.033
+....GO:0046943	MF	carboxylic acid transmembrane transporter activity	0.033
+......GO:0015173	MF	aromatic amino acid transmembrane transporter activity	0.033
+...GO:0005275	MF	amine transmembrane transporter activity	0.033
+..GO:0022857	MF	transmembrane transporter activity	0.033
+...GO:0005342	MF	organic acid transmembrane transporter activity	0.033
+.....GO:0015171	MF	amino acid transmembrane transporter activity	0.033
+....GO:0008509	MF	anion transmembrane transporter activity	0.033
+.....GO:0008514	MF	organic anion transmembrane transporter activity	0.033
+......GO:0005506	MF	iron ion binding              	0.033
+...GO:0015075	MF	ion transmembrane transporter activity	0.033
+.GO:0005215	MF	transporter activity          	0.033

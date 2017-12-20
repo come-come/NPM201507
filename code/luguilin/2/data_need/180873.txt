@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+..GO:0007165	BP	signal transduction           	0.0385
+...GO:0035556	BP	intracellular signal transduction	0.0385

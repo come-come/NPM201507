@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+...GO:0030613	MF	oxidoreductase activity, acting on phosphorus or arsenic in donors	0.0275
+....GO:0008794	MF	arsenate reductase (glutaredoxin) activity	0.0275
+....GO:0030614	MF	oxidoreductase activity, acting on phosphorus or arsenic in donors, disulfide as acceptor	0.0275
+..GO:0051540	MF	metal cluster binding         	0.0275
+..GO:0048037	MF	cofactor binding              	0.0275
+...GO:0051536	MF	iron-sulfur cluster binding   	0.0275
+....GO:0051537	MF	2 iron, 2 sulfur cluster binding	0.0275
+...GO:0030611	MF	arsenate reductase activity   	0.0275

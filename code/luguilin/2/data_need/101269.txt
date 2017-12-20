@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+GO:0008150	BP	biological_process            	0.00275
+.GO:0032502	BP	developmental process         	0.0356
+..GO:0044424	CC	intracellular part            	0.00326
+.GO:0044464	CC	cell part                     	0.00326
+GO:0005575	CC	cellular_component            	0.00369
+.GO:0016020	CC	membrane                      	0.0184
+...GO:0044436	CC	thylakoid part                	0.0294
+....GO:0005634	CC	nucleus                       	0.0344
+...GO:0005737	CC	cytoplasm                     	0.0356
+.....GO:0010287	CC	plastoglobule                 	0.0356
+......GO:0008270	MF	zinc ion binding              	0.0356

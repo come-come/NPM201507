@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+..GO:0006950	BP	response to stress            	0.0131
+.GO:0050896	BP	response to stimulus          	0.0284
+...GO:0009579	CC	thylakoid                     	0.0185
+...GO:0031984	CC	organelle subcompartment      	0.0284
+.....GO:0009534	CC	chloroplast thylakoid         	0.0284
+....GO:0031976	CC	plastid thylakoid             	0.0284

@@ -1,0 +1,14 @@
+GO	NS	name	p_uncorrected
+...GO:0009409	BP	response to cold              	0.00845
+...GO:0046483	BP	heterocycle metabolic process 	0.0182
+...GO:0006139	BP	nucleobase-containing compound metabolic process	0.0182
+...GO:1901360	BP	organic cyclic compound metabolic process	0.0182
+...GO:0034641	BP	cellular nitrogen compound metabolic process	0.0182
+...GO:0006725	BP	cellular aromatic compound metabolic process	0.0182
+.GO:0050896	BP	response to stimulus          	0.022
+..GO:0050789	BP	regulation of biological process	0.0349
+...GO:0009266	BP	response to temperature stimulus	0.0349
+...GO:0050794	BP	regulation of cellular process	0.0349
+.GO:0065007	BP	biological regulation         	0.0349
+..GO:0009628	BP	response to abiotic stimulus  	0.0349
+..GO:0006807	BP	nitrogen compound metabolic process	0.05

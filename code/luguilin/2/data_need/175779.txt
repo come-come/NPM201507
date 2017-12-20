@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+....GO:0031976	CC	plastid thylakoid             	0.034
+.....GO:0009534	CC	chloroplast thylakoid         	0.034
+...GO:0031984	CC	organelle subcompartment      	0.034
+..GO:0005886	CC	plasma membrane               	0.0393
+...GO:0016667	MF	oxidoreductase activity, acting on a sulfur group of donors	0.0393

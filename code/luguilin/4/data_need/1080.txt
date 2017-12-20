@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+...GO:0008104	BP	protein localization          	0.0275
+.....GO:0042886	BP	amide transport               	0.0275
+....GO:0015031	BP	protein transport             	0.0275
+..GO:0033036	BP	macromolecule localization    	0.0275
+.....GO:0015833	BP	peptide transport             	0.0275
+...GO:0045184	BP	establishment of protein localization	0.0275
+...GO:0031984	CC	organelle subcompartment      	0.0202
+....GO:0031976	CC	plastid thylakoid             	0.0202
+.....GO:0009534	CC	chloroplast thylakoid         	0.0202
+...GO:0009579	CC	thylakoid                     	0.0482

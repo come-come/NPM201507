@@ -1,0 +1,13 @@
+GO	NS	name	p_uncorrected
+.....GO:0006461	BP	protein complex assembly      	0.039
+...GO:0043933	BP	macromolecular complex subunit organization	0.039
+....GO:0065003	BP	macromolecular complex assembly	0.039
+.GO:0071840	BP	cellular component organization or biogenesis	0.039
+......GO:0043623	BP	cellular protein complex assembly	0.039
+...GO:0022607	BP	cellular component assembly   	0.039
+.......GO:0010207	BP	photosystem II assembly       	0.039
+..GO:0016043	BP	cellular component organization	0.039
+....GO:0071822	BP	protein complex subunit organization	0.039
+.....GO:0034622	BP	cellular macromolecular complex assembly	0.039
+.GO:0009987	BP	cellular process              	0.0416
+..GO:0016491	MF	oxidoreductase activity       	0.0392

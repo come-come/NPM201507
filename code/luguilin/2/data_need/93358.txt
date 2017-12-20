@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+GO:0008150	BP	biological_process            	0.0321
+.GO:0032502	BP	developmental process         	0.0425
+...GO:0044436	CC	thylakoid part                	0.0183
+....GO:0031977	CC	thylakoid lumen               	0.0353
+....GO:0031978	CC	plastid thylakoid lumen       	0.0353
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0353
+.GO:0044464	CC	cell part                     	0.0377
+..GO:0044424	CC	intracellular part            	0.0377
+.....GO:0010287	CC	plastoglobule                 	0.0425
+....GO:0005634	CC	nucleus                       	0.0442
+......GO:0008270	MF	zinc ion binding              	0.0425

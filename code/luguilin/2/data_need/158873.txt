@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+...GO:0009266	BP	response to temperature stimulus	0.0363
+..GO:0009628	BP	response to abiotic stimulus  	0.0363
+..GO:0006950	BP	response to stress            	0.0494
+...GO:0005737	CC	cytoplasm                     	0.00795
+..GO:0044424	CC	intracellular part            	0.0377
+.GO:0044464	CC	cell part                     	0.0377
+GO:0005575	CC	cellular_component            	0.0395
+......GO:0008270	MF	zinc ion binding              	0.00795
+.....GO:0046914	MF	transition metal ion binding  	0.025
+....GO:0046872	MF	metal ion binding             	0.0363
+...GO:0043169	MF	cation binding                	0.0363

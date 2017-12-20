@@ -1,0 +1,13 @@
+GO	NS	name	p_uncorrected
+.GO:0032502	BP	developmental process         	0.0136
+GO:0008150	BP	biological_process            	0.0276
+.GO:0044464	CC	cell part                     	0.0153
+..GO:0044424	CC	intracellular part            	0.0153
+GO:0005575	CC	cellular_component            	0.0167
+..GO:0031224	CC	intrinsic component of membrane	0.0223
+...GO:0016021	CC	integral component of membrane	0.0223
+.GO:0044425	CC	membrane part                 	0.0223
+..GO:0043229	CC	intracellular organelle       	0.0319
+.GO:0043226	CC	organelle                     	0.0319
+..GO:0043227	CC	membrane-bounded organelle    	0.0319
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0319

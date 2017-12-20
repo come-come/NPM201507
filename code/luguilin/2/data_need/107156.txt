@@ -1,0 +1,8 @@
+GO	NS	name	p_uncorrected
+.GO:0032502	BP	developmental process         	0.0323
+....GO:0005634	CC	nucleus                       	0.0301
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0413
+..GO:0043227	CC	membrane-bounded organelle    	0.0413
+.GO:0043226	CC	organelle                     	0.0413
+..GO:0043229	CC	intracellular organelle       	0.0413
+......GO:0008270	MF	zinc ion binding              	0.0323

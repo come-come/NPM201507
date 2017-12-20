@@ -1,0 +1,23 @@
+GO	NS	name	p_uncorrected
+....GO:0016042	BP	lipid catabolic process       	0.044
+...GO:1901575	BP	organic substance catabolic process	0.044
+...GO:0006629	BP	lipid metabolic process       	0.044
+..GO:0009056	BP	catabolic process             	0.044
+.GO:0005576	CC	extracellular region          	0.0159
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0333
+..GO:0034357	CC	photosynthetic membrane       	0.0333
+....GO:0055035	CC	plastid thylakoid membrane    	0.0333
+...GO:0042651	CC	thylakoid membrane            	0.0333
+...GO:0044432	CC	endoplasmic reticulum part    	0.044
+..GO:0098805	CC	whole membrane                	0.044
+...GO:0098588	CC	bounding membrane of organelle	0.044
+..GO:0005789	CC	endoplasmic reticulum membrane	0.044
+....GO:0005773	CC	vacuole                       	0.044
+...GO:0044437	CC	vacuolar part                 	0.044
+...GO:0005774	CC	vacuolar membrane             	0.044
+....GO:0005783	CC	endoplasmic reticulum         	0.044
+....GO:0005794	CC	Golgi apparatus               	0.044
+....GO:0003723	MF	RNA binding                   	0.044
+....GO:0052689	MF	carboxylic ester hydrolase activity	0.044
+...GO:0016788	MF	hydrolase activity, acting on ester bonds	0.044
+.....GO:0003729	MF	mRNA binding                  	0.044

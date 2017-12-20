@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+..GO:0016491	MF	oxidoreductase activity       	0.0345

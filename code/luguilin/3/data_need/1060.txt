@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+....GO:0003723	MF	RNA binding                   	0.044
+.....GO:0003729	MF	mRNA binding                  	0.044

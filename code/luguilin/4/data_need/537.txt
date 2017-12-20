@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+GO:0008150	BP	biological_process            	0.0319
+GO:0005575	CC	cellular_component            	0.0143
+..GO:0044424	CC	intracellular part            	0.0146
+.GO:0044464	CC	cell part                     	0.0146
+..GO:0043227	CC	membrane-bounded organelle    	0.0319
+.GO:0043226	CC	organelle                     	0.0319
+...GO:0044444	CC	cytoplasmic part              	0.0319
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0319
+..GO:0043229	CC	intracellular organelle       	0.0319
+.GO:0044422	CC	organelle part                	0.0347
+..GO:0044446	CC	intracellular organelle part  	0.0347

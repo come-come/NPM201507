@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+...GO:0031967	CC	organelle envelope            	0.0284
+..GO:0031975	CC	envelope                      	0.0284
+....GO:0009526	CC	plastid envelope              	0.0284
+.....GO:0009941	CC	chloroplast envelope          	0.0284
+....GO:0005829	CC	cytosol                       	0.0495
+....GO:0016668	MF	oxidoreductase activity, acting on a sulfur group of donors, NAD(P) as acceptor	0.0495
+...GO:0016651	MF	oxidoreductase activity, acting on NAD(P)H	0.0495
+.....GO:0004148	MF	dihydrolipoyl dehydrogenase activity	0.0495

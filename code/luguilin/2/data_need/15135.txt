@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+.GO:0009987	BP	cellular process              	0.027
+..GO:0043229	CC	intracellular organelle       	0.0424
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0424
+.GO:0043226	CC	organelle                     	0.0424
+..GO:0043227	CC	membrane-bounded organelle    	0.0424

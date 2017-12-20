@@ -1,0 +1,42 @@
+GO	NS	name	p_uncorrected
+...GO:0055086	BP	nucleobase-containing small molecule metabolic process	0.0495
+....GO:0090407	BP	organophosphate biosynthetic process	0.0495
+.....GO:0010468	BP	regulation of gene expression 	0.0495
+......GO:0006164	BP	purine nucleotide biosynthetic process	0.0495
+...GO:0019637	BP	organophosphate metabolic process	0.0495
+....GO:0034654	BP	nucleobase-containing compound biosynthetic process	0.0495
+.....GO:0006163	BP	purine nucleotide metabolic process	0.0495
+....GO:0060255	BP	regulation of macromolecule metabolic process	0.0495
+....GO:0072521	BP	purine-containing compound metabolic process	0.0495
+.....GO:1901293	BP	nucleoside phosphate biosynthetic process	0.0495
+......GO:2000112	BP	regulation of cellular macromolecule biosynthetic process	0.0495
+.....GO:0019219	BP	regulation of nucleobase-containing compound metabolic process	0.0495
+.....GO:0009117	BP	nucleotide metabolic process  	0.0495
+.....GO:0010556	BP	regulation of macromolecule biosynthetic process	0.0495
+....GO:0006753	BP	nucleoside phosphate metabolic process	0.0495
+....GO:0019438	BP	aromatic compound biosynthetic process	0.0495
+....GO:0009555	BP	pollen development            	0.0495
+....GO:1901362	BP	organic cyclic compound biosynthetic process	0.0495
+.....GO:0072522	BP	purine-containing compound biosynthetic process	0.0495
+....GO:0080090	BP	regulation of primary metabolic process	0.0495
+....GO:0044271	BP	cellular nitrogen compound biosynthetic process	0.0495
+....GO:1901566	BP	organonitrogen compound biosynthetic process	0.0495
+.GO:0032501	BP	multicellular organismal process	0.0495
+......GO:0009165	BP	nucleotide biosynthetic process	0.0495
+..GO:0007275	BP	multicellular organism development	0.0495
+..GO:0048856	BP	anatomical structure development	0.0495
+....GO:0018130	BP	heterocycle biosynthetic process	0.0495
+...GO:0048229	BP	gametophyte development       	0.0495
+.....GO:0051252	BP	regulation of RNA metabolic process	0.0495
+......GO:2001141	BP	regulation of RNA biosynthetic process	0.0495
+.......GO:1903506	BP	regulation of nucleic acid-templated transcription	0.0495
+......GO:0006355	BP	regulation of transcription, DNA-templated	0.0495
+....GO:0010319	CC	stromule                      	0.0495
+.....GO:0019238	MF	cyclohydrolase activity       	0.0495
+...GO:0016810	MF	hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds	0.0495
+....GO:0016814	MF	hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amidines	0.0495
+..GO:0003700	MF	DNA binding transcription factor activity	0.0495
+....GO:0016742	MF	hydroxymethyl-, formyl- and related transferase activity	0.0495
+......GO:0003937	MF	IMP cyclohydrolase activity   	0.0495
+.....GO:0004643	MF	phosphoribosylaminoimidazolecarboxamide formyltransferase activity	0.0495
+.GO:0140110	MF	transcription regulator activity	0.0495

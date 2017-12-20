@@ -1,0 +1,23 @@
+GO	NS	name	p_uncorrected
+.GO:0050896	BP	response to stimulus          	0.00464
+..GO:0006950	BP	response to stress            	0.0069
+...GO:0009266	BP	response to temperature stimulus	0.0239
+..GO:0009628	BP	response to abiotic stimulus  	0.0239
+..GO:0042221	BP	response to chemical          	0.0363
+....GO:0031323	BP	regulation of cellular metabolic process	0.0498
+....GO:0042542	BP	response to hydrogen peroxide 	0.0498
+...GO:1901700	BP	response to oxygen-containing compound	0.0498
+....GO:0051171	BP	regulation of nitrogen compound metabolic process	0.0498
+....GO:0009889	BP	regulation of biosynthetic process	0.0498
+......GO:0009644	BP	response to high light intensity	0.0498
+...GO:0009636	BP	response to toxic substance   	0.0498
+...GO:0019222	BP	regulation of metabolic process	0.0498
+...GO:0042493	BP	response to drug              	0.0498
+....GO:0000302	BP	response to reactive oxygen species	0.0498
+.....GO:0009642	BP	response to light intensity   	0.0498
+....GO:0009416	BP	response to light stimulus    	0.0498
+...GO:0009408	BP	response to heat              	0.0498
+...GO:0009314	BP	response to radiation         	0.0498
+...GO:0006979	BP	response to oxidative stress  	0.0498
+.....GO:0031326	BP	regulation of cellular biosynthetic process	0.0498
+...GO:0010035	BP	response to inorganic substance	0.0498

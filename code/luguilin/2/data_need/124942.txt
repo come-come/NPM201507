@@ -1,0 +1,18 @@
+GO	NS	name	p_uncorrected
+.GO:0009987	BP	cellular process              	0.0247
+.GO:0071840	BP	cellular component organization or biogenesis	0.0292
+...GO:0022607	BP	cellular component assembly   	0.0292
+.....GO:0034622	BP	cellular macromolecular complex assembly	0.0292
+......GO:0043623	BP	cellular protein complex assembly	0.0292
+.....GO:0006461	BP	protein complex assembly      	0.0292
+...GO:0043933	BP	macromolecular complex subunit organization	0.0292
+....GO:0071822	BP	protein complex subunit organization	0.0292
+.......GO:0010207	BP	photosystem II assembly       	0.0292
+..GO:0016043	BP	cellular component organization	0.0292
+....GO:0065003	BP	macromolecular complex assembly	0.0292
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.00366
+...GO:0016859	MF	cis-trans isomerase activity  	0.00366
+..GO:0140096	MF	catalytic activity, acting on a protein	0.00366
+..GO:0016853	MF	isomerase activity            	0.00853
+...GO:0005527	MF	macrolide binding             	0.0292
+....GO:0005528	MF	FK506 binding                 	0.0292

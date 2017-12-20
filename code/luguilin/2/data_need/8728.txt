@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+..GO:0042221	BP	response to chemical          	0.00715
+.GO:0050896	BP	response to stimulus          	0.021
+..GO:0031975	CC	envelope                      	0.0426
+...GO:0031967	CC	organelle envelope            	0.0426
+.....GO:0009941	CC	chloroplast envelope          	0.0426
+....GO:0009526	CC	plastid envelope              	0.0426

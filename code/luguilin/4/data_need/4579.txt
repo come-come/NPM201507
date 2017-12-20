@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.0325

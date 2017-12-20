@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+....GO:0005634	CC	nucleus                       	0.0402
+.....GO:0004033	MF	aldo-keto reductase (NADP) activity	0.0495
+....GO:0016616	MF	oxidoreductase activity, acting on the CH-OH group of donors, NAD or NADP as acceptor	0.0495
+...GO:0016614	MF	oxidoreductase activity, acting on CH-OH group of donors	0.0495

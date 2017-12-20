@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+...GO:0016021	CC	integral component of membrane	0.0244
+..GO:0031224	CC	intrinsic component of membrane	0.0244
+.GO:0044425	CC	membrane part                 	0.0244
+...GO:0044436	CC	thylakoid part                	0.0427
+.GO:0005576	CC	extracellular region          	0.0497

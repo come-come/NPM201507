@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+..GO:0005886	CC	plasma membrane               	0.00574
+....GO:0031969	CC	chloroplast membrane          	0.039
+...GO:0042170	CC	plastid membrane              	0.039
+....GO:0009528	CC	plastid inner membrane        	0.039
+.....GO:0009706	CC	chloroplast inner membrane    	0.039

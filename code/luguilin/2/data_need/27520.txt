@@ -1,0 +1,21 @@
+GO	NS	name	p_uncorrected
+.GO:0065007	BP	biological regulation         	0.0295
+...GO:0050794	BP	regulation of cellular process	0.0295
+..GO:0050789	BP	regulation of biological process	0.0295
+..GO:0007165	BP	signal transduction           	0.0495
+...GO:0061024	BP	membrane organization         	0.0495
+.......GO:0048564	BP	photosystem I assembly        	0.0495
+....GO:0016070	BP	RNA metabolic process         	0.0495
+......GO:0090056	BP	regulation of chlorophyll metabolic process	0.0495
+....GO:0043412	BP	macromolecule modification    	0.0495
+.....GO:0010027	BP	thylakoid membrane organization	0.0495
+.....GO:0051193	BP	regulation of cofactor metabolic process	0.0495
+....GO:0009668	BP	plastid membrane organization 	0.0495
+.....GO:1901401	BP	regulation of tetrapyrrole metabolic process	0.0495
+...GO:0043170	BP	macromolecule metabolic process	0.0495
+.....GO:0009451	BP	RNA modification              	0.0495
+...GO:0035556	BP	intracellular signal transduction	0.0495
+....GO:0090304	BP	nucleic acid metabolic process	0.0495
+...GO:0044260	BP	cellular macromolecule metabolic process	0.0495
+......GO:1901463	BP	regulation of tetrapyrrole biosynthetic process	0.0495
+.......GO:0010380	BP	regulation of chlorophyll biosynthetic process	0.0495

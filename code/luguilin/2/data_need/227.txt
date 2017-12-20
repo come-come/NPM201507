@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+..GO:0042221	BP	response to chemical          	0.0207
+.GO:0050896	BP	response to stimulus          	0.0285
+..GO:0050789	BP	regulation of biological process	0.032
+...GO:0050794	BP	regulation of cellular process	0.032
+.GO:0065007	BP	biological regulation         	0.032
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0445
+...GO:0042651	CC	thylakoid membrane            	0.0445
+....GO:0055035	CC	plastid thylakoid membrane    	0.0445
+..GO:0034357	CC	photosynthetic membrane       	0.0445
+...GO:0043169	MF	cation binding                	0.032
+....GO:0046872	MF	metal ion binding             	0.032

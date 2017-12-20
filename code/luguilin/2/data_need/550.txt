@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+..GO:0016853	MF	isomerase activity            	0.0302

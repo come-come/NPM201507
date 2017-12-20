@@ -1,0 +1,22 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.0105
+...GO:0044435	CC	plastid part                  	0.024
+....GO:0009536	CC	plastid                       	0.024
+....GO:0044434	CC	chloroplast part              	0.024
+.....GO:0009507	CC	chloroplast                   	0.024
+...GO:0030529	CC	intracellular ribonucleoprotein complex	0.0275
+..GO:1990904	CC	ribonucleoprotein complex     	0.0275
+..GO:0043228	CC	non-membrane-bounded organelle	0.0275
+....GO:0005840	CC	ribosome                      	0.0275
+.GO:0032991	CC	macromolecular complex        	0.0275
+...GO:0043232	CC	intracellular non-membrane-bounded organelle	0.0275
+..GO:0044446	CC	intracellular organelle part  	0.0277
+.GO:0044422	CC	organelle part                	0.0277
+....GO:0031977	CC	thylakoid lumen               	0.0302
+....GO:0031978	CC	plastid thylakoid lumen       	0.0302
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0302
+...GO:0044444	CC	cytoplasmic part              	0.0413
+..GO:0043229	CC	intracellular organelle       	0.0413
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0413
+.GO:0043226	CC	organelle                     	0.0413
+..GO:0043227	CC	membrane-bounded organelle    	0.0413

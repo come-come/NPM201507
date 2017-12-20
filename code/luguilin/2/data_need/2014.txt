@@ -1,0 +1,13 @@
+GO	NS	name	p_uncorrected
+..GO:0043228	CC	non-membrane-bounded organelle	0.0275
+..GO:1990904	CC	ribonucleoprotein complex     	0.0275
+...GO:0043232	CC	intracellular non-membrane-bounded organelle	0.0275
+...GO:0030529	CC	intracellular ribonucleoprotein complex	0.0275
+....GO:0005840	CC	ribosome                      	0.0275
+.GO:0032991	CC	macromolecular complex        	0.0275
+..GO:0034357	CC	photosynthetic membrane       	0.0388
+...GO:0042651	CC	thylakoid membrane            	0.0388
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0388
+....GO:0055035	CC	plastid thylakoid membrane    	0.0388
+....GO:0003723	MF	RNA binding                   	0.0275
+.....GO:0003729	MF	mRNA binding                  	0.0275

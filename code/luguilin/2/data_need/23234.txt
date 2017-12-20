@@ -1,0 +1,8 @@
+GO	NS	name	p_uncorrected
+.GO:0065007	BP	biological regulation         	0.0052
+..GO:0050789	BP	regulation of biological process	0.0052
+...GO:0050794	BP	regulation of cellular process	0.0052
+.....GO:0009941	CC	chloroplast envelope          	0.0124
+..GO:0031975	CC	envelope                      	0.0124
+....GO:0009526	CC	plastid envelope              	0.0124
+...GO:0031967	CC	organelle envelope            	0.0124

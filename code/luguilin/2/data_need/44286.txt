@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+...GO:0016741	MF	transferase activity, transferring one-carbon groups	0.0301

@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+.....GO:0016310	BP	phosphorylation               	0.044
+...GO:0043094	BP	cellular metabolic compound salvage	0.044
+....GO:0009853	BP	photorespiration              	0.044
+....GO:0009854	BP	oxidative photosynthetic carbon pathway	0.044
+..GO:1901363	MF	heterocyclic compound binding 	0.0319
+..GO:0097159	MF	organic cyclic compound binding	0.0319
+.....GO:0008887	MF	glycerate kinase activity     	0.044
+....GO:0016773	MF	phosphotransferase activity, alcohol group as acceptor	0.044
+.....GO:0003729	MF	mRNA binding                  	0.044
+....GO:0003723	MF	RNA binding                   	0.044

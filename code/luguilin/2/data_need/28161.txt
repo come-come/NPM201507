@@ -1,0 +1,14 @@
+GO	NS	name	p_uncorrected
+...GO:0009636	BP	response to toxic substance   	0.0182
+...GO:0006979	BP	response to oxidative stress  	0.0182
+...GO:0010035	BP	response to inorganic substance	0.0182
+......GO:0009644	BP	response to high light intensity	0.0182
+...GO:0042493	BP	response to drug              	0.0182
+...GO:1901700	BP	response to oxygen-containing compound	0.0182
+...GO:0009314	BP	response to radiation         	0.0182
+....GO:0042542	BP	response to hydrogen peroxide 	0.0182
+....GO:0000302	BP	response to reactive oxygen species	0.0182
+.....GO:0009642	BP	response to light intensity   	0.0182
+...GO:0009408	BP	response to heat              	0.0182
+....GO:0009416	BP	response to light stimulus    	0.0182
+...GO:0005737	CC	cytoplasm                     	0.05

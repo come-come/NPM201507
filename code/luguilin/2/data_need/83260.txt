@@ -1,0 +1,19 @@
+GO	NS	name	p_uncorrected
+GO:0008150	BP	biological_process            	0.00187
+.GO:0044464	CC	cell part                     	0.00501
+..GO:0044424	CC	intracellular part            	0.00501
+GO:0005575	CC	cellular_component            	0.00561
+.....GO:0010287	CC	plastoglobule                 	0.00795
+...GO:0044436	CC	thylakoid part                	0.011
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0158
+.GO:0043226	CC	organelle                     	0.0158
+..GO:0043229	CC	intracellular organelle       	0.0158
+...GO:0044444	CC	cytoplasmic part              	0.0158
+..GO:0043227	CC	membrane-bounded organelle    	0.0158
+...GO:0044435	CC	plastid part                  	0.0335
+....GO:0044434	CC	chloroplast part              	0.0335
+.....GO:0009507	CC	chloroplast                   	0.0335
+....GO:0009536	CC	plastid                       	0.0335
+.GO:0016020	CC	membrane                      	0.0346
+....GO:0005634	CC	nucleus                       	0.0494
+GO:0003674	MF	molecular_function            	0.0335

@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+..GO:0042221	BP	response to chemical          	0.0173
+.GO:0009987	BP	cellular process              	0.0334
+..GO:0019725	BP	cellular homeostasis          	0.0485
+...GO:0042592	BP	homeostatic process           	0.0485
+..GO:0065008	BP	regulation of biological quality	0.0485
+...GO:0045454	BP	cell redox homeostasis        	0.0485
+....GO:0005634	CC	nucleus                       	0.0106
+.....GO:0015035	MF	protein disulfide oxidoreductase activity	0.0485
+....GO:0015036	MF	disulfide oxidoreductase activity	0.0485
+...GO:0009055	MF	electron transfer activity    	0.0485

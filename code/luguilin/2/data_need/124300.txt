@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+..GO:0006950	BP	response to stress            	0.026

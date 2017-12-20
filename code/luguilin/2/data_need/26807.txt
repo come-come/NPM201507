@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+...GO:0009409	BP	response to cold              	0.0223
+......GO:0008270	MF	zinc ion binding              	0.0116
+.....GO:0046914	MF	transition metal ion binding  	0.0358
+.GO:0005488	MF	binding                       	0.0432

@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+...GO:0035556	BP	intracellular signal transduction	0.044
+..GO:0007165	BP	signal transduction           	0.044
+...GO:0016614	MF	oxidoreductase activity, acting on CH-OH group of donors	0.044
+....GO:0016616	MF	oxidoreductase activity, acting on the CH-OH group of donors, NAD or NADP as acceptor	0.044
+.....GO:0004033	MF	aldo-keto reductase (NADP) activity	0.044

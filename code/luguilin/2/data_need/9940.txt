@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+.GO:0044422	CC	organelle part                	0.0111
+..GO:0044446	CC	intracellular organelle part  	0.0111
+...GO:0044435	CC	plastid part                  	0.0211
+....GO:0044434	CC	chloroplast part              	0.0211
+GO:0005575	CC	cellular_component            	0.0333
+..GO:0044424	CC	intracellular part            	0.0336
+.GO:0044464	CC	cell part                     	0.0336
+...GO:0044436	CC	thylakoid part                	0.0413

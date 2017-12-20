@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+..GO:0044281	BP	small molecule metabolic process	0.0382
+..GO:0009058	BP	biosynthetic process          	0.0382
+...GO:1901564	BP	organonitrogen compound metabolic process	0.0382
+...GO:1901576	BP	organic substance biosynthetic process	0.0382
+...GO:0044249	BP	cellular biosynthetic process 	0.0382

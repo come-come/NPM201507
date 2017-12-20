@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+..GO:0032259	BP	methylation                   	0.0495
+.....GO:0009941	CC	chloroplast envelope          	0.0284
+....GO:0009526	CC	plastid envelope              	0.0284
+...GO:0031967	CC	organelle envelope            	0.0284
+..GO:0031975	CC	envelope                      	0.0284
+..GO:0016740	MF	transferase activity          	0.0202
+......GO:0019201	MF	nucleotide kinase activity    	0.0495
+.....GO:0019205	MF	nucleobase-containing compound kinase activity	0.0495
+....GO:0016776	MF	phosphotransferase activity, phosphate group as acceptor	0.0495
+.....GO:0004017	MF	adenylate kinase activity     	0.0495
+....GO:0008168	MF	methyltransferase activity    	0.0495

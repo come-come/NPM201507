@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+..GO:0007165	BP	signal transduction           	0.044
+...GO:0035556	BP	intracellular signal transduction	0.044
+....GO:0031977	CC	thylakoid lumen               	0.00788
+....GO:0031978	CC	plastid thylakoid lumen       	0.00788
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.00788
+.GO:0005576	CC	extracellular region          	0.0159

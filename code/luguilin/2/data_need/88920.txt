@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+....GO:0005634	CC	nucleus                       	0.0494
+......GO:0008270	MF	zinc ion binding              	0.00795
+.....GO:0046914	MF	transition metal ion binding  	0.025
+....GO:0046872	MF	metal ion binding             	0.0363
+...GO:0043169	MF	cation binding                	0.0363

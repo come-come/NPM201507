@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+...GO:0050794	BP	regulation of cellular process	0.0476
+..GO:0050789	BP	regulation of biological process	0.0476
+.GO:0065007	BP	biological regulation         	0.0476
+...GO:0043169	MF	cation binding                	0.0476
+....GO:0046872	MF	metal ion binding             	0.0476

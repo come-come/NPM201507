@@ -1,0 +1,44 @@
+GO	NS	name	p_uncorrected
+GO:0008150	BP	biological_process            	0.00153
+......GO:0006355	BP	regulation of transcription, DNA-templated	0.044
+....GO:0009555	BP	pollen development            	0.044
+....GO:0060255	BP	regulation of macromolecule metabolic process	0.044
+...GO:0048229	BP	gametophyte development       	0.044
+.....GO:0019219	BP	regulation of nucleobase-containing compound metabolic process	0.044
+.....GO:0051252	BP	regulation of RNA metabolic process	0.044
+..GO:0032259	BP	methylation                   	0.044
+....GO:0080090	BP	regulation of primary metabolic process	0.044
+..GO:0007275	BP	multicellular organism development	0.044
+.......GO:1903506	BP	regulation of nucleic acid-templated transcription	0.044
+......GO:2000112	BP	regulation of cellular macromolecule biosynthetic process	0.044
+.....GO:0010468	BP	regulation of gene expression 	0.044
+......GO:2001141	BP	regulation of RNA biosynthetic process	0.044
+..GO:0048856	BP	anatomical structure development	0.044
+.GO:0032501	BP	multicellular organismal process	0.044
+.....GO:0010556	BP	regulation of macromolecule biosynthetic process	0.044
+..GO:0044424	CC	intracellular part            	0.000225
+.GO:0044464	CC	cell part                     	0.000225
+GO:0005575	CC	cellular_component            	0.000255
+.GO:0043226	CC	organelle                     	0.00194
+..GO:0043227	CC	membrane-bounded organelle    	0.00194
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.00194
+..GO:0043229	CC	intracellular organelle       	0.00194
+...GO:0044436	CC	thylakoid part                	0.00215
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.00476
+...GO:0042651	CC	thylakoid membrane            	0.00476
+....GO:0055035	CC	plastid thylakoid membrane    	0.00476
+..GO:0034357	CC	photosynthetic membrane       	0.00476
+....GO:0044434	CC	chloroplast part              	0.00739
+...GO:0044435	CC	plastid part                  	0.00739
+..GO:0044446	CC	intracellular organelle part  	0.00915
+.GO:0044422	CC	organelle part                	0.00915
+.GO:0016020	CC	membrane                      	0.0108
+...GO:0044444	CC	cytoplasmic part              	0.0164
+....GO:0005634	CC	nucleus                       	0.0319
+.....GO:0009507	CC	chloroplast                   	0.0438
+....GO:0009536	CC	plastid                       	0.0438
+..GO:0016740	MF	transferase activity          	0.0159
+GO:0003674	MF	molecular_function            	0.0438
+..GO:0003700	MF	DNA binding transcription factor activity	0.044
+.GO:0140110	MF	transcription regulator activity	0.044
+....GO:0008168	MF	methyltransferase activity    	0.044

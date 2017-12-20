@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0388
+..GO:0034357	CC	photosynthetic membrane       	0.0388
+....GO:0055035	CC	plastid thylakoid membrane    	0.0388
+...GO:0042651	CC	thylakoid membrane            	0.0388
+..GO:0043167	MF	ion binding                   	0.0159
+......GO:0019201	MF	nucleotide kinase activity    	0.0275
+......GO:0005506	MF	iron ion binding              	0.0275
+.....GO:0019205	MF	nucleobase-containing compound kinase activity	0.0275
+....GO:0016776	MF	phosphotransferase activity, phosphate group as acceptor	0.0275
+.....GO:0004017	MF	adenylate kinase activity     	0.0275
+.GO:0005488	MF	binding                       	0.0418

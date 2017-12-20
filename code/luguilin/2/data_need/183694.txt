@@ -1,0 +1,12 @@
+GO	NS	name	p_uncorrected
+GO:0008150	BP	biological_process            	0.0276
+.....GO:0009507	CC	chloroplast                   	0.0106
+....GO:0009536	CC	plastid                       	0.0106
+.....GO:0010287	CC	plastoglobule                 	0.0136
+..GO:0043229	CC	intracellular organelle       	0.0319
+..GO:0043227	CC	membrane-bounded organelle    	0.0319
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0319
+...GO:0044444	CC	cytoplasmic part              	0.0319
+.GO:0043226	CC	organelle                     	0.0319
+......GO:0008270	MF	zinc ion binding              	0.0136
+.....GO:0046914	MF	transition metal ion binding  	0.0418

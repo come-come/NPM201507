@@ -1,0 +1,27 @@
+GO	NS	name	p_uncorrected
+....GO:0031323	BP	regulation of cellular metabolic process	0.014
+.....GO:0031326	BP	regulation of cellular biosynthetic process	0.014
+....GO:0009889	BP	regulation of biosynthetic process	0.014
+....GO:0051171	BP	regulation of nitrogen compound metabolic process	0.014
+...GO:0019222	BP	regulation of metabolic process	0.014
+...GO:0050794	BP	regulation of cellular process	0.0243
+..GO:0050789	BP	regulation of biological process	0.0243
+.GO:0065007	BP	biological regulation         	0.0243
+....GO:0065003	BP	macromolecular complex assembly	0.039
+..GO:0016043	BP	cellular component organization	0.039
+...GO:0043933	BP	macromolecular complex subunit organization	0.039
+.GO:0071840	BP	cellular component organization or biogenesis	0.039
+......GO:0043623	BP	cellular protein complex assembly	0.039
+.....GO:0034622	BP	cellular macromolecular complex assembly	0.039
+.......GO:0010207	BP	photosystem II assembly       	0.039
+....GO:0071822	BP	protein complex subunit organization	0.039
+.....GO:0006461	BP	protein complex assembly      	0.039
+...GO:0022607	BP	cellular component assembly   	0.039
+....GO:0031978	CC	plastid thylakoid lumen       	0.0302
+....GO:0031977	CC	thylakoid lumen               	0.0302
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0302
+....GO:0005634	CC	nucleus                       	0.0392
+...GO:0003676	MF	nucleic acid binding          	0.014
+......GO:0008270	MF	zinc ion binding              	0.039
+..GO:0097159	MF	organic cyclic compound binding	0.0392
+..GO:1901363	MF	heterocyclic compound binding 	0.0392

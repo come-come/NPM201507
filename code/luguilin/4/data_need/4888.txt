@@ -1,0 +1,26 @@
+GO	NS	name	p_uncorrected
+...GO:0044436	CC	thylakoid part                	0.0105
+...GO:0031984	CC	organelle subcompartment      	0.0202
+.....GO:0009534	CC	chloroplast thylakoid         	0.0202
+....GO:0031976	CC	plastid thylakoid             	0.0202
+...GO:0044435	CC	plastid part                  	0.024
+....GO:0044434	CC	chloroplast part              	0.024
+..GO:0044446	CC	intracellular organelle part  	0.0277
+.GO:0044422	CC	organelle part                	0.0277
+..GO:0034357	CC	photosynthetic membrane       	0.0388
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0388
+....GO:0055035	CC	plastid thylakoid membrane    	0.0388
+...GO:0042651	CC	thylakoid membrane            	0.0388
+.GO:0043226	CC	organelle                     	0.0413
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0413
+...GO:0044444	CC	cytoplasmic part              	0.0413
+..GO:0043229	CC	intracellular organelle       	0.0413
+..GO:0043227	CC	membrane-bounded organelle    	0.0413
+...GO:0009579	CC	thylakoid                     	0.0482
+.GO:0005488	MF	binding                       	0.00266
+..GO:0097159	MF	organic cyclic compound binding	0.0121
+..GO:1901363	MF	heterocyclic compound binding 	0.0121
+GO:0003674	MF	molecular_function            	0.024
+......GO:0005506	MF	iron ion binding              	0.0275
+....GO:0003723	MF	RNA binding                   	0.0275
+.....GO:0003729	MF	mRNA binding                  	0.0275

@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+...GO:0016667	MF	oxidoreductase activity, acting on a sulfur group of donors	0.0493

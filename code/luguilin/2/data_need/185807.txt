@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+...GO:0009579	CC	thylakoid                     	0.0167

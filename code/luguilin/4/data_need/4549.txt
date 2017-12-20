@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+GO:0005575	CC	cellular_component            	0.0481
+.GO:0044464	CC	cell part                     	0.0496
+..GO:0044424	CC	intracellular part            	0.0496

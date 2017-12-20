@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+..GO:0032259	BP	methylation                   	0.0385
+....GO:0008168	MF	methyltransferase activity    	0.0385

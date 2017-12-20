@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+.GO:0009987	BP	cellular process              	0.0291
+..GO:0005886	CC	plasma membrane               	0.0363
+...GO:0016667	MF	oxidoreductase activity, acting on a sulfur group of donors	0.0363
+..GO:0016491	MF	oxidoreductase activity       	0.0466

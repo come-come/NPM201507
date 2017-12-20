@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+..GO:0009628	BP	response to abiotic stimulus  	0.0437
+...GO:0009266	BP	response to temperature stimulus	0.0437

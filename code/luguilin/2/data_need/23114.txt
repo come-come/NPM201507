@@ -1,0 +1,13 @@
+GO	NS	name	p_uncorrected
+..GO:0005886	CC	plasma membrane               	0.00845
+....GO:0005739	CC	mitochondrion                 	0.0349
+..GO:0031975	CC	envelope                      	0.0374
+....GO:0009526	CC	plastid envelope              	0.0374
+.....GO:0009941	CC	chloroplast envelope          	0.0374
+...GO:0031967	CC	organelle envelope            	0.0374
+.....GO:0010287	CC	plastoglobule                 	0.05
+....GO:0031969	CC	chloroplast membrane          	0.05
+...GO:0042170	CC	plastid membrane              	0.05
+....GO:0009528	CC	plastid inner membrane        	0.05
+.....GO:0009706	CC	chloroplast inner membrane    	0.05
+......GO:0008270	MF	zinc ion binding              	0.05

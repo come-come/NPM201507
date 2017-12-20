@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+....GO:0031976	CC	plastid thylakoid             	0.00347
+...GO:0031984	CC	organelle subcompartment      	0.00347
+.....GO:0009534	CC	chloroplast thylakoid         	0.00347
+.GO:0016020	CC	membrane                      	0.00754
+..GO:0005886	CC	plasma membrane               	0.00951
+.....GO:0009535	CC	chloroplast thylakoid membrane	0.0233
+..GO:0034357	CC	photosynthetic membrane       	0.0233
+....GO:0055035	CC	plastid thylakoid membrane    	0.0233
+...GO:0042651	CC	thylakoid membrane            	0.0233
+...GO:0009579	CC	thylakoid                     	0.0326

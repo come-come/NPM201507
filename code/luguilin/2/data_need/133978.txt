@@ -1,0 +1,9 @@
+GO	NS	name	p_uncorrected
+..GO:0005886	CC	plasma membrane               	0.00429
+.GO:0016020	CC	membrane                      	0.0157
+....GO:0009536	CC	plastid                       	0.0348
+.....GO:0009507	CC	chloroplast                   	0.0348
+.GO:0043226	CC	organelle                     	0.0413
+..GO:0043229	CC	intracellular organelle       	0.0413
+...GO:0043231	CC	intracellular membrane-bounded organelle	0.0413
+..GO:0043227	CC	membrane-bounded organelle    	0.0413

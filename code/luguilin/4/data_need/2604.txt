@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+...GO:0044444	CC	cytoplasmic part              	0.0224
+..GO:0044446	CC	intracellular organelle part  	0.0415
+.GO:0044422	CC	organelle part                	0.0415

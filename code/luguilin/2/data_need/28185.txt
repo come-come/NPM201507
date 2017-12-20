@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+.GO:0065007	BP	biological regulation         	0.0111
+..GO:0050789	BP	regulation of biological process	0.0111
+...GO:0050794	BP	regulation of cellular process	0.0111

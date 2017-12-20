@@ -1,0 +1,4 @@
+GO	NS	name	p_uncorrected
+.GO:0032502	BP	developmental process         	0.00968
+GO:0008150	BP	biological_process            	0.0389
+..GO:0016740	MF	transferase activity          	0.0302

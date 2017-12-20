@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+.....GO:0046914	MF	transition metal ion binding  	0.0323

@@ -1,0 +1,6 @@
+GO	NS	name	p_uncorrected
+..GO:0007568	BP	aging                         	0.00826
+.GO:0032502	BP	developmental process         	0.0234
+...GO:0009409	BP	response to cold              	0.0442
+.....GO:0010287	CC	plastoglobule                 	0.0234
+......GO:0008270	MF	zinc ion binding              	0.0234

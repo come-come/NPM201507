@@ -1,0 +1,8 @@
+GO	NS	name	p_uncorrected
+...GO:0031984	CC	organelle subcompartment      	0.0402
+....GO:0031976	CC	plastid thylakoid             	0.0402
+.....GO:0009534	CC	chloroplast thylakoid         	0.0402
+......GO:0019201	MF	nucleotide kinase activity    	0.0385
+.....GO:0019205	MF	nucleobase-containing compound kinase activity	0.0385
+.....GO:0004017	MF	adenylate kinase activity     	0.0385
+....GO:0016776	MF	phosphotransferase activity, phosphate group as acceptor	0.0385

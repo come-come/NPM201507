@@ -1,0 +1,24 @@
+GO	NS	name	p_uncorrected
+..GO:0006950	BP	response to stress            	0.00182
+.GO:0050896	BP	response to stimulus          	0.00419
+..GO:0009628	BP	response to abiotic stimulus  	0.0233
+...GO:0009266	BP	response to temperature stimulus	0.0233
+...GO:0009617	BP	response to bacterium         	0.044
+...GO:0006952	BP	defense response              	0.044
+.....GO:0015833	BP	peptide transport             	0.044
+..GO:0009607	BP	response to biotic stimulus   	0.044
+..GO:0051707	BP	response to other organism    	0.044
+.....GO:0042886	BP	amide transport               	0.044
+..GO:0009605	BP	response to external stimulus 	0.044
+...GO:0008104	BP	protein localization          	0.044
+....GO:0015031	BP	protein transport             	0.044
+....GO:0042742	BP	defense response to bacterium 	0.044
+...GO:0045184	BP	establishment of protein localization	0.044
+...GO:0098542	BP	defense response to other organism	0.044
+.GO:0051704	BP	multi-organism process        	0.044
+...GO:0043207	BP	response to external biotic stimulus	0.044
+..GO:0033036	BP	macromolecule localization    	0.044
+.....GO:0009570	CC	chloroplast stroma            	0.0319
+....GO:0009532	CC	plastid stroma                	0.0319
+..GO:0048046	CC	apoplast                      	0.044
+......GO:0005507	MF	copper ion binding            	0.044

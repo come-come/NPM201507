@@ -1,0 +1,5 @@
+GO	NS	name	p_uncorrected
+..GO:0042221	BP	response to chemical          	0.0416
+....GO:0005634	CC	nucleus                       	0.0483
+..GO:1901363	MF	heterocyclic compound binding 	0.0483
+..GO:0097159	MF	organic cyclic compound binding	0.0483

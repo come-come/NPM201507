@@ -1,0 +1,2 @@
+GO	NS	name	p_uncorrected
+...GO:0003676	MF	nucleic acid binding          	0.0264

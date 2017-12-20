@@ -1,0 +1,3 @@
+GO	NS	name	p_uncorrected
+..GO:0005886	CC	plasma membrane               	0.0187
+...GO:0044444	CC	cytoplasmic part              	0.0424

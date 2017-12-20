@@ -1,0 +1,7 @@
+GO	NS	name	p_uncorrected
+....GO:0009536	CC	plastid                       	0.0171
+.....GO:0009507	CC	chloroplast                   	0.0171
+...GO:0016859	MF	cis-trans isomerase activity  	0.00951
+..GO:0140096	MF	catalytic activity, acting on a protein	0.00951
+...GO:0003755	MF	peptidyl-prolyl cis-trans isomerase activity	0.00951
+..GO:0016853	MF	isomerase activity            	0.0215

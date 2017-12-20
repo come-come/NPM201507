@@ -1,0 +1,11 @@
+GO	NS	name	p_uncorrected
+....GO:0009853	BP	photorespiration              	0.033
+.....GO:0016310	BP	phosphorylation               	0.033
+...GO:0043094	BP	cellular metabolic compound salvage	0.033
+....GO:0009854	BP	oxidative photosynthetic carbon pathway	0.033
+....GO:0031977	CC	thylakoid lumen               	0.0437
+....GO:0031978	CC	plastid thylakoid lumen       	0.0437
+.....GO:0009543	CC	chloroplast thylakoid lumen   	0.0437
+..GO:0016740	MF	transferase activity          	0.00871
+....GO:0016773	MF	phosphotransferase activity, alcohol group as acceptor	0.033
+.....GO:0008887	MF	glycerate kinase activity     	0.033
