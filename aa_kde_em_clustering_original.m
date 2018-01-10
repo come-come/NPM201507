@@ -9,7 +9,7 @@ while (window2 < 113)
 files{1} = './data/IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt'; %semi-raw data
 files{2} = './data/IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt';
 files{3} = './data/IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt';
-new_folder = ['./clusterResultAverageDHACc10_step10_ljy4/',int2str(window1)]
+new_folder = ['./clusterResultAverageDHACc10_step10_ljy_1222/',int2str(window1)]
 mkdir(new_folder)
 
 Par.numcluster = 10;   % number of clusters, needs to be specified.
@@ -23,7 +23,7 @@ Par.pca        = 0;   %draw the first two dimensions of pca or the original data
 Par.start      = window1;   %49;%17; %1;   %start column position of each matrix
 Par.end        = window2;  %112; %48; %16;  %end column position of each matrix
 
-fiout = ['./clusterResultAverageDHACc10_step10_ljy4/',int2str(window1),'/',int2str(i), '.txt' ]
+fiout = ['./clusterResultAverageDHACc10_step10_ljy_1222/',int2str(window1),'/',int2str(i), '.txt' ]
 Par.output     = fiout; % outout file name
 % fiout=[int2str(window1) ,'.txt'];
 % Par.output     = ['./data/clusterNumberAverageDHAC10_step10_ljy/cluster',fiout]; % outout file name

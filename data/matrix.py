@@ -132,10 +132,18 @@ if __name__ == "__main__" :
     # 20171219
     # NPM_files = 'G:\project2\\NPM201507\\clusterResult0516'
     # matrix_files = 'G:\project2\\NPM201507\\data\\windowMatrix0516'
-    matrix_files = 'G:\project2\\NPM201507\\data\\100_c5_s10_windowMatrix'
+    # matrix_files = 'G:\project2\\NPM201507\\data\\100_c5_s10_windowMatrix'
     # cluster_NPM100(NPM_files, matrix_files)
+    # cal_weight(matrix_files, 'weight100.txt')
 
-    cal_weight(matrix_files, 'weight100.txt')
+    # 20171220
+    NPM_files = 'G:\project2\\NPM201507\\clusterResult20171220'
+    matrix_files = 'G:\project2\\NPM201507\\data\\windowMatrix1220'
+    cluster_NPM100(NPM_files, matrix_files)
+    cal_weight(matrix_files, 'weight1220.txt')
+
+
+
 
 
 

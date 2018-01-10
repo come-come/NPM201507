@@ -403,12 +403,13 @@ if __name__ == "__main__":
     # average_compare()
     # 2017.12.4
     # DHAC
-    read_dhac_result('G:\\project2\\NPM201507\\code\\edge\\20171113dhac')
+    # read_dhac_result('G:\\project2\\NPM201507\\code\\edge\\20171113dhac')
     # NPM  5 clusters
     # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM')
     # NPM  10 clusters
-    # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_(1)')
+    read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_(1)')
     # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_(2)')
+    # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_1222')
     s = 0
     # 先产生第一个window的 tree
     term = 183
@@ -484,23 +485,24 @@ if __name__ == "__main__":
 
 
     # write into files
-    fw1 = open('1215_DHAC_edges_sign_id(1).txt', 'w')
-    fw2 = open('1215_DHAC_terms_sign_id(1).txt', 'w')
-    fw3 = open('1215_DHAC_sign_distance_id(1).txt', 'w')
-    fw4 = open('1215_DHAC_term_vector_id(1).txt', 'w')
-    fw5 = open('1215_DHAC_term_pearson_id(1).txt', 'w')
-    fw6 = open('1215_DHAC_terms_sign_list_id(1).txt', 'w')
-    # fw1 = open('1215_NPM10_edges_sign_id(1).txt', 'w')
-    # fw2 = open('1215_NPM10_terms_sign_id(1).txt', 'w')
-    # fw3 = open('1215_NPM10_sign_distance_id(1).txt', 'w')
-    # fw4 = open('1215_NPM10_term_vector_id(1).txt', 'w')
-    # fw5 = open('1215_NPM10_term_pearson_id(1).txt', 'w')
-    # fw6 = open('1215_NPM10_terms_sign_list_id(1).txt', 'w')
+    fw1 = open('1211_NPM10_edges_sign_id.txt', 'w')
+    fw2 = open('1211_NPM10_terms_sign_id.txt', 'w')
+    fw3 = open('1211_NPM10_sign_distance_id.txt', 'w')
+    fw4 = open('1211_NPM10_term_vector_id.txt', 'w')
+    fw5 = open('1211_NPM10_term_pearson_id.txt', 'w')
+    fw6 = open('1211_NPM10_terms_sign_list_id.txt', 'w')
+    # fw1 = open('1208_DHAC_edges_sign_id.txt', 'w')
+    # fw2 = open('1208_DHAC_terms_sign_id.txt', 'w')
+    # fw3 = open('1208_DHAC_sign_distance_id.txt', 'w')
+    # fw4 = open('1208_DHAC_term_vector_id.txt', 'w')
+    # fw5 = open('1208_DHAC_term_pearson_id.txt', 'w')
+    # fw6 = open('1208_DHAC_terms_sign_list_id.txt', 'w')
+
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
     fw2.write(
-        'term_id' + '\t' + 'sign_score' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
+        'term_id' + '\t' + 'sign_score' + '\t' + 'level' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
     fw3.write('Term_Id' + '\t' + 'distance' + '\n')
     fw4.write('Term_id' + '\t' + 'Sign_score' +  '\t' + 'Gene_number' + '\t' + 'Time_point_length' + '\t' + 'leaf' + '\t' + 'Trend1' + '\t' + 'Trend2' + '\t' + 'Trend3' + '\n')
     fw5.write('Term_id' + '\t' + 'pearson' + '\n')
@@ -508,11 +510,14 @@ if __name__ == "__main__":
         'term_id' + '\t' + 'sign_score' + '\t' + 'level' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
 
     for node, value in sorted(dic_term_score.items(), key=lambda d: d[1],reverse=True):
-        fw2.write(str(node) + '\t' + str(round(value,4)) + '\t' + str(cliqueGraph0.node[node]['annotation']) + '\t' + str(
-            min(cliqueGraph0.node[node]['windowsize']) + 49) + '\t' + str(
-            max(cliqueGraph0.node[node]['windowsize']) + 58) + '\t' +
-                  str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
-            len(cliqueGraph0.node[node]['windowsize']) + 9) + '\n')
+        fw2.write(
+            str(node) + '\t' + str(round(value, 4)) + '\t' + str(
+                nx.shortest_path_length(cliqueGraph0, 0, node)) + '\t' + ','.join(
+                [t for t in cliqueGraph0.node[node]['annotation']]) + '\t' + str(
+                min(cliqueGraph0.node[node]['windowsize']) + 49) + '\t' + str(
+                max(cliqueGraph0.node[node]['windowsize']) + 58) + '\t' +
+            str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
+                len(cliqueGraph0.node[node]['windowsize']) + 9) + '\n')
         fw3.write(str(node) + '\t' + str(dic_term_distance[node]) + '\n')
         fw4.write(str(node) + '\t' + str(round(value,4)) + '\t' + '\t'.join(str(i) for i in dic_vector[node]) + '\n')
         fw5.write(str(node) + '\t' + str(dic_pearson[node]) + '\n')

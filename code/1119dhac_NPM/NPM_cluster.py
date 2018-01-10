@@ -5,6 +5,7 @@ from os.path import join
 
 # c5 s10
 def comparison_npm_file(desk):
+    print desk
 
     for root1, dirs1, files1 in os.walk(desk):
         for dirs2 in dirs1:
@@ -18,9 +19,10 @@ def comparison_npm_file(desk):
                 print child
             group = data.groupby('1')
             filename = str(int(dirs2) - 49) + '.txt'
+            print filename
             try:
                 fw = open(filename, 'a')
-                print dirs2, filename
+
             except:
                 print filename
             for i in group:
@@ -34,6 +36,7 @@ def comparison_npm_file(desk):
 if __name__ == "__main__":
 
     # desk = 'G:\\project2\\NPM201507\\clusterResultAverageDHACc10_step10_ljy(2)\\'
-    desk = 'G:\\project2\\NPM201507\\clusterResultAverageDHACc10_step10_ljy3\\'
+    desk = 'G:\\project2\\NPM201507\\clusterResultAverageDHACc10_step10_ljy_1222\\'
     # remove writen file into G:\project2\NPM201507\code\edge\NPM_cluster10_(1)
+
     comparison_npm_file(desk)

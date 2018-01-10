@@ -12,6 +12,7 @@ for line in fr:
     term, idd = line.strip().split('\t')
     dic[idd] = term
 def read_tree(filename,termFile):
+    dic_term_score = {}
     G = nx.DiGraph()
     fr = open(filename, 'r')
     title = fr.readline()
@@ -26,6 +27,7 @@ def read_tree(filename,termFile):
         annotation_time = [int(line_str[4]), int(line_str[5])]
         G.node[termId]['geneSet'] = annotation_gene
         G.node[termId]['windowSet'] = annotation_time
+
     return G
 
 def read_level_dic(termFile, level, OntologyGraph):
@@ -107,18 +109,17 @@ def sign_value(node, geneIdset, window):
     sign_p1 =  [x for x in p1_list if x<-0.18 or x >0.08]
     sign_p2 =  [x for x in p2_list if x<-0.22 or x >0.27]
     sign_p3 =  [x for x in p3_list if x>0.34]
-    sign = len(sign_p1) + len(sign_p2) + len(sign_p3)
-    all = len(p1_list) + len(p2_list) + len(p3_list)
-    score = float(sign)/all
+    sign_num = len(sign_p1) + len(sign_p2) + len(sign_p3)
+    all_value = len(p1_list) + len(p2_list) + len(p3_list)
+    score = float(sign_num)/all_value
     return score
 
-
 if __name__ =="__main__":
-    # edge_filename = 'G:\\project2\\NPM201507\\code\\1129edges_sign_id.txt'
-    # node_filename = 'G:\\project2\\NPM201507\\code\\1129terms_sign_list_id.txt'
+    edge_filename = 'G:\\project2\\NPM201507\\code\\1129edges_sign_id.txt'
+    node_filename = 'G:\\project2\\NPM201507\\code\\1129terms_sign_list_id.txt'
     # Run our method one more time 1218
-    edge_filename = 'G:\\project2\\NPM201507\\code\\0519edges_sign_id.txt'
-    node_filename = 'G:\\project2\\NPM201507\\code\\0519terms_sign_list_id.txt'
+    # edge_filename = 'G:\\project2\\NPM201507\\code\\1218edges_sign_id.txt'
+    # node_filename = 'G:\\project2\\NPM201507\\code\\1218terms_sign_list_id.txt'
 
     phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt',
                          index_col=0)
@@ -131,18 +132,28 @@ if __name__ =="__main__":
     phe3.columns = [i for i in range(0, 113)]
     OntologyGraph = read_tree(edge_filename,node_filename)
     # for i in range(1, 17):
-    for i in range(1, 17):
+    for i in range(1, 14):
         read_level_dic(node_filename, i, OntologyGraph)
     print OntologyGraph.number_of_nodes()
 
-    fw = open('0519terms.txt', 'w')
-    fw2 = open('0519edges.txt', 'w')
-
+    fw = open('1129terms_rank.txt', 'w')
+    fw2 = open('1129edges_rank.txt', 'w')
     fw.write('term_id' + '\t' + 'sign_score' + '\t' + 'level' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
+
+    dic_term_score = {}
+
     for node in OntologyGraph.nodes():
         if node == '0':
             continue
         else:
+            OntologyGraph.node[node]['purity'] = round(sign_value(node, OntologyGraph.node[node]['geneSet'], OntologyGraph.node[node]['windowSet']), 5)
+            dic_term_score[node] = round(sign_value(node, OntologyGraph.node[node]['geneSet'], OntologyGraph.node[node]['windowSet']), 5)
+
+    for node,value in sorted(dic_term_score.items(), key=lambda d: d[1],reverse=True):
+        if node == '0':
+            continue
+        else:
+
             fw.write(node + '\t' +
                      str(round(sign_value(node, OntologyGraph.node[node]['geneSet'],
                                     OntologyGraph.node[node]['windowSet']),5))+ '\t' +
@@ -151,8 +162,8 @@ if __name__ =="__main__":
                      str(min(OntologyGraph.node[node]['windowSet'])) + '\t' +
                      str(max(OntologyGraph.node[node]['windowSet'])) + '\t' +
                      str(len(OntologyGraph.node[node]['geneSet'])) + '\t' +
-                     str(max(OntologyGraph.node[node]['windowSet']) - min(
-                         OntologyGraph.node[node]['windowSet']) + 1) + '\n')
+                     str(max(OntologyGraph.node[node]['windowSet']) - min(OntologyGraph.node[node]['windowSet']) + 1)
+                     + '\n')
 
     fw.close()
     fw2.write('parent' + '\t' + 'child' + '\n')

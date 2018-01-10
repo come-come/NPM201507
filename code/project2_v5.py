@@ -173,26 +173,37 @@ def tree0(weight_value, startwindow, term):
     # 20170905
     return cliqueGraph,dic_term,dic_term_num, term
 
-def phenotype(gene_set, window):
+def phenotype(f_path, termID, gene_set, window):
     phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
     phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt',index_col=0)
     phe3 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt', index_col=0)
-    t_min = min(window) + 49
-    t_max = max(window) + 49 + 10
+    # if the window is window
+    # t_min = min(window) + 49
+    # t_max = max(window) + 49 + 10
+    # if the window is time point
+    t_min = min(window)
+    t_max = max(window)
     # rename columns index. [0, 1, 2...]
-    window_set = [i for i in range(t_min,t_max)] # 回到最原始的数据上
+    window_set = [i for i in range(t_min,t_max+1)] # 回到最原始的数据上
     phe1.columns = [i for i in range(0, 113)]
     phe2.columns = [i for i in range(0, 113)]
     phe3.columns = [i for i in range(0, 113)]
-    print phe1.loc[gene_set, window_set]
-    print phe2.loc[gene_set, window_set]
-    print phe3.loc[gene_set, window_set]
+    # print phe1.loc[gene_set, window_set]
+    # print phe2.loc[gene_set, window_set]
+    # print phe3.loc[gene_set, window_set]
+    # write the phenotype value into files
+    f_fpath1 = f_path + '\\Phi2.txt'
+    f_fpath2 = f_path + '\\qE.txt'
+    f_fpath3 = f_path + '\\qI.txt'
+    phe1.loc[gene_set, window_set].to_csv(f_fpath1, sep='\t')
+    phe2.loc[gene_set, window_set].to_csv(f_fpath2, sep='\t')
+    phe3.loc[gene_set, window_set].to_csv(f_fpath3, sep='\t')
     q = phe1.loc[gene_set, window_set]
     q2 = phe2.loc[gene_set, window_set]
     q3 = phe3.loc[gene_set, window_set]
     phe_avg = (phe1.loc[gene_set, window_set] + phe2.loc[gene_set, window_set] + phe3.loc[gene_set, window_set]).apply(lambda x : x*2)
     print 'avg'
-    print phe_avg
+    # print phe_avg
     # plt.pcolor(phe_avg)
     # plt.yticks(np.arange(0.5, len(phe_avg.index), 1), phe_avg.index)
     # plt.xticks(np.arange(0.5, len(phe_avg.columns), 1), phe_avg.columns)
@@ -204,6 +215,7 @@ def phenotype(gene_set, window):
     #     item.set_rotation(0)
 
     fig = plt.figure()
+    fig.suptitle(termID,fontsize=16, y=1)
     plt.subplot(231)
     ax = sns.heatmap(q, vmin=-0.5, vmax=0.5, cmap=cmap,  center=0, square=True, linewidths=.5,
                      cbar_kws={"shrink": .5})
@@ -227,7 +239,13 @@ def phenotype(gene_set, window):
         item.set_rotation(0)
     plt.title('ql')
     plt.xlabel('time point')
-    plt.show()
+
+    fig.set_size_inches(22, 10.5)
+    fig_path = f_path  + str(termID) + '.png'
+    plt.savefig(fig_path, dpi=100)
+
+
+
 
 
 def sign_value(node, gene_set, window):
@@ -289,6 +307,7 @@ def pearson(node, gene_set, window):
 if __name__ == '__main__':
 
     start = time.clock()
+    '''
     # for i in range(0, 50):
     #     tree_statis(0.9, i)
     s = 0
@@ -297,7 +316,7 @@ if __name__ == '__main__':
     # filename = 'result_c5_s10_v2_weight.txt'
     # 20171217
     # filename = 'result_c5_s10_20171219weight.txt'
-    filename = 'weight0516.txt'
+    filename = 'result_c5_s10_20171220weight.txt'
     data = pd.read_csv(filename, index_col=0, sep='\t')
     # print data.head(5), type(data.loc['AT4G33520_AT1G67840']['49'])
     curr_path = os.getcwd() + '/'
@@ -393,12 +412,12 @@ if __name__ == '__main__':
     #         fwc.write(str(node) + '\n')
 
 
-    fw1 = open('0519edges_sign_id.txt', 'w')
-    fw2 = open('0519terms_sign_id.txt', 'w')
-    fw3 = open('0519sign_distance_id.txt', 'w')
-    fw4 = open('0519term_vector_id.txt', 'w')
-    fw5 = open('0519term_pearson_id.txt', 'w')
-    fw6 = open('0519terms_sign_list_id.txt', 'w')
+    fw1 = open('1220edges_sign_id.txt', 'w')
+    fw2 = open('1220terms_sign_id.txt', 'w')
+    fw3 = open('1220sign_distance_id.txt', 'w')
+    fw4 = open('1220term_vector_id.txt', 'w')
+    fw5 = open('1220term_pearson_id.txt', 'w')
+    fw6 = open('1220terms_sign_list_id.txt', 'w')
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
@@ -432,16 +451,17 @@ if __name__ == '__main__':
     fw4.close()
     fw5.close()
     fw6.close()
-
     '''
-    # 88001
+    '''
+    # 88001 .
     gene = ['AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
     window = [19, 20, 21, 22, 23, 24]
-    # 87603
+    # 87603 .
     gene1 = ['AT1G03160', 'AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
     window1 = [19, 20, 21, 22, 23]
     # 125845
     gene2 = ['AT1G22450', 'AT1G51350', 'AT3G15840', 'AT3G28850', 'AT4G16155', 'AT4G27700', 'AT5G53170']
+    
     window2 = [25, 26, 27, 28, 29, 30, 31, 32, 33]
     # 141747
     gene3 = ['AT1G50450', 'AT1G67840', 'AT1G74880', 'AT2G21530', 'AT4G19830', 'AT4G38100']
@@ -471,6 +491,77 @@ if __name__ == '__main__':
     phenotype(gene7, window7)
     phenotype(gene8, window8)
     '''
+    data1129 = pd.read_table('G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1129terms_rank.txt')
+    data1218 = pd.read_table('G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1218terms_rank.txt')
+    data1219 = pd.read_table('G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1219terms_rank.txt')
+    dic = {}
+    print '-----------------------------1129-'
+    top10 = data1129.head(10)
+    for i in range(0, 10):
+        termID = top10.loc[i]['term_id']
+        gene = top10.loc[i]['annotation_gene'].strip().split(',')
+        window = [int(top10.loc[i]['start_time']), int(top10.loc[i]['end_time'])]
+        dic[frozenset(gene)] = window
+        if int(top10.loc[i]['end_time']) - int(top10.loc[i]['start_time']) < 10:
+            continue
+        else:
+            w_path = 'G:\\project2\\NPM201507\\code\\1119dhac_NPM\\phenotype\\1129\\'
+            f_path = w_path + str(top10.loc[i]['term_id']) + '\\'
+            isExists = os.path.exists(f_path)
+            if not isExists:
+                os.makedirs(f_path)
+            else:
+                print '目录以及存在'
+            print termID, sorted(gene), window
+            phenotype(f_path, termID, gene, window)
+
+    print '-----------------1218---'
+    top10 = data1218.head(10)
+    for i in range(0, 10):
+        termID = top10.loc[i]['term_id']
+        gene = top10.loc[i]['annotation_gene'].strip().split(',')
+        window = [int(top10.loc[i]['start_time']), int(top10.loc[i]['end_time'])]
+        dic[frozenset(gene)] = window
+        if int(top10.loc[i]['end_time']) - int(top10.loc[i]['start_time']) < 10:
+            continue
+        else:
+            w_path = 'G:\\project2\\NPM201507\\code\\1119dhac_NPM\\phenotype\\1218\\'
+            f_path = w_path + str(top10.loc[i]['term_id']) + '\\'
+            isExists = os.path.exists(f_path)
+            if not isExists:
+                os.makedirs(f_path)
+            else:
+                print '目录以及存在'
+            print termID, sorted(gene), window
+            phenotype(f_path, termID, gene, window)
+
+    print '--------------------------1219----'
+    top10 = data1219.head(10)
+    for i in range(0,10):
+        termID = top10.loc[i]['term_id']
+        gene = top10.loc[i]['annotation_gene'].strip().split(',')
+        window = [int(top10.loc[i]['start_time']), int(top10.loc[i]['end_time'])]
+        dic[frozenset(gene)] = window
+        if int(top10.loc[i]['end_time'])- int(top10.loc[i]['start_time']) < 10:
+            continue
+        else:
+            w_path = 'G:\\project2\\NPM201507\\code\\1119dhac_NPM\\phenotype\\1219\\'
+            f_path = w_path + str(top10.loc[i]['term_id']) + '\\'
+            isExists = os.path.exists(f_path)
+            if not isExists:
+                os.makedirs(f_path)
+            else:
+                print '目录以及存在'
+            print termID, sorted(gene), window
+            phenotype(f_path, termID, gene, window)
+
+
+
+
+
+
+
+
     # #163287
     # gene = ['AT1G02560', 'AT1G16880', 'AT2G20260', 'AT2G37660', 'AT2G44990']
     # window = [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]
