@@ -92,27 +92,30 @@ def plot(edge_filename, term_filename,color_bar, fig, label):
     for group in termData.groupby('level'):
         # 每一层的平均gene size 和 平均time length
         print group[0], '\t', round(group[1]['geneSize'].mean(), 3), '\t', round(group[1]['time_size'].mean(),3),group[1].shape[0]
-        ave_gene.append(round(group[1]['geneSize'].mean(), 3))
-        ave_time.append(round(group[1]['time_size'].mean(),3))
-        level.append(group[0])
-        numbers.append(group[1].shape[0])
+        if group[0]< 11:
+            ave_gene.append(round(group[1]['geneSize'].mean(), 3))
+            ave_time.append(round(group[1]['time_size'].mean(), 3))
+            level.append(group[0])
+            numbers.append(group[1].shape[0]/2.0)
+
 
     # 设置标题
-    # ax1.set_title('Annotation Time')
-    ax1.set_title('Annotation Gene')
+    ax1.set_title('Annotation Time',size=16)
+    # ax1.set_title('Annotation Gene',size=16)
     # 设置X轴标签
-    plt.xlabel('level')
+    plt.xlabel('level',size=13)
     plt.xticks(np.arange(20))
     # 设置Y轴标签
-    # plt.ylabel('average length of time point')
-    plt.ylabel('average size of annotation genes')
+    plt.ylabel('average length of time point',size=13)
+    # plt.ylabel('average size of annotation genes',size=13)
     # 设置点的大小
     sValue = numbers
     # 画散点图
-    ax1.scatter(level, ave_gene, s=sValue, c=color_bar, marker='o', label=label,alpha=0.5)
+    ax1.scatter(level, ave_time, s=sValue, c=color_bar, marker='o', label=label,alpha=0.5)
+    # ax1.scatter(level, ave_gene, s=sValue, c=color_bar, marker='o', label=label, alpha=0.5)
     # 设置图标
 
-    plt.legend()
+    plt.legend(scatterpoints=1,fontsize = 'large',loc=4)
 
     # 显示所画的图
     return fig
@@ -143,6 +146,7 @@ if __name__ == "__main__":
     # fig = plot(edge_NPM_filename1, term_NPM_filename1, color_dic[1], fig, 'NPM(1)')
     # fig = plot(edge_NPM_filename2, term_NPM_filename2, color_dic[2], fig, 'NPM(2)')
     # fig = plot(edge_NPM_filename3, term_NPM_filename3, color_dic[3], fig, 'NPM(3)')
+
     plt.show()
 
     '''
