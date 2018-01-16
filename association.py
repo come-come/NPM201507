@@ -251,6 +251,7 @@ def output_file():
     print data.loc[0]['annotation_gene']
 
 def analysis_enrichment(path, termFile, dic_depth_term):
+    # 平均能富集到多少个GO BP/MF term
     dic_go = {}
     print 'len(dic_depth_term):', len(dic_depth_term)
     for root, dirs, files in os.walk(path):
@@ -307,22 +308,24 @@ def analysis_enrichment(path, termFile, dic_depth_term):
 
 def avg_depth_of_enrich_restult(path, termFile, dic_depth_term):
     # 富集的深度
-    print 'enrichment analysis2'
     dic_go = {}
+    print 'len(dic_depth_term):', len(dic_depth_term)
     for root, dirs, files in os.walk(path):
         for f in files:
             filename = join(root, f)
-            sum = []
+            sum = 0
             fr = open(filename, 'r')
             title = fr.readline()
             for line in fr.readlines():
                 line_str = line.strip().split(',')
                 dep = dic_depth_term[line_str[0][1:-1].strip()]
-                sum.append(dep)
-            dic_go[int(f.strip().split('.')[0])] = round(np.array(sum).mean(), 3)
-
-
-
+                # 富集到的最深的term是第几层
+                if dep < sum:
+                    continue
+                else:
+                    sum = dep
+            dic_go[int(f.strip().split('.')[0])] = sum
+    print len(dic_go)
 
     data = pd.DataFrame.from_dict(dic_go, orient='index')
     data.columns = ['enrichment']
@@ -331,21 +334,35 @@ def avg_depth_of_enrich_restult(path, termFile, dic_depth_term):
     result = pd.concat([data, termData], axis=1)
     dic_output = {}
     print 'group', '\t', 'nonzero', '\t', 'total', '\t', 'percentage', '\t', 'avg'
+    color = {1: 'r', 2: 'g', 3: 'b'}
+    fig = plt.figure()
+    fig, axes = plt.subplots(1, 3, figsize=(6, 6))
+    fig.suptitle('Our Method')
     for group in result.groupby('level'):
-        df1 = group[1]
-        zeroNum = df1[df1['enrichment'] == 0].shape[0]
-        nz = df1['enrichment'].mean()
-        total = group[1]['enrichment'].shape[0]
-        nonzero = total - zeroNum
-        percentage = round(nonzero / float(total), 3)
-        avg = round(nz, 3)
-        print group[0], '\t', nonzero, '\t', total, '\t', percentage, '\t', avg
-        dic_output[group[0]] = [int(nonzero), int(total), percentage, avg]
+        if group[0] < 4:
+            df1 = group[1]
+            zeroNum = df1[df1['enrichment'] == 0].shape[0]
+            nz = df1['enrichment'].mean()
+            total = group[1]['enrichment'].shape[0]
+            nonzero = total - zeroNum
+            percentage = round(nonzero / float(total), 3)
+            avg = round(nz, 3)
+            print group[0], '\t', nonzero, '\t', total, '\t', percentage, '\t', avg
+            dic_output[group[0]] = [int(nonzero), int(total), percentage, avg]
+            title_name = 'level' + str(group[0])
+            group_Data = group[1].reset_index()
+            ax=group_Data.plot(x='index', y='enrichment', kind='scatter', color=color[group[0]], ax=axes[group[0]-1], title=title_name,
+                            yticks=range(0,10))
+            ax.set_ylabel('depth')
+
+    print 'plt.show'
+
+    plt.show()
     return dic_output
 
 
 # 2018.1.11
-def avg_num_of_enrich_restult():
+def avg_num_of_BP_enrich_restult():
     # 平均每层每个node可以富集到多少个GO term
 
     avg_dataFrame_NPM = pd.DataFrame()
@@ -385,7 +402,7 @@ def avg_num_of_enrich_restult():
         label = 'DHAC'
         plt.plot(list(d.index), d[3].tolist(), color='black', label=label)
 
-    plt.title('DHAC')
+    plt.title('BP Enrichment Results')
     plt.xticks(range(0, 12, 1))
     plt.yticks(range(0, 15, 1))
     plt.xlabel('level')
@@ -457,48 +474,53 @@ if __name__ == "__main__":
     termFile = 'G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1208_DHAC_terms_sign_list_id.txt'
     dic_files6[path] = termFile
 
-    #dic_depth, dic_depth_MFterm = BP_tree()
+    dic_depth, dic_depth_MFterm = BP_tree()
+    i = 0
+    for key, value in dic_files.items():
+        dic_output = avg_depth_of_enrich_restult(key, value, dic_depth_MFterm)
+        i = i + 1
 
-    dic_depth, dic_depth_MFterm = MF_tree()
 
-    # analysis_enrichment2 error...................
+
+    # avg_num_of_BP_enrich_restult()
+
+    #dic_depth, dic_depth_MFterm = MF_tree()
+
+    '''
     print 'Our method'
     o_data = pd.DataFrame()
     n_data = pd.DataFrame()
     d_data = pd.DataFrame()
     i=0
-    for key, value in dic_files4.items():
+    for key, value in dic_files.items():
         dic_output = analysis_enrichment(key, value, dic_depth_MFterm)
         o_data[i] = pd.DataFrame(dic_output).loc[3]
         i = i + 1
     i = 0
-    for key, value in dic_files5.items():
+    for key, value in dic_files2.items():
         dic_output = analysis_enrichment(key, value, dic_depth_MFterm)
         n_data[i] = pd.DataFrame(dic_output).loc[3]
         i = i + 1
     i = 0
-    for key, value in dic_files6.items():
+    for key, value in dic_files3.items():
         dic_output = analysis_enrichment(key, value, dic_depth_MFterm)
         d_data[i] = pd.DataFrame(dic_output).loc[3]
         i = i + 1
-
     print 'our',o_data.mean(axis=1)
     print 'npm',n_data.mean(axis=1)
     print 'dhac',d_data.mean(axis=1)
-
-
     fig = plt.figure()
-    plt.plot(o_data.mean(axis=1), marker='*', ms=10, label='our method')
-    plt.plot(n_data.mean(axis=1), marker='*', ms=10, label='npm')
-    plt.plot(d_data.mean(axis=1), marker='*', ms=10, label='dhac')
+    plt.plot(o_data.mean(axis=1), marker='*', ms=10, label='Our Method')
+    plt.plot(n_data.mean(axis=1), marker='*', ms=10, label='NPM')
+    plt.plot(d_data.mean(axis=1), marker='*', ms=10, label='DHAC')
     plt.legend(loc=0, numpoints=1)
-    plt.title('MF Enrichment',fontsize=20)
+    plt.title('BP Enrichment Results',fontsize=20)
     plt.xticks(range(0,12))
-    plt.yticks(range(0,6))
-    plt.xlabel('level', fontsize=15)
-    plt.ylabel('average number of enrichment results', fontsize=15)
+    plt.yticks(range(0,14))
+    plt.xlabel('Level', fontsize=15)
+    plt.ylabel('Average number of enrichment results', fontsize=15)
     plt.show()
-
+    '''
 
 
 
