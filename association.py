@@ -335,28 +335,39 @@ def avg_depth_of_enrich_restult(path, termFile, dic_depth_term):
     dic_output = {}
     print 'group', '\t', 'nonzero', '\t', 'total', '\t', 'percentage', '\t', 'avg'
     color = {1: 'r', 2: 'g', 3: 'b'}
-    fig = plt.figure()
+    #fig = plt.figure()
     fig, axes = plt.subplots(1, 3, figsize=(6, 6))
     fig.suptitle('Our Method')
     for group in result.groupby('level'):
+        dic_this_level = {}
         if group[0] < 4:
             df1 = group[1]
-            zeroNum = df1[df1['enrichment'] == 0].shape[0]
-            nz = df1['enrichment'].mean()
-            total = group[1]['enrichment'].shape[0]
-            nonzero = total - zeroNum
-            percentage = round(nonzero / float(total), 3)
-            avg = round(nz, 3)
-            print group[0], '\t', nonzero, '\t', total, '\t', percentage, '\t', avg
-            dic_output[group[0]] = [int(nonzero), int(total), percentage, avg]
-            title_name = 'level' + str(group[0])
-            group_Data = group[1].reset_index()
-            ax=group_Data.plot(x='index', y='enrichment', kind='scatter', color=color[group[0]], ax=axes[group[0]-1], title=title_name,
-                            yticks=range(0,10))
-            ax.set_ylabel('depth')
+            num_level_node = df1.shape[0]
+            group2 = group[1].groupby('enrichment')
+            print 'group2'
+            for group3 in group2:
+                print group3[0], group3[1].shape[0]
+                dic_this_level[group3[0]] = group3[1].shape[0] /float(num_level_node)
+            plt.subplot(130 + group[0])
+            print dic_this_level
+            x = sorted(dic_this_level.keys())
+            y = [dic_this_level[key] for key in x]
+            plt.plot(x, y, marker='*')
+            # zeroNum = df1[df1['enrichment'] == 0].shape[0]
+            # nz = df1['enrichment'].mean()
+            # total = group[1]['enrichment'].shape[0]
+            # nonzero = total - zeroNum
+            # percentage = round(nonzero / float(total), 3)
+            # avg = round(nz, 3)
+            # print group[0], '\t', nonzero, '\t', total, '\t', percentage, '\t', avg
+            # dic_output[group[0]] = [int(nonzero), int(total), percentage, avg]
+            # title_name = 'level' + str(group[0])
+            # group_Data = group[1].reset_index()
+            # ax=group_Data.plot(x='index', y='enrichment', kind='scatter', color=color[group[0]], ax=axes[group[0]-1], title=title_name,
+            #                 yticks=range(0,10))
+            # ax.set_ylabel('depth')
 
     print 'plt.show'
-
     plt.show()
     return dic_output
 
