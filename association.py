@@ -306,7 +306,7 @@ def analysis_enrichment(path, termFile, dic_depth_term):
     # plt.show()
     return dic_output
 
-def avg_depth_of_enrich_restult(path, termFile, dic_depth_term):
+def avg_depth_of_enrich_restult(path, termFile, dic_depth_term, figure_i, figure_title):
     # 富集的深度
     dic_go = {}
     print 'len(dic_depth_term):', len(dic_depth_term)
@@ -335,9 +335,9 @@ def avg_depth_of_enrich_restult(path, termFile, dic_depth_term):
     dic_output = {}
     print 'group', '\t', 'nonzero', '\t', 'total', '\t', 'percentage', '\t', 'avg'
     color = {1: 'r', 2: 'g', 3: 'b'}
-    #fig = plt.figure()
-    fig, axes = plt.subplots(1, 3, figsize=(6, 6))
-    fig.suptitle('Our Method')
+
+    fig.suptitle(figure_title)
+    plt.subplot(130 + figure_i +1)
     for group in result.groupby('level'):
         dic_this_level = {}
         if group[0] < 4:
@@ -347,12 +347,12 @@ def avg_depth_of_enrich_restult(path, termFile, dic_depth_term):
             print 'group2'
             for group3 in group2:
                 print group3[0], group3[1].shape[0]
-                dic_this_level[group3[0]] = group3[1].shape[0] /float(num_level_node)
-            plt.subplot(130 + group[0])
+                dic_this_level[group3[0]] = round(group3[1].shape[0] /float(num_level_node),3)
+
             print dic_this_level
             x = sorted(dic_this_level.keys())
             y = [dic_this_level[key] for key in x]
-            plt.plot(x, y, marker='*')
+            plt.plot(x, y, marker='*', label='level'+ str(group[0]))
             # zeroNum = df1[df1['enrichment'] == 0].shape[0]
             # nz = df1['enrichment'].mean()
             # total = group[1]['enrichment'].shape[0]
@@ -366,9 +366,14 @@ def avg_depth_of_enrich_restult(path, termFile, dic_depth_term):
             # ax=group_Data.plot(x='index', y='enrichment', kind='scatter', color=color[group[0]], ax=axes[group[0]-1], title=title_name,
             #                 yticks=range(0,10))
             # ax.set_ylabel('depth')
+    plt.legend(numpoints=1)
+    plt.xticks(range(0,10))
+    plt.yticks(np.arange(0, 1.1,0.1))
+    plt.xlabel('depth')
+    plt.ylabel('percentage')
 
     print 'plt.show'
-    plt.show()
+
     return dic_output
 
 
@@ -486,11 +491,27 @@ if __name__ == "__main__":
     dic_files6[path] = termFile
 
     dic_depth, dic_depth_MFterm = BP_tree()
+
+    fig = plt.figure()
     i = 0
     for key, value in dic_files.items():
-        dic_output = avg_depth_of_enrich_restult(key, value, dic_depth_MFterm)
+        dic_output = avg_depth_of_enrich_restult(key, value, dic_depth_MFterm, i,'Our Method')
         i = i + 1
+    plt.show()
 
+    fig = plt.figure()
+    i = 0
+    for key, value in dic_files2.items():
+        dic_output = avg_depth_of_enrich_restult(key, value, dic_depth_MFterm, i, 'NPM')
+        i = i + 1
+    plt.show()
+
+    fig = plt.figure()
+    i = 0
+    for key, value in dic_files3.items():
+        dic_output = avg_depth_of_enrich_restult(key, value, dic_depth_MFterm, i, 'DHAC')
+        i = i + 1
+    plt.show()
 
 
     # avg_num_of_BP_enrich_restult()
