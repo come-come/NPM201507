@@ -73,81 +73,133 @@ if __name__ == "__main__":
     '''
     print '.......step 1 : generate depth dictionary......'
     dic_depth, dic_depth_MFterm = association.BP_tree()
-    fig = plt.figure(figsize=(12,5))
-    i = 0
+
+
     print '......step 2 : start drawing......'
     print '2.1 Our method'
+    i = 0
     Our_DataFrame1 = pd.DataFrame()
     Our_DataFrame2 = pd.DataFrame()
     Our_DataFrame3 = pd.DataFrame()
     for key, value in dic_files.items():
-        # dic_output,x, y = avg_depth_of_enrich_restult(key, value, dic_depth_MFterm, i,'Our Method')
         x, level1, level2, level3 = association.avg_depth_of_enrich_restult3(key, value, dic_depth_MFterm, i,'Our Method')
         Our_DataFrame1[i] = level1
         Our_DataFrame2[i] = level2
         Our_DataFrame3[i] = level3
-        print x,level1,level2,level3
         i = i + 1
     print x
-    # Our_DataFrame1['depth'] = x
-    # Our_DataFrame2['depth'] = x
-    # Our_DataFrame3['depth'] = x
 
     level1_avg = Our_DataFrame1.mean(axis=1)
     std1 = Our_DataFrame1.std(axis=1)
 
-    level2_avg = Our_DataFrame2.mean(axis=1)    # level2 行均值
+    level2_avg = Our_DataFrame2.mean(axis=1)
     std2 = Our_DataFrame2.std(axis=1)
 
     level3_avg = Our_DataFrame3.mean(axis=1)
     std3 = Our_DataFrame3.std(axis=1)
 
-    # tmpArray_Avg = level1_avg.values.reshape((-1,1))
-    # tmpArray_Avg = np.concatenate((tmpArray_Avg, level2_avg.values.reshape((-1,1)), level3_avg.values.reshape((-1,1))), axis=1)
-    # Our_Avg_DataFrame = pd.DataFrame(tmpArray_Avg,index=x,columns=('level1','level2','level3'))
-    # print Our_Avg_DataFrame
-
     Our_Avg_DataFrame = pd.DataFrame()
-    Our_Avg_DataFrame['level0'] = level1_avg
-    Our_Avg_DataFrame['level1'] = level2_avg
-    Our_Avg_DataFrame['level2'] = level3_avg
+    Our_Avg_DataFrame['level1'] = level1_avg
+    Our_Avg_DataFrame['level2'] = level2_avg
+    Our_Avg_DataFrame['level3'] = level3_avg
     Our_Avg_DataFrame.index = x
     print Our_Avg_DataFrame
 
     Our_Std_DataFrame = pd.DataFrame()
-    Our_Std_DataFrame['level0'] = std1
-    Our_Std_DataFrame['level1'] = std2
-    Our_Std_DataFrame['level2'] = std3
+    Our_Std_DataFrame['level1'] = std1
+    Our_Std_DataFrame['level2'] = std2
+    Our_Std_DataFrame['level3'] = std3
     Our_Std_DataFrame.index = x
     print Our_Std_DataFrame
-    # tmpArray_Std = std1.values.reshape((-1, 1))
-    # tmpArray_Std = np.concatenate(
-    #     (tmpArray_Std, std2.values.reshape((-1, 1)), std3.values.reshape((-1, 1))), axis=1)
-    # Our_Std_DataFrame = pd.DataFrame(tmpArray_Std, index=x, columns=('level1', 'level2', 'level3'))
 
-    fig, ax = plt.subplots()
-    Our_Avg_DataFrame.plot.bar(yerr=Our_Std_DataFrame, ax=ax,title='Our Method')
-    # Our_Avg_DataFrame.plot(kind='bar')
-    #plt.xticks(x, x, rotation=0)
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, sharex=True)
+    Our_Avg_DataFrame.plot.bar(yerr=Our_Std_DataFrame, ax=ax1,title='Our Method',yticks=np.arange(-0.1, 0.6, 0.1))
     plt.xlabel('depth')
     plt.ylabel('percentage')
     plt.yticks(np.arange(0, 0.6,0.1),fontsize=10)
-    plt.show()
-    print '2.2 NPM'
-    i = 0
-    for key, value in dic_files2.items():
-        # dic_output, x, y = avg_depth_of_enrich_restult(key, value, dic_depth_MFterm, i, 'NPM')
-        x, level1, level2, level3 = association.avg_depth_of_enrich_restult3(key, value, dic_depth_MFterm, i, 'NPM')
-        i = i + 1
 
+
+    print '2.2 NPM'
+    print '-----------'
+    i = 0
+    Our_DataFrame1 = pd.DataFrame()
+    Our_DataFrame2 = pd.DataFrame()
+    Our_DataFrame3 = pd.DataFrame()
+    x = [0, 2, 3, 4, 5, 6, 7]
+    Our_DataFrame1[0] = [0.212, 0.011, 0.076, 0.061, 0.252, 0.129, 0.176]
+    Our_DataFrame2[0] = [0.223, 0.01, 0.076, 0.056, 0.213, 0.127, 0.178]
+    Our_DataFrame3[0] = [0.318, 0.009, 0.036, 0.073, 0.136, 0.164, 0.164]
+    Our_DataFrame1[1] = [0.255, 0.004, 0.066, 0.099, 0.252, 0.084, 0.186]
+    Our_DataFrame2[1] = [0.234, 0, 0.069, 0.096, 0.213, 0.085, 0.213]
+    Our_DataFrame3[1] = [0.214, 0, 0.068, 0.137, 0.179, 0.068, 0.231]
+    Our_DataFrame1[2] = [0.231, 0.008, 0.049, 0.057, 0.231, 0.148, 0.212]
+    Our_DataFrame2[2] = [0.269, 0.01, 0.021, 0.047, 0.233, 0.104, 0.254]
+    Our_DataFrame3[3] = [0.26, 0, 0.065, 0.098, 0.211, 0.114, 0.203]
+    print Our_DataFrame1
+    print Our_DataFrame2
+    print Our_DataFrame3
+    level1_avg = Our_DataFrame1.mean(axis=1)
+    std1 = Our_DataFrame1.std(axis=1)
+
+    level2_avg = Our_DataFrame2.mean(axis=1)
+    std2 = Our_DataFrame2.std(axis=1)
+
+    level3_avg = Our_DataFrame3.mean(axis=1)
+    std3 = Our_DataFrame3.std(axis=1)
+
+    Our_Avg_DataFrame = pd.DataFrame()
+    Our_Avg_DataFrame['level1'] = level1_avg
+    Our_Avg_DataFrame['level2'] = level2_avg
+    Our_Avg_DataFrame['level3'] = level3_avg
+    Our_Avg_DataFrame.index = x
+    print Our_Avg_DataFrame
+
+    Our_Std_DataFrame = pd.DataFrame()
+    Our_Std_DataFrame['level1'] = std1
+    Our_Std_DataFrame['level2'] = std2
+    Our_Std_DataFrame['level3'] = std3
+    Our_Std_DataFrame.index = x
+    print Our_Std_DataFrame
+    Our_Avg_DataFrame.plot.bar(yerr=Our_Std_DataFrame, ax=ax2, title='NPM', yticks=np.arange(-0.1, 0.6, 0.1))
+    plt.xlabel('depth')
+    plt.ylabel('percentage')
 
     print '2.3 DHAC'
-
     i = 0
-    for key, value in dic_files3.items():
-        # dic_output, x, y= avg_depth_of_enrich_restult(key, value, dic_depth_MFterm, i, 'DHAC')
-        x, level1, level2, level3 = association.avg_depth_of_enrich_restult3(key, value, dic_depth_MFterm, i, 'DHAC')
-        i = i + 1
+    Our_DataFrame1 = pd.DataFrame()
+    Our_DataFrame2 = pd.DataFrame()
+    Our_DataFrame3 = pd.DataFrame()
+    x = [0, 2, 3, 4, 5, 6, 7]
+    Our_DataFrame1[0] = [0.256, 0.01, 0.044, 0.128, 0.207, 0.138, 0.172]
+    Our_DataFrame2[0] = [0.25, 0, 0.083, 0.135, 0.208, 0.135, 0.125]
+    Our_DataFrame3[0] = [0.293, 0, 0.049, 0.122, 0.146, 0.244, 0.122]
+    level1_avg = Our_DataFrame1.mean(axis=1)
+    std1 = Our_DataFrame1.std(axis=1)
+
+    level2_avg = Our_DataFrame2.mean(axis=1)
+    std2 = Our_DataFrame2.std(axis=1)
+
+    level3_avg = Our_DataFrame3.mean(axis=1)
+    std3 = Our_DataFrame3.std(axis=1)
+
+    Our_Avg_DataFrame = pd.DataFrame()
+    Our_Avg_DataFrame['level1'] = level1_avg
+    Our_Avg_DataFrame['level2'] = level2_avg
+    Our_Avg_DataFrame['level3'] = level3_avg
+    Our_Avg_DataFrame.index = x
+    print Our_Avg_DataFrame
+
+    Our_Std_DataFrame = pd.DataFrame()
+    Our_Std_DataFrame['level1'] = std1
+    Our_Std_DataFrame['level2'] = std2
+    Our_Std_DataFrame['level3'] = std3
+    Our_Std_DataFrame.index = x
+    print Our_Std_DataFrame
+    Our_Avg_DataFrame.plot.bar(yerr=Our_Std_DataFrame,ax=ax3, title='DHAC',yticks=np.arange(-0.1, 0.6, 0.1))
+    plt.xlabel('depth')
+    plt.ylabel('percentage')
+    plt.yticks(np.arange(0, 0.6, 0.1), fontsize=10)
+    plt.show()
 
 
     print '-----------MF---------'
