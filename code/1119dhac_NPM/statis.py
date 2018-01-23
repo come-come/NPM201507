@@ -141,8 +141,8 @@ if __name__ == "__main__":
     color_dic = {1:'b', 2: 'r', 3:'y'}
     l_plot = []
     fig = plot(purity_my_edges, purity_my_terms, color_dic[1],fig, 'Our Method(1)')
-    fig= plot(purity_my_edges1, purity_my_terms1, color_dic[2], fig, 'Our Method(2)')
-    fig= plot(purity_my_edges2, purity_my_terms2, color_dic[3], fig, 'Our Method(3)')
+    fig = plot(purity_my_edges1, purity_my_terms1, color_dic[2], fig, 'Our Method(2)')
+    fig = plot(purity_my_edges2, purity_my_terms2, color_dic[3], fig, 'Our Method(3)')
     # fig = plot(edge_NPM_filename1, term_NPM_filename1, color_dic[1], fig, 'NPM(1)')
     # fig = plot(edge_NPM_filename2, term_NPM_filename2, color_dic[2], fig, 'NPM(2)')
     # fig = plot(edge_NPM_filename3, term_NPM_filename3, color_dic[3], fig, 'NPM(3)')
