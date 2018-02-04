@@ -90,6 +90,7 @@ def tree0(weight_value, startwindow, term):
                             # 同一层判断交集之间是否有重复的父子关系。 每生成一个交集， 判断当前层的其他term和交集的关系。
                             for ik, iv in dic_intersect_level.items():
                                 if set(intersect) == (set(ik)):  # 生成一模一样的交集
+                                    # 判断两个的编号是否一样？
                                     if dic_term_num[frozenset(key)] != dic_term_num[frozenset(ik)]:
                                         cliqueGraph.add_edge(dic_term_num[frozenset(key)], dic_term_num[frozenset(ik)])
                                     q = 1

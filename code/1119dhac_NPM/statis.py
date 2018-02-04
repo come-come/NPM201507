@@ -100,14 +100,14 @@ def plot(edge_filename, term_filename,color_bar, fig, label):
 
 
     # 设置标题
-    ax1.set_title('Annotation Time',size=16)
-    # ax1.set_title('Annotation Gene',size=16)
+    ax1.set_title('Annotation Time',size=20)
+    # ax1.set_title('Annotation Gene',size=20)
     # 设置X轴标签
-    plt.xlabel('level',size=13)
+    plt.xlabel('level',size=15)
     plt.xticks(np.arange(20))
     # 设置Y轴标签
-    plt.ylabel('average length of time point',size=13)
-    # plt.ylabel('average size of annotation genes',size=13)
+    plt.ylabel('Average number of time points',size=15)
+    # plt.ylabel('Average number of annotation genes',size=15)
     # 设置点的大小
     sValue = numbers
     # 画散点图
@@ -140,15 +140,15 @@ if __name__ == "__main__":
     ax1 = fig.add_subplot(111)
     color_dic = {1:'b', 2: 'r', 3:'y'}
     l_plot = []
-    fig = plot(purity_my_edges, purity_my_terms, color_dic[1],fig, 'Our Method(1)')
-    fig = plot(purity_my_edges1, purity_my_terms1, color_dic[2], fig, 'Our Method(2)')
-    fig = plot(purity_my_edges2, purity_my_terms2, color_dic[3], fig, 'Our Method(3)')
-    # fig = plot(edge_NPM_filename1, term_NPM_filename1, color_dic[1], fig, 'NPM(1)')
-    # fig = plot(edge_NPM_filename2, term_NPM_filename2, color_dic[2], fig, 'NPM(2)')
-    # fig = plot(edge_NPM_filename3, term_NPM_filename3, color_dic[3], fig, 'NPM(3)')
+    # 点的大小表示数量的多少
+    # fig = plot(purity_my_edges, purity_my_terms, color_dic[1],fig, 'TPO(1)')
+    # fig = plot(purity_my_edges1, purity_my_terms1, color_dic[2], fig, 'TPO(2)')
+    # fig = plot(purity_my_edges2, purity_my_terms2, color_dic[3], fig, 'TPO(3)')
+    fig = plot(edge_NPM_filename1, term_NPM_filename1, color_dic[1], fig, 'NPM(1)')
+    fig = plot(edge_NPM_filename2, term_NPM_filename2, color_dic[2], fig, 'NPM(2)')
+    fig = plot(edge_NPM_filename3, term_NPM_filename3, color_dic[3], fig, 'NPM(3)')
 
     plt.show()
-
     '''
     # everylevel(purity_my_terms)
     plt.figure(1)
@@ -157,7 +157,7 @@ if __name__ == "__main__":
     ax3 = plt.subplot(413)
     ax4 = plt.subplot(414)
     plt.sca(ax1)
-    count2(purity_my_edges2, purity_my_terms2, 'Our_Method')
+    count2(purity_my_edges2, purity_my_terms2, 'TPO')
     plt.sca(ax2)
     count2(edge_NPM_filename1, term_NPM_filename1, 'NPM(1)')
     # count2(purity_my_edges1, purity_my_terms1, 'Our_Method(1)')
@@ -173,6 +173,22 @@ if __name__ == "__main__":
     plt.show()
     '''
 
+    # fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(20, 30), sharex=True)
+    # plt.sca(ax1)
+    # count2(edge_NPM_filename1, term_NPM_filename1, 'NPM(1)')
+    # plt.sca(ax2)
+    # count2(edge_NPM_filename2, term_NPM_filename2, 'NPM(2)')
+    # plt.ylabel("average length of time point", fontsize=20)
+    # plt.sca(ax3)
+    # count2(edge_NPM_filename3, term_NPM_filename3, 'NPM(3)')
+    #
+    # plt.xlabel("geneSize", fontsize=20)
+    # plt.legend(bbox_to_anchor=(1.04, 2.5), loc=2, borderaxespad=0., numpoints=1, handlelength=0)
+    # plt.subplots_adjust(left=0.04, bottom=0.11, right=0.90, top=0.96, wspace=0.2, hspace=0.14)
+    # plt.show()
+    plt.figure()
+    count2(edge_dhac_filename, term_dhac_filename, 'DHAC')
+    plt.show()
 
 
 
