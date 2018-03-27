@@ -1,0 +1,7 @@
+term_id	sign_score	level	annotation_gene	start_time	end_time	geneSize	time_size
+194	0.5	2	C,E,F	[1, 2]	3	2
+196	0.7778	1	C,G,A	[2]	3	1
+197	0.5833	1	C,G,E,F	[2]	4	1
+185	0.5	1	D,G	[0]	2	1
+188	0.5	2	A,C	[0, 1, 2]	2	3
+190	0.5	1	C,E,A,B	[1]	4	1

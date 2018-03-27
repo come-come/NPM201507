@@ -137,7 +137,7 @@ def sign_value(phe1, gene_set, window):
 
 
 
-'''
+# plot the distrubution of phenotypes  [subplot (1,3)]
 columns = phe1.shape[1]
 phe1.columns = [i for i in range(0, columns)]
 print phe1[0][0], phe1[columns-1][0]
@@ -167,14 +167,38 @@ print kstest(phe_data_p, 'norm',  alternative='greater')
 print stats.normaltest(phe_data, axis=0)
 print anderson(phe_data)
 
+sum1 = 0
+sum2 = 0
+sum3 = 0
+for i in phe_data:
+    if i<0.08 and i > -0.18:
+        sum1 = sum1 + 1
+
+for i in phe_data2:
+    if i<0.27 and i > -0.22:
+        sum2 = sum2 + 1
+
+for i in phe_data3:
+    if i<0.34:
+        sum3 = sum3 + 1
+print sum1, sum2, sum3
+
+
 plt.subplot(231)
-plt.hist(phe_data, 20)
+n, bins, patches = plt.hist(phe_data, 20)
+print n
+print bins
 plt.title('phenotype 1')
 plt.subplot(232)
-plt.hist(phe_data2, 20)
+n, bins, patches = plt.hist(phe_data2, 20)
+print n
+print bins
 plt.title('phenotype 2')
 plt.subplot(233)
-plt.hist(phe_data3, 20)
+
+n, bins, patches  = plt.hist(phe_data3,20)
+print n
+print bins
 plt.title('phenotype 3')
 # plt.subplot(224)
 # n, bins, patches = plt.hist(phe_data_p, 150, normed=1)
@@ -182,7 +206,7 @@ plt.title('phenotype 3')
 # sigma = np.std(phe_data_p)
 # plt.plot(bins, mlab.normpdf(bins, mu, sigma))
 plt.show()
-'''
+
 
 
 
@@ -212,6 +236,8 @@ plt.ylabel('term number')
 plt.legend()
 plt.show()
 '''
+
+'''
 # plt.show()
 # try:
 #     f1 = open(filename, 'r')
@@ -234,9 +260,9 @@ plt.show()
 #
 # for node in G.nodes():
 #     print G.degree(node), G.in_degree(node), G.out_degree(node)
+'''
 
-
-
+'''
 # dic = {'a':1,'b':2}
 # print dic
 # dic2 = dic
@@ -268,3 +294,4 @@ plt.show()
 #     windowGraph[0].add_edge(node_1, node_2)
 # fw.write(str(0) + '\t' + str(df.shape[0]) + '\t' + str(windowGraph[window].number_of_nodes()) + '\n')
 # fw.close()
+'''

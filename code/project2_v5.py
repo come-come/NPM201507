@@ -16,15 +16,14 @@ import gevent
 import gevent.pool
 import multiprocessing
 from multiprocessing import Pool
-import os\
-    , time, random
+import os, time, random
 import matplotlib.pyplot as plt
 import seaborn as sns
 import sys
 from scipy import stats
 from compiler.ast import flatten
 
-
+# python project2.py -i result_c5_s10_20171220weight.txt -d IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt -f IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt -g IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt -w 0.9 -s 5 -p 0.5 -m 0.005 -n -0.18 -b 0.08 -v -0.22 -c -100 -z 0.34
 phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
 phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt', index_col=0)
 phe3 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQI_new_RAW3_adj_LFC_avg.txt', index_col=0)
@@ -260,9 +259,9 @@ def sign_value(node, gene_set, window):
     p1_list = flatten(p1.values.tolist())
     p2_list = flatten(p2.values.tolist())
     p3_list = flatten(p3.values.tolist())
-    sign_p1 =  [x for x in p1_list if x<-0.18 or x >0.08]
-    sign_p2 =  [x for x in p2_list if x<-0.22 or x >0.27]
-    sign_p3 =  [x for x in p3_list if x>0.34]
+    sign_p1 = [x for x in p1_list if x < -0.18 or x > 0.08]
+    sign_p2 = [x for x in p2_list if x < -0.22 or x > 0.27]
+    sign_p3 = [x for x in p3_list if x > 0.34]
     sign = len(sign_p1) + len(sign_p2) + len(sign_p3)
     all = len(p1_list) + len(p2_list) + len(p3_list)
     if p1[t_min].mean()-p1[t_max - 1].mean()<0:
@@ -308,7 +307,7 @@ def pearson(node, gene_set, window):
 if __name__ == '__main__':
 
     start = time.clock()
-    '''
+
     # for i in range(0, 50):
     #     tree_statis(0.9, i)
     s = 0
@@ -354,6 +353,9 @@ if __name__ == '__main__':
                     # cliqueGraph1.remove_node(num)
                     # else:
                     #     dic_all[key] = dic_term1[key]
+                    
+
+            
         dic_all.update(dic_term1)
         cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
         print 'before purity window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
@@ -413,12 +415,12 @@ if __name__ == '__main__':
     #         fwc.write(str(node) + '\n')
 
 
-    fw1 = open('1220edges_sign_id.txt', 'w')
-    fw2 = open('1220terms_sign_id.txt', 'w')
-    fw3 = open('1220sign_distance_id.txt', 'w')
-    fw4 = open('1220term_vector_id.txt', 'w')
-    fw5 = open('1220term_pearson_id.txt', 'w')
-    fw6 = open('1220terms_sign_list_id.txt', 'w')
+    fw1 = open('0325edges_sign_id.txt', 'w')
+    fw2 = open('0325terms_sign_id.txt', 'w')
+    fw3 = open('0325sign_distance_id.txt', 'w')
+    fw4 = open('0325term_vector_id.txt', 'w')
+    fw5 = open('0325term_pearson_id.txt', 'w')
+    fw6 = open('0325terms_sign_list_id.txt', 'w')
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
@@ -452,7 +454,7 @@ if __name__ == '__main__':
     fw4.close()
     fw5.close()
     fw6.close()
-    '''
+
     '''
     # 88001 .
     gene = ['AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
@@ -491,6 +493,7 @@ if __name__ == '__main__':
     phenotype(gene6, window6)
     phenotype(gene7, window7)
     phenotype(gene8, window8)
+    '''
     '''
     data1129 = pd.read_table('G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1129terms_rank.txt')
     data1218 = pd.read_table('G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1218terms_rank.txt')
@@ -555,13 +558,7 @@ if __name__ == '__main__':
                 print '目录以及存在'
             print termID, sorted(gene), window
             phenotype(f_path, termID, gene, window)
-
-
-
-
-
-
-
+    '''
 
     # #163287
     # gene = ['AT1G02560', 'AT1G16880', 'AT2G20260', 'AT2G37660', 'AT2G44990']

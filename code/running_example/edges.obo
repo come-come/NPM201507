@@ -1,0 +1,46 @@
+[Term]
+id:0
+
+[Term]
+id:194
+purity:0.5
+number of annotation genes:3
+number of annotation windows:2
+is_a:197
+
+[Term]
+id:196
+purity:0.7778
+number of annotation genes:3
+number of annotation windows:1
+is_a:0
+
+[Term]
+id:197
+purity:0.5833
+number of annotation genes:4
+number of annotation windows:1
+is_a:0
+
+[Term]
+id:185
+purity:0.5
+number of annotation genes:2
+number of annotation windows:1
+is_a:0
+
+[Term]
+id:188
+purity:0.5
+number of annotation genes:2
+number of annotation windows:3
+is_a:196
+is_a:190
+
+[Term]
+id:190
+purity:0.5
+number of annotation genes:4
+number of annotation windows:1
+is_a:0
+
