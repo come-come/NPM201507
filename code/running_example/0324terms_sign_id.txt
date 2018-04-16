@@ -1,0 +1,2 @@
+term_id	sign_score	annotation_gene	start_time	end_time	geneSize	time_size
+196	0.6667	['C', 'G', 'A']	51	60	3	10

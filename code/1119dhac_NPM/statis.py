@@ -103,11 +103,12 @@ def plot(edge_filename, term_filename,color_bar, fig, label):
     #ax1.set_title('Annotation Gene',size=20)
     # ax1.set_title('Annotation Gene',size=20)
     # 设置X轴标签
-    plt.xlabel('Level of temporal phenotype ontology',size=15)
-    plt.xticks(np.arange(20))
+    plt.xlabel('Level of temporal phenotype ontology',size=20)
+    plt.xticks(np.arange(20),size=15)
+    plt.yticks(size=15)
     # 设置Y轴标签
     # plt.ylabel('Average number of time points',size=15)
-    plt.ylabel('Average size of annotation genes',size=15)
+    plt.ylabel('Average size of annotation genes',size=20)
     # 设置点的大小
     sValue = numbers
     # 画散点图
@@ -136,18 +137,32 @@ if __name__ == "__main__":
     purity_my_terms2 = '1219terms.txt'
     purity_my_edges2 = '1219edges.txt'
 
+    # edge_NPM_filename3 = 'C:\Users\lu\Desktop\\0406\\0405edges_sign_id_NPM3.txt'
+    # term_NPM_filename3 = 'C:\Users\lu\Desktop\\0406\\0405terms_sign_id_NPM3.txt'
+    # edge_NPM_filename2 = 'C:\Users\lu\Desktop\\0406\\0405edges_sign_id_NPM2.txt'
+    # term_NPM_filename2 = 'C:\Users\lu\Desktop\\0406\\0405terms_sign_id_NPM2.txt'
+    # edge_NPM_filename1 = 'C:\Users\lu\Desktop\\0406\\0405edges_sign_id_NPM1.txt'
+    # term_NPM_filename1 = 'C:\Users\lu\Desktop\\0406\\0405terms_sign_id_NPM1.txt'
+    #
+    # purity_my_terms = 'C:\Users\lu\Desktop\\0406\\0405terms_sign_id1220.txt'
+    # purity_my_edges = 'C:\Users\lu\Desktop\\0406\\0405edges_sign_id1220.txt'
+    # purity_my_terms1 = 'C:\Users\lu\Desktop\\0406\\0405terms_sign_id1219.txt'
+    # purity_my_edges1 = 'C:\Users\lu\Desktop\\0406\\0405edges_sign_id1219.txt'
+    # purity_my_terms2 = 'C:\Users\lu\Desktop\\0406\\0405terms_sign_id1129.txt'
+    # purity_my_edges2 = 'C:\Users\lu\Desktop\\0406\\0405edges_sign_id1129.txt'
+
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
     color_dic = {1:'b', 2: 'r', 3:'y'}
     l_plot = []
     # 点的大小表示数量的多少
-    # fig = plot(purity_my_edges, purity_my_terms, color_dic[1],fig, 'TPO(1)')
-    # fig = plot(purity_my_edges1, purity_my_terms1, color_dic[2], fig, 'TPO(2)')
-    # fig = plot(purity_my_edges2, purity_my_terms2, color_dic[3], fig, 'TPO(3)')
-    fig = plot(edge_NPM_filename1, term_NPM_filename1, color_dic[1], fig, 'NPM(1)')
-    fig = plot(edge_NPM_filename2, term_NPM_filename2, color_dic[2], fig, 'NPM(2)')
-    fig = plot(edge_NPM_filename3, term_NPM_filename3, color_dic[3], fig, 'NPM(3)')
-    plt.subplots_adjust(left=0.08, bottom=0.09, right=0.97, top=0.94, wspace=0.2, hspace=0.2)
+    fig = plot(purity_my_edges, purity_my_terms, color_dic[1],fig, 'TPO+(1)')
+    fig = plot(purity_my_edges1, purity_my_terms1, color_dic[2], fig, 'TPO+(2)')
+    fig = plot(purity_my_edges2, purity_my_terms2, color_dic[3], fig, 'TPO+(3)')
+    # fig = plot(edge_NPM_filename1, term_NPM_filename1, color_dic[1], fig, 'NPM+(1)')
+    # fig = plot(edge_NPM_filename2, term_NPM_filename2, color_dic[2], fig, 'NPM+(2)')
+    # fig = plot(edge_NPM_filename3, term_NPM_filename3, color_dic[3], fig, 'NPM+(3)')
+    plt.subplots_adjust(left=0.1, bottom=0.12, right=0.97, top=0.94, wspace=0.2, hspace=0.2)
     plt.show()
     '''
     # everylevel(purity_my_terms)

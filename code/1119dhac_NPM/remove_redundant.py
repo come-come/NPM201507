@@ -94,29 +94,70 @@ def read_level(termFile, level,OntologyGraph):
                 remove = remove + 1
     print remove
 
-def sign_value(node, geneIdset, window):
-    t_min = min(window)
-    t_max = max(window) + 1
-    window_set = [i for i in range(t_min,t_max)] # 回到最原始的数据上
-
-    gene_set = [dic[i] for i in geneIdset]
+def sign_value(node, gene_set, window):
+    t_min = min(window) + 49
+    t_max = max(window) + 49 + 10
+    window_set = [i for i in range(t_min, t_max)]  # 回到最原始的数据上
     p1 = phe1.loc[gene_set, window_set]
     p2 = phe2.loc[gene_set, window_set]
     p3 = phe3.loc[gene_set, window_set]
+
     p1_list = flatten(p1.values.tolist())
     p2_list = flatten(p2.values.tolist())
     p3_list = flatten(p3.values.tolist())
-    sign_p1 =  [x for x in p1_list if x<-0.18 or x >0.08]
-    sign_p2 =  [x for x in p2_list if x<-0.22 or x >0.27]
-    sign_p3 =  [x for x in p3_list if x>0.34]
-    sign_num = len(sign_p1) + len(sign_p2) + len(sign_p3)
-    all_value = len(p1_list) + len(p2_list) + len(p3_list)
-    score = float(sign_num)/all_value
-    return score
+    #2018.04.06
+    p1_list = sorted(list([value for value in p1_list if not math.isnan(value)]), reverse=True)
+    p2_list = sorted(list([value for value in p2_list if not math.isnan(value)]), reverse=True)
+    p3_list = sorted(list([value for value in p3_list if not math.isnan(value)]), reverse=True)
+    top_r = int(len(p1_list) * 0.1) - 1
+    botoom_r = len(p1_list) - int(len(p1_list) * 0.1)
+    u1 = p1_list[top_r]
+    b1 = p1_list[botoom_r]
+
+    top_r = int(len(p2_list) * 0.2) - 1
+    botoom_r = len(p2_list) - int(len(p2_list) * 0.2)
+
+    u2 = p2_list[top_r]
+    b2 = p2_list[botoom_r]
+
+    top_r = int(len(p3_list) * 0.2) - 1
+    botoom_r = len(p3_list) - int(len(p3_list) * 0.2)
+    u3 = p3_list[top_r]
+    b3 = p3_list[botoom_r]
+
+    sign_p1 = [x for x in p1_list if x <= b1 or x >= u1]
+    sign_p2 = [x for x in p2_list if x <= b2 or x >= u2]
+    sign_p3 = [x for x in p3_list if x <= b3 or x >= u3]
+    # sign_p1 = [x for x in p1_list if x < -0.18 or x > 0.08]
+    # sign_p2 = [x for x in p2_list if x < -0.22 or x > 0.27]
+    # sign_p3 = [x for x in p3_list if x > 0.34]
+
+    sign = len(sign_p1) + len(sign_p2) + len(sign_p3)
+    all = len(p1_list) + len(p2_list) + len(p3_list)
+    if p1[t_min].mean() - p1[t_max - 1].mean() < 0:
+        trend1 = 1
+    else:
+        trend1 = 0
+    if p2[t_min].mean() - p2[t_max - 1].mean() < 0:
+        trend2 = 1
+    else:
+        trend2 = 0
+    if p3[t_min].mean() - p3[t_max - 1].mean() < 0:
+        trend3 = 1
+    else:
+        trend3 = 0
+    purity = float(sign) / all
+    purity1 = len(sign_p1) / float(len(p1_list))
+    purity2 = len(sign_p2) / float(len(p2_list))
+    purity3 = len(sign_p3) / float(len(p3_list))
+    if purity1 >= pp or purity2 >= pp or purity3 >= pp:
+        purity = max(purity1, purity2, purity3)
+
+    return purity
 
 if __name__ =="__main__":
-    edge_filename = 'G:\\project2\\NPM201507\\code\\1129edges_sign_id.txt'
-    node_filename = 'G:\\project2\\NPM201507\\code\\1129terms_sign_list_id.txt'
+    edge_filename = 'G:\\project2\\NPM201507\\code\\0404edges_sign_id.txt'
+    node_filename = 'G:\\project2\\NPM201507\\code\\0404terms_sign_list_id.txt'
     # Run our method one more time 1218
     # edge_filename = 'G:\\project2\\NPM201507\\code\\1218edges_sign_id.txt'
     # node_filename = 'G:\\project2\\NPM201507\\code\\1218terms_sign_list_id.txt'
@@ -131,13 +172,14 @@ if __name__ =="__main__":
     phe2.columns = [i for i in range(0, 113)]
     phe3.columns = [i for i in range(0, 113)]
     OntologyGraph = read_tree(edge_filename,node_filename)
+    pp= 0.4
     # for i in range(1, 17):
     for i in range(1, 14):
         read_level_dic(node_filename, i, OntologyGraph)
-    print OntologyGraph.number_of_nodes()
+    print OntologyGraph.number_of_nodes(), OntologyGraph.number_of_edges()
 
-    fw = open('1129terms_rank.txt', 'w')
-    fw2 = open('1129edges_rank.txt', 'w')
+    fw = open('0404terms_rank.txt', 'w')
+    fw2 = open('0404edges_rank.txt', 'w')
     fw.write('term_id' + '\t' + 'sign_score' + '\t' + 'level' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
 
     dic_term_score = {}
@@ -147,7 +189,20 @@ if __name__ =="__main__":
             continue
         else:
             OntologyGraph.node[node]['purity'] = round(sign_value(node, OntologyGraph.node[node]['geneSet'], OntologyGraph.node[node]['windowSet']), 5)
-            dic_term_score[node] = round(sign_value(node, OntologyGraph.node[node]['geneSet'], OntologyGraph.node[node]['windowSet']), 5)
+            score = round(sign_value(node, OntologyGraph.node[node]['geneSet'], OntologyGraph.node[node]['windowSet']), 5)
+            # 20180404
+            if score < 0.005:
+                # 无意义，delete，重定向
+                parent = OntologyGraph.predecessors(node)
+                child = OntologyGraph.successors(node)
+                for p in parent:
+                    for c in child:
+                        OntologyGraph.add_edge(p, c)
+                OntologyGraph.remove_node(node)
+            # 20180404
+            else:
+                dic_term_score[node] = round(
+                sign_value(node, OntologyGraph.node[node]['geneSet'], OntologyGraph.node[node]['windowSet']), 5)
 
     for node,value in sorted(dic_term_score.items(), key=lambda d: d[1],reverse=True):
         if node == '0':

@@ -1,0 +1,1 @@
+term_id	sign_score	level	annotation_gene	start_time	end_time	geneSize	time_size

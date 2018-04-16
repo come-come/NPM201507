@@ -195,9 +195,9 @@ def phenotype(f_path, termID, gene_set, window):
     f_fpath1 = f_path + '\\Phi2.txt'
     f_fpath2 = f_path + '\\qE.txt'
     f_fpath3 = f_path + '\\qI.txt'
-    phe1.loc[gene_set, window_set].to_csv(f_fpath1, sep='\t')
-    phe2.loc[gene_set, window_set].to_csv(f_fpath2, sep='\t')
-    phe3.loc[gene_set, window_set].to_csv(f_fpath3, sep='\t')
+    # phe1.loc[gene_set, window_set].to_csv(f_fpath1, sep='\t')
+    # phe2.loc[gene_set, window_set].to_csv(f_fpath2, sep='\t')
+    # phe3.loc[gene_set, window_set].to_csv(f_fpath3, sep='\t')
     q = phe1.loc[gene_set, window_set]
     q2 = phe2.loc[gene_set, window_set]
     q3 = phe3.loc[gene_set, window_set]
@@ -208,8 +208,9 @@ def phenotype(f_path, termID, gene_set, window):
     # plt.yticks(np.arange(0.5, len(phe_avg.index), 1), phe_avg.index)
     # plt.xticks(np.arange(0.5, len(phe_avg.columns), 1), phe_avg.columns)
     # plt.show()
-    sns.set(style="white")
-    cmap = sns.diverging_palette(220, 10, as_cmap=True)
+    sns.set(style="dark")
+    cmap = sns.diverging_palette(220, 10, as_cmap=True) # color
+    cmap = sns.diverging_palette(250, 1, as_cmap=True)
     # ax = sns.heatmap(q, vmin=-0.05, vmax=0.05, cmap=cmap, annot=True,center=0, square=True, linewidths=.5, cbar_kws={"shrink": .5})
     # for item in ax.get_yticklabels():
     #     item.set_rotation(0)
@@ -217,36 +218,45 @@ def phenotype(f_path, termID, gene_set, window):
     fig = plt.figure()
     fig.suptitle(termID,fontsize=16, y=1)
     plt.subplot(231)
-    ax = sns.heatmap(q, vmin=-0.5, vmax=0.5, cmap=cmap,  center=0, square=True, linewidths=.5,
+    ax = sns.heatmap(q, vmin=-0.5, vmax=0.5, cmap=cmap,  center=0, square=True, linewidths=.7,
                      cbar_kws={"shrink": .5})
     for item in ax.get_yticklabels():
         item.set_rotation(0)
-    plt.title('Phi2')
-    plt.xlabel('time point')
+    plt.title('Phenotype 1',size=20)
+    plt.xlabel('Time points',size=15)
+    plt.ylabel('Individuals',size=15)
+    plt.yticks([], [])
+    plt.xticks([], [])
 
     plt.subplot(232)
-    ax = sns.heatmap(q2, vmin=-0.5, vmax=0.5, cmap=cmap, center=0, square=True, linewidths=.5,
+    ax = sns.heatmap(q2, vmin=-0.5, vmax=0.5, cmap=cmap, center=0, square=True, linewidths=.7,
                      cbar_kws={"shrink": .5})
     for item in ax.get_yticklabels():
         item.set_rotation(0)
-    plt.title('qE')
-    plt.xlabel('time point')
+    plt.title('Phenotype 2',size=20)
+    plt.xlabel('Time points',size=15)
+    plt.ylabel('Individuals',size=15)
+    plt.yticks([], [])
+    plt.xticks([], [])
 
     plt.subplot(233)
-    ax = sns.heatmap(q3, vmin=0, vmax=1, cmap=cmap, center=0, square=True, linewidths=.5,
+    ax = sns.heatmap(q3, vmin=-0.5, vmax=0.5, cmap=cmap, center=0, square=True, linewidths=.7,
                      cbar_kws={"shrink": .5})
     for item in ax.get_yticklabels():
         item.set_rotation(0)
-    plt.title('ql')
-    plt.xlabel('time point')
+    plt.title('Phenotype 3',size=20)
+    plt.xlabel('Time points',size=15)
+    plt.ylabel('Individuals',size=15)
+    plt.yticks([], [])
+    plt.xticks([], [])
 
     fig.set_size_inches(22, 10.5)
     fig_path = f_path  + str(termID) + '.png'
+
+    print fig_path
     plt.savefig(fig_path, dpi=100)
-
-
-
-
+    plt.show()
+    # plt.show()
 
 def sign_value(node, gene_set, window):
     t_min = min(window) + 49
@@ -276,7 +286,15 @@ def sign_value(node, gene_set, window):
         trend3 = 1
     else :
         trend3 = 0
-    return sign, float(sign)/all, trend1, trend2, trend3
+
+    purity = float(sign)/all
+    purity1 = len(sign_p1) / float(len(p1_list))
+    purity2 = len(sign_p2) / float(len(p2_list))
+    purity3 = len(sign_p3) / float(len(p3_list))
+    if purity1 > 0.005 or purity2 > 0.005 or purity3 > 0.005:
+        purity = max(purity1,purity2, purity3)
+
+    return sign, purity, trend1, trend2, trend3
 
 def class_distance(node, gene_set, window):
     t_min = min(window) + 49
@@ -305,7 +323,12 @@ def pearson(node, gene_set, window):
 
 
 if __name__ == '__main__':
-
+    f_path = 'C:\Users\lu\Desktop\\0407new_figure\\'
+    termID = 79780
+    gene = ['AT1G03160','AT1G14345','AT1G67700','AT1G80380','AT2G30695','AT5G42270']
+    window = [68,78]
+    phenotype(f_path, termID, gene, window)
+    '''
     start = time.clock()
 
     # for i in range(0, 50):
@@ -315,8 +338,8 @@ if __name__ == '__main__':
     term = 183
     # filename = 'result_c5_s10_v2_weight.txt'
     # 20171217
-    # filename = 'result_c5_s10_20171219weight.txt'
-    filename = 'result_c5_s10_20171220weight.txt'
+    filename = 'result_c5_s10_20171219weight.txt'
+    # filename = 'result_c5_s10_20171220weight.txt'
     data = pd.read_csv(filename, index_col=0, sep='\t')
     # print data.head(5), type(data.loc['AT4G33520_AT1G67840']['49'])
     curr_path = os.getcwd() + '/'
@@ -335,6 +358,7 @@ if __name__ == '__main__':
     dic_all = {}
     dic_all = dic_term0.copy()
     copy_clique = cliqueGraph0
+
     for i in range(1, 50):
         print 'begin term num:', term
         cliqueGraph1, dic_term1, dic_term_num1, term = tree0(weight_value, i, term)
@@ -353,12 +377,10 @@ if __name__ == '__main__':
                     # cliqueGraph1.remove_node(num)
                     # else:
                     #     dic_all[key] = dic_term1[key]
-                    
-
             
         dic_all.update(dic_term1)
         cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
-        print 'before purity window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
+        print 'before purity window (compose)', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
     dic_term_score = {}
     dic_term_distance = {}
     dic_vector = {}
@@ -415,12 +437,12 @@ if __name__ == '__main__':
     #         fwc.write(str(node) + '\n')
 
 
-    fw1 = open('0325edges_sign_id.txt', 'w')
-    fw2 = open('0325terms_sign_id.txt', 'w')
-    fw3 = open('0325sign_distance_id.txt', 'w')
-    fw4 = open('0325term_vector_id.txt', 'w')
-    fw5 = open('0325term_pearson_id.txt', 'w')
-    fw6 = open('0325terms_sign_list_id.txt', 'w')
+    fw1 = open('0404edges_sign_id.txt', 'w')
+    fw2 = open('0404terms_sign_id.txt', 'w')
+    fw3 = open('0404sign_distance_id.txt', 'w')
+    fw4 = open('0404term_vector_id.txt', 'w')
+    fw5 = open('0404term_pearson_id.txt', 'w')
+    fw6 = open('0404terms_sign_list_id.txt', 'w')
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
@@ -454,7 +476,7 @@ if __name__ == '__main__':
     fw4.close()
     fw5.close()
     fw6.close()
-
+    '''
     '''
     # 88001 .
     gene = ['AT1G14345', 'AT1G80380', 'AT2G18790', 'AT2G29180', 'AT4G33010', 'AT5G42270']
@@ -494,31 +516,34 @@ if __name__ == '__main__':
     phenotype(gene7, window7)
     phenotype(gene8, window8)
     '''
+
     '''
-    data1129 = pd.read_table('G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1129terms_rank.txt')
-    data1218 = pd.read_table('G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1218terms_rank.txt')
-    data1219 = pd.read_table('G:\\project2\\NPM201507\\code\\1119dhac_NPM\\1219terms_rank.txt')
+    data = pd.read_table('C:\Users\lu\Desktop\\0406\\0405annotation1129_0p98a.txt')
+
     dic = {}
-    print '-----------------------------1129-'
-    top10 = data1129.head(10)
-    for i in range(0, 10):
-        termID = top10.loc[i]['term_id']
+    print '-----------------------------327-'
+    top10 = data
+    print data.shape[0]
+    for i in range(0, data.shape[0]):
+        termID = top10.loc[i]['term_id'].split(':')[1]
         gene = top10.loc[i]['annotation_gene'].strip().split(',')
         window = [int(top10.loc[i]['start_time']), int(top10.loc[i]['end_time'])]
         dic[frozenset(gene)] = window
         if int(top10.loc[i]['end_time']) - int(top10.loc[i]['start_time']) < 10:
             continue
         else:
-            w_path = 'G:\\project2\\NPM201507\\code\\1119dhac_NPM\\phenotype\\1129\\'
-            f_path = w_path + str(top10.loc[i]['term_id']) + '\\'
-            isExists = os.path.exists(f_path)
-            if not isExists:
-                os.makedirs(f_path)
-            else:
-                print '目录以及存在'
+            w_path = 'C:\Users\lu\Desktop\\0406\\heatmap_figure098_01_1129'
+            f_path = w_path + '\\'
+            # isExists = os.path.exists(f_path)
+            # if not isExists:
+            #     os.makedirs(f_path)
+            # else:
+            #     print '目录以及存在'
             print termID, sorted(gene), window
             phenotype(f_path, termID, gene, window)
+    '''
 
+    '''
     print '-----------------1218---'
     top10 = data1218.head(10)
     for i in range(0, 10):
@@ -560,6 +585,7 @@ if __name__ == '__main__':
             phenotype(f_path, termID, gene, window)
     '''
 
+
     # #163287
     # gene = ['AT1G02560', 'AT1G16880', 'AT2G20260', 'AT2G37660', 'AT2G44990']
     # window = [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]
@@ -569,7 +595,16 @@ if __name__ == '__main__':
     # # phenotype(gene1, window1)
     # phenotype(gene, window)
 
-
+    # gene8 = ['AT1G02560','AT1G80030','AT2G30695','AT2G37660','AT3G08920','AT5G01500']
+    # window8 = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+    # phenotype('C:\Users\lu\Desktop\RunningExample\heatmap\\', 50434 ,gene8, window8)
+    # gene = ['AT1G22020','AT1G22450','AT1G51350','AT1G75690','AT2G35040','AT3G15840','AT3G28850','AT3G46780','AT4G16155','AT4G27700','AT5G53170']
+    # window = [35, 36, 37, 38, 39, 40, 41]
+    # phenotype('C:\Users\lu\Desktop\RunningExample\heatmap\\', 146222, gene, window)
+    #
+    # gene8 = ['AT1G02560','AT1G76760','AT1G80030','AT2G30695','AT3G08920','AT5G01500','AT5G19370']
+    # window8 = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+    # phenotype('C:\Users\lu\Desktop\RunningExample\heatmap\\', 50436, gene8, window8)
 
 
     end = time.clock()

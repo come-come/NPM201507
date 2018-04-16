@@ -1,10 +1,25 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 import numpy as np
+import networkx as nx
+import time
 import os
 from os.path import join
+import matplotlib.pyplot as plt
+import gevent
+import gevent.pool
+import multiprocessing
+from multiprocessing import Pool
+import os, time, random
+import matplotlib.pyplot as plt
+import seaborn as sns
+import sys
+from scipy import stats
 from compiler.ast import flatten
-import networkx as nx
+import operator
+from compiler.ast import flatten
+import sys, getopt
+import math
 dic_result = {}  # dhac result
 phe1 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allPhi2_cleaned_lfc_avg.txt', index_col=0)
 phe2 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQESV_cleaned_LFC_avg.txt', index_col=0)
@@ -13,6 +28,25 @@ phe3 = pd.read_table('G:\project2\\NPM201507\\data\\IDMapping_consolidated_allQI
 phe1.columns = [i for i in range(0, 113)]
 phe2.columns = [i for i in range(0, 113)]
 phe3.columns = [i for i in range(0, 113)]
+p1_list = flatten(phe1.values.tolist())
+p2_list = flatten(phe2.values.tolist())
+p3_list = flatten(phe3.values.tolist())
+p1_list = sorted(list([value for value in p1_list if not math.isnan(value)]), reverse=True)
+p2_list = sorted(list([value for value in p2_list if not math.isnan(value)]), reverse=True)
+p3_list = sorted(list([value for value in p3_list if not math.isnan(value)]), reverse=True)
+top_r = int(len(p1_list) * 0.2) - 1
+botoom_r = len(p1_list) - int(len(p1_list) * 0.2)
+u1 = p1_list[top_r]
+b1 = p1_list[botoom_r]
+top_r = int(len(p2_list) * 0.2) - 1
+botoom_r = len(p2_list) - int(len(p2_list) * 0.2)
+u2 = p2_list[top_r]
+b2 = p2_list[botoom_r]
+top_r = int(len(p3_list) * 0.2) - 1
+botoom_r = len(p3_list) - int(len(p3_list) * 0.2)
+u3 = p3_list[top_r]
+b3 = p3_list[botoom_r]
+print 'threshold for phenotype:', u1, b1, u2, b2, u3, b3
 
 dic = {}
 fr = open('G:\project2\\NPM201507\\code\\term_name_id\\termN_Id.txt', 'r')
@@ -358,7 +392,7 @@ def class_distance(node, gene_set, window):
 def sign_value(node, gene_set, window):
     t_min = min(window) + 49
     t_max = max(window) + 49 + 10
-    window_set = [i for i in range(t_min,t_max)] # 回到最原始的数据上
+    window_set = [i for i in range(t_min, t_max)]  # 回到最原始的数据上
     p1 = phe1.loc[gene_set, window_set]
     p2 = phe2.loc[gene_set, window_set]
     p3 = phe3.loc[gene_set, window_set]
@@ -366,24 +400,36 @@ def sign_value(node, gene_set, window):
     p1_list = flatten(p1.values.tolist())
     p2_list = flatten(p2.values.tolist())
     p3_list = flatten(p3.values.tolist())
-    sign_p1 =  [x for x in p1_list if x<-0.18 or x >0.08]
-    sign_p2 =  [x for x in p2_list if x<-0.22 or x >0.27]
-    sign_p3 =  [x for x in p3_list if x>0.34]
+    # 2018.04.06
+    sign_p1 = [x for x in p1_list if x <= b1 or x >= u1]
+    sign_p2 = [x for x in p2_list if x <= b2 or x >= u2]
+    sign_p3 = [x for x in p3_list if x <= b3 or x >= u3]
+    # sign_p1 = [x for x in p1_list if x < -0.18 or x > 0.08]
+    # sign_p2 = [x for x in p2_list if x < -0.22 or x > 0.27]
+    # sign_p3 = [x for x in p3_list if x > 0.34]
+
     sign = len(sign_p1) + len(sign_p2) + len(sign_p3)
     all = len(p1_list) + len(p2_list) + len(p3_list)
-    if p1[t_min].mean()-p1[t_max - 1].mean()<0:
+    if p1[t_min].mean() - p1[t_max - 1].mean() < 0:
         trend1 = 1
-    else :
+    else:
         trend1 = 0
-    if p2[t_min].mean()-p2[t_max - 1].mean()<0:
+    if p2[t_min].mean() - p2[t_max - 1].mean() < 0:
         trend2 = 1
-    else :
+    else:
         trend2 = 0
-    if p3[t_min].mean()-p3[t_max - 1].mean()<0:
+    if p3[t_min].mean() - p3[t_max - 1].mean() < 0:
         trend3 = 1
-    else :
+    else:
         trend3 = 0
-    return sign, float(sign)/all, trend1, trend2, trend3
+    purity = float(sign) / all
+    purity1 = len(sign_p1) / float(len(p1_list))
+    purity2 = len(sign_p2) / float(len(p2_list))
+    purity3 = len(sign_p3) / float(len(p3_list))
+    if purity1 >= pp or purity2 >= pp or purity3 >= pp:
+        purity = max(purity1, purity2, purity3)
+
+    return sign, purity, trend1, trend2, trend3
     # return float(sign)/all
 def average_compare():
     dhac = pd.read_table('dhac_term.txt')
@@ -403,50 +449,145 @@ if __name__ == "__main__":
     # average_compare()
     # 2017.12.4
     # DHAC
-    # read_dhac_result('G:\\project2\\NPM201507\\code\\edge\\20171113dhac')
+    read_dhac_result('G:\\project2\\NPM201507\\code\\edge\\20171113dhac')
     # NPM  5 clusters
     # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM')
     # NPM  10 clusters
-    read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_(1)')
+    # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_(1)')
     # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_(2)')
     # read_NPM_result('G:\\project2\\NPM201507\\code\\edge\\NPM_cluster10_1222')
     s = 0
     # 先产生第一个window的 tree
     term = 183
+    weight_value = 0.9
+    pp = 0.5
     cliqueGraph0, dic_term0, dic_term_num0, term = tree0(0.9, 0, 183)
+
     dic_all = {}
+    dic_all_term_num = dic_term_num0.copy()
     dic_all = dic_term0.copy()
     copy_clique = cliqueGraph0
+
     for i in range(1, 50):
         print 'begin term num:', term
-        cliqueGraph1, dic_term1, dic_term_num1, term = tree0(0.9, i, term)
 
+        sum1 = 0
+        cliqueGraph1, dic_term1, dic_term_num1, term = tree0(weight_value, i, term)
+        # 先合并两个trees
+        cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
         for key in dic_term1.keys():
             if dic_all.has_key(key):
                 if set(dic_all[key]).issuperset(set(dic_term1[key])):
                     dic_term1.pop(key)
                     num = dic_term_num1[key]
-                    cliqueGraph1.remove_node(num)
+                    cliqueGraph0.remove_node(num)
                     s = s + 1
                 else:
                     dic_all[key] = dic_all[key] + dic_term1[key]
                     dic_term1.pop(key)
-                    # num = dic_term_num1[key]
-                    # cliqueGraph1.remove_node(num)
-                    # else:
-                    #     dic_all[key] = dic_term1[key]
+                    num = dic_term_num1[key]
+                    cliqueGraph0.remove_node(num)
+                    dic_term_num1.pop(key)
+            else:
+                # flag 连最上层子结点 子节点的孩子不需要再连接
+                dic_this_edge = {}
+                for old in dic_all.keys():  # 对之前已经存在的结点
+                    old_id = dic_all_term_num[old]
+                    this_id = dic_term_num1[key]
+                    flag1 = 0
+                    flag2 = 0
+                    if set(key).issuperset(old) and set(dic_all[old]).issuperset(dic_term1[key]):
+                        # 如果当前结点的注释基因是它的父集 注释时间是它的子集
+                        # 判断old的parent是否和 key已经连接
+                        try:
+                            parent = cliqueGraph0.predecessors(old_id)
+                        except:
+                            continue
+                        # parent 按照编号排序
+                        dic_parent = {}
+                        for p in parent:
+                            dic_parent[p] = len(cliqueGraph0.node[p]['annotation'])
+                        dic2 = sorted(dic_parent.items(), key=operator.itemgetter(1), reverse=True)
+                        parent = []
+                        for pair in dic2:
+                            parent.append(pair[0])
+                        for p_id in parent:
+                            try:
+                                p_anno = cliqueGraph0.node[p_id]['annotation']
+                                p_wind = cliqueGraph0.node[p_id]['windowsize']
+                                if set(key).issuperset(set(p_anno)) and set(p_wind).issuperset(dic_term1[key]):
+                                    flag1 = 1
+                                    break
+                                    # print p_id, old, this_id
+                                if dic_this_edge[(this_id, p_id)] == 1:
+                                    flag1 = 1
+                                    break
+                                    # print p_id, old, this_id
+                                # if flag1 == 1:
+                                #     break
+                            except:
+                                continue
+                        if flag1 == 0:
+                            # key--> old
+                            if this_id!=old_id and not cliqueGraph0.has_edge(this_id, old_id):
+                                cliqueGraph0.add_edge(this_id, old_id)
+                                dic_this_edge[(this_id, old_id)] = 1
+                                sum1 = sum1 + 1
+                                break
+                            # print 'add edge', this_id, old_id
+                        else:
+                            # 已经连接到它的父亲上了
+                            continue
+
+                    elif set(key).issuperset(old) and set(dic_term1[key]).issuperset(dic_all[old]):
+                        # 如果当前结点的注释基因是它的父集 注释时间也是它的父集  delete old
+
+                        child = cliqueGraph0.successors(old_id)
+                        for c in child:
+                            if not cliqueGraph0.has_edge(this_id, c) and len(cliqueGraph0.node[c]['windowsize'])>len(dic_term1[key]):
+                                cliqueGraph0.add_edge(this_id, c)
+                        cliqueGraph0.remove_node(old_id)
+                        dic_all.pop(old)
+                        dic_all_term_num.pop(old)
+
+                        # print 'remove node', old_id
+                        ###
+                    # 20180404
+                    # elif set(old).issuperset(key) and set(dic_term1[key]).issuperset(dic_all[old]):
+                    #     # 如果当前结点的注释基因是它的子集 注释时间是它的父集 old--> key
+                    #     if this_id != old_id and not cliqueGraph0.has_edge(old_id, this_id):
+                    #         cliqueGraph0.add_edge(old_id, this_id)
+                    #     print 'add edge', old_id, this_id
+                    #20180404
+                    elif set(old).issuperset(key) and set(dic_all[old]).issuperset(dic_term1[key]):
+                        # 如果当前结点的注释基因是它的子集 注释时间也是它的子集 delete this
+                        child = cliqueGraph0.successors(this_id)
+                        for c in child:
+                            if not cliqueGraph0.has_edge(old_id, c) and len(cliqueGraph0.node[c]['windowsize']) > len(
+                                    dic_all[old]):
+                                cliqueGraph0.add_edge(old_id, c)
+
+                        cliqueGraph0.remove_node(this_id)
+                        dic_term_num1.pop(this_id)
+                        dic_term1.pop(key)
+                        # print 'remove node', this_id
+
+        # print 'dic_this_edge', dic_this_edge
+        # print dic_all_term_num
+        # print dic_term_num1
+        print 'sum1', sum1
         dic_all.update(dic_term1)
-        cliqueGraph0 = nx.compose(cliqueGraph0, cliqueGraph1)
-        print 'window', i, cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
+        dic_all_term_num.update(dic_term_num1)
+    print 'raw size--------', cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
+
+
+    print 'len(cliqueGraph0.selfloop_edges())-', cliqueGraph0.selfloop_edges(), nx.isolates(cliqueGraph0)
+
+    print 'len(cliqueGraph0.selfloop_edges())-', cliqueGraph0.selfloop_edges(), nx.isolates(cliqueGraph0)
+
+    print 'start calculate purity...'
     dic_term_score = {}
-    dic_term_distance = {}
-    dic_vector = {}
-    dic_pearson = {}
-    dic = {}
-    fr = open('G:\project2\\NPM201507\\code\\term_name_id\\termN_Id.txt', 'r')
-    for line in fr:
-        term, idd = line.strip().split('\t')
-        dic[term] = idd
+
     for node in cliqueGraph0.nodes():
         if node == 0:
             continue
@@ -454,85 +595,73 @@ if __name__ == "__main__":
             gene_set = cliqueGraph0.node[node]['annotation']
             window_set = cliqueGraph0.node[node]['windowsize']
             # 判断phenotype是否有意义
-
             sign, score, trend1, trend2, trend3 = sign_value(node, gene_set, window_set)
-            dis = class_distance(node, gene_set, window_set)
-            pearson_coff = pearson(node, gene_set, window_set)
-            if score < 0.005:
+
+            if score < pp:
                 # 无意义，delete，重定向
                 parent = cliqueGraph0.predecessors(node)
                 child = cliqueGraph0.successors(node)
                 for p in parent:
                     for c in child:
-                        cliqueGraph0.add_edge(p, c)
+                        if not cliqueGraph0.has_edge(p, c):
+                            cliqueGraph0.add_edge(p, c)
                 cliqueGraph0.remove_node(node)
             else:
                 dic_term_score[node] = score
-                dic_term_distance[node] = dis
-                dic_pearson[node] = pearson_coff
-                dic_vector[node] = []
-                dic_vector[node].append(len(cliqueGraph0.node[node]['annotation']))
-                dic_vector[node].append(len(cliqueGraph0.node[node]['windowsize']) + 9)
-                if len(cliqueGraph0.successors(node)) == 0:
-                    dic_vector[node].append(1)
-                else:
-                    dic_vector[node].append(0)
-                dic_vector[node].append(trend1)
-                dic_vector[node].append(trend2)
-                dic_vector[node].append(trend3)
                 continue
+    print 'after purity window', cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
+    print 'len(cliqueGraph0.selfloop_edges())-----', len(cliqueGraph0.selfloop_edges()), nx.isolates(cliqueGraph0)
+
+    for node in cliqueGraph0.nodes():
+        if node == 0:
+            continue
+        else:
+            parent = cliqueGraph0.predecessors(node)
+            if len(parent) > 1 and 0 in parent:
+                cliqueGraph0.remove_edge(0, node)
+
     print 'finally:', cliqueGraph0.number_of_nodes(), cliqueGraph0.number_of_edges()
 
 
     # write into files
-    fw1 = open('1211_NPM10_edges_sign_id.txt', 'w')
-    fw2 = open('1211_NPM10_terms_sign_id.txt', 'w')
-    fw3 = open('1211_NPM10_sign_distance_id.txt', 'w')
-    fw4 = open('1211_NPM10_term_vector_id.txt', 'w')
-    fw5 = open('1211_NPM10_term_pearson_id.txt', 'w')
-    fw6 = open('1211_NPM10_terms_sign_list_id.txt', 'w')
-    # fw1 = open('1208_DHAC_edges_sign_id.txt', 'w')
-    # fw2 = open('1208_DHAC_terms_sign_id.txt', 'w')
-    # fw3 = open('1208_DHAC_sign_distance_id.txt', 'w')
-    # fw4 = open('1208_DHAC_term_vector_id.txt', 'w')
-    # fw5 = open('1208_DHAC_term_pearson_id.txt', 'w')
-    # fw6 = open('1208_DHAC_terms_sign_list_id.txt', 'w')
+    fw1 = open('C:\Users\lu\Desktop\\04066\\0405edges_sign_id_DHAC.txt', 'w')
+    fw2 = open('C:\Users\lu\Desktop\\04066\\0405terms_sign_id_DHAC.txt', 'w')
+    fw6 = open('C:\Users\lu\Desktop\\04066\\0405terms_sign_list_id_DHAC.txt', 'w')
 
     fw1.write('parent' + '\t' + 'child' + '\n')
     for edge in cliqueGraph0.edges():
         fw1.write(str(edge[0]) + '\t' + str(edge[1]) + '\n')
     fw2.write(
         'term_id' + '\t' + 'sign_score' + '\t' + 'level' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
-    fw3.write('Term_Id' + '\t' + 'distance' + '\n')
-    fw4.write('Term_id' + '\t' + 'Sign_score' +  '\t' + 'Gene_number' + '\t' + 'Time_point_length' + '\t' + 'leaf' + '\t' + 'Trend1' + '\t' + 'Trend2' + '\t' + 'Trend3' + '\n')
-    fw5.write('Term_id' + '\t' + 'pearson' + '\n')
+
     fw6.write(
         'term_id' + '\t' + 'sign_score' + '\t' + 'level' + '\t' + 'annotation_gene' + '\t' + 'start_time' + '\t' + 'end_time' + '\t' + 'geneSize' + '\t' + 'time_size' + '\n')
 
-    for node, value in sorted(dic_term_score.items(), key=lambda d: d[1],reverse=True):
-        fw2.write(
-            str(node) + '\t' + str(round(value, 4)) + '\t' + str(
-                nx.shortest_path_length(cliqueGraph0, 0, node)) + '\t' + ','.join(
-                [t for t in cliqueGraph0.node[node]['annotation']]) + '\t' + str(
-                min(cliqueGraph0.node[node]['windowsize']) + 49) + '\t' + str(
-                max(cliqueGraph0.node[node]['windowsize']) + 58) + '\t' +
-            str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
-                len(cliqueGraph0.node[node]['windowsize']) + 9) + '\n')
-        fw3.write(str(node) + '\t' + str(dic_term_distance[node]) + '\n')
-        fw4.write(str(node) + '\t' + str(round(value,4)) + '\t' + '\t'.join(str(i) for i in dic_vector[node]) + '\n')
-        fw5.write(str(node) + '\t' + str(dic_pearson[node]) + '\n')
-        fw6.write(
-            str(node) + '\t' + str(round(value, 4)) + '\t' + str(nx.shortest_path_length(cliqueGraph0, 0, node)) + '\t' + ','.join([dic[t] for t in cliqueGraph0.node[node]['annotation']]) + '\t' + str(
-                min(cliqueGraph0.node[node]['windowsize']) + 49) + '\t' + str(
-                max(cliqueGraph0.node[node]['windowsize']) + 58) + '\t' +
-            str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
-                len(cliqueGraph0.node[node]['windowsize']) + 9) + '\n')
+    for node, value in sorted(dic_term_score.items(), key=lambda d: d[1], reverse=True):
+        try:
+            fw2.write(str(node) + '\t' + str(round(value, 4)) + '\t' +
+                      str(
+                          nx.shortest_path_length(cliqueGraph0, 0, node)) + '\t' +
+                      ','.join(cliqueGraph0.node[node]['annotation'])
+                      + '\t' + str(
+                min(cliqueGraph0.node[node]['windowsize']) + 49) + '\t' +
+                      str(max(cliqueGraph0.node[node]['windowsize']) + 58) + '\t' +
+                      str(len(cliqueGraph0.node[node]['annotation'])) + '\t' +
+                      str(len(cliqueGraph0.node[node]['windowsize']) + 9) + '\n')
+
+            fw6.write(
+                str(node) + '\t' + str(round(value, 4)) + '\t' + str(
+                    nx.shortest_path_length(cliqueGraph0, 0, node)) + '\t' + ','.join(
+                    [dic[t] for t in cliqueGraph0.node[node]['annotation']]) + '\t' + str(
+                    min(cliqueGraph0.node[node]['windowsize']) + 49) + '\t' + str(
+                    max(cliqueGraph0.node[node]['windowsize']) + 58) + '\t' +
+                str(len(cliqueGraph0.node[node]['annotation'])) + '\t' + str(
+                    len(cliqueGraph0.node[node]['windowsize']) + 9) + '\n')
+        except:
+            continue
 
     fw1.close()
     fw2.close()
-    fw3.close()
-    fw4.close()
-    fw5.close()
     fw6.close()
 
     '''
